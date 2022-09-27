@@ -597,7 +597,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     }
 
     // Available UTXO set
-    bool utxo_dirty = true;
     std::vector<COutput> availableCoins;
     unsigned int nExtraNonce = 0;
 
@@ -617,7 +616,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
             MilliSleep(nSpacingMillis); // sleep a block
             continue;
         }
-
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
@@ -625,10 +623,8 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            if (utxo_dirty) {
-                CheckForCoins(pwallet, 5, &availableCoins);
-                utxo_dirty = false;
-            }
+            // update fStakeableCoins (5 minute check time);
+            CheckForCoins(pwallet, 5, &availableCoins);
 
             if (sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC)) {
                 while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins) {
@@ -671,7 +667,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
 
         // POS - block found: process it
         if (fProofOfStake) {
-            utxo_dirty = true;
             LogPrintf("%s : proof-of-stake block was signed %s \n", __func__, pblock->GetHash().ToString().c_str());
             SetThreadPriority(THREAD_PRIORITY_NORMAL);
             if (!ProcessBlockFound(pblock, *pwallet, opReservekey)) {
