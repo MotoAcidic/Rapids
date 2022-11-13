@@ -49,7 +49,7 @@ static const int MAX_URI_LENGTH = 255;
 #define EXPORT_IMAGE_SIZE 256
 
 
-#define QAPP_ORG_NAME "Rapids"
+#define QAPP_ORG_NAME "RPD"
 #define QAPP_ORG_DOMAIN "rapidsnetwork.io"
 #define QAPP_APP_NAME_DEFAULT "Rapids-Qt"
 #define QAPP_APP_NAME_TESTNET "Rapids-Qt-testnet"
