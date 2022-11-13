@@ -698,7 +698,7 @@
                      <enum>Qt::NoFocus</enum>
                     </property>
                     <property name="text">
-                     <string>Privacy</string>
+                     <string>Security</string>
                     </property>
                     <property name="checkable">
                      <bool>true</bool>
