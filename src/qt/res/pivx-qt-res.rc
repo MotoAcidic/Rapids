@@ -20,7 +20,7 @@ BEGIN
         BLOCK "040904E4" // U.S. English - multilingual (hex)
         BEGIN
             VALUE "CompanyName",        "RPD"
-            VALUE "FileDescription",    "RPD Core (OSS GUI client for RPD)"
+            VALUE "FileDescription",    "RPD Chain (OSS GUI client for RPD)"
             VALUE "FileVersion",        VER_FILEVERSION_STR
             VALUE "InternalName",       "rapids-qt"
             VALUE "LegalCopyright",     COPYRIGHT_STR
