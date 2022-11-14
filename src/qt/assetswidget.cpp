@@ -49,7 +49,7 @@ AssetsWidget::AssetsWidget(RapidsGUI* parent) :
     };
 
     menus.insert(ui->pushButtonTokenSend, ui->tokenSendWidget);
-    menus.insert(ui->pushButtonTokenUsernames, ui->tokenUsernameWidget);
+    menus.insert(ui->pushButtonTokenUsernames, ui->tokenUsernamesWidget);
     menus.insert(ui->pushButtonTokenHistory, ui->tokenHistoryWidget);
     menus.insert(ui->pushButtonTokenCreate, ui->tokenCreateWidget);
 
@@ -182,7 +182,7 @@ void AssetsWidget::selectMenu(QPushButton* btn)
 }
 
 menus.insert(ui->pushButtonTokenSend, ui->tokenSendWidget);
-menus.insert(ui->pushButtonTokenUsernames, ui->tokenUsernameWidget);
+menus.insert(ui->pushButtonTokenUsernames, ui->tokenUsernamesWidget);
 menus.insert(ui->pushButtonTokenHistory, ui->tokenHistoryWidget);
 menus.insert(ui->pushButtonTokenCreate, ui->tokenCreateWidget);
 
@@ -231,14 +231,14 @@ void AssetsWidget::onDisplayOptionsClicked()
 
 void SettingsWidget::showTokenCreate()
 {
-    ui->pushButtonTools->setChecked(true);
+    ui->pushButtonTokenCreate->setChecked(true);
     onTokenCreateClicked();
 
 }
 
-void SettingsWidget::showTokenUsername()
+void SettingsWidget::showTokenUsernames()
 {
-    ui->pushButtonTools->setChecked(true);
+    ui->pushButtonTokenUsernames->setChecked(true);
     onTokenUsernameClicked();
 
 }

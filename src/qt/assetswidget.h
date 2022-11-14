@@ -48,7 +48,7 @@ private Q_SLOTS:
     void onTokenCreateClicked();
 
     // Username
-    void onTokenUsernameClicked();
+    void onTokenUsernamesClicked();
 
     // Token History
     void onTokenHistoryClicked();
@@ -60,10 +60,10 @@ private:
     Ui::AssetsWidget *ui;
     int navAreaBaseHeight{0};
 
-    AssetsTokenCreate *assetsTokenCreate;
-    AssetsTokenUsername* assetsTokenUsername;
-    AssetsTokenHistory* assetsTokenHistory;
-    AssetsTokenSend* assetsTokenSend;
+    CreateMPDialog* assetsTokenCreate;
+    UsernamesDialog* assetsTokenUsername;
+    TradeHistoryObject* assetsTokenHistory;
+    SendMPDialog* assetsTokenSend;
 
     QDataWidgetMapper* mapper;
 
