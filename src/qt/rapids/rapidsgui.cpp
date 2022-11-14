@@ -220,7 +220,7 @@ void RapidsGUI::connectActions()
     });
     connect(consoleShort, &QShortcut::activated, [this]() {
         navMenu->selectAssets();
-        assetsWidget->showTokenSend();
+        //assetsWidget->showTokenSend();
         goToAssets();
     });
     connect(topBar, &TopBar::showHide, this, &RapidsGUI::showHide);
@@ -306,9 +306,6 @@ void RapidsGUI::setClientModel(ClientModel* clientModel)
 
         // Get restart command-line parameters and handle restart
         connect(settingsWidget, &SettingsWidget::handleRestart, [this](QStringList arg){handleRestart(arg);});
-
-        connect(assetsWidget, &AssetsWidget::handleRestart, [this](QStringList arg) { handleRestart(arg); });
-
 
         if (rpcConsole) {
             rpcConsole->setClientModel(clientModel);
