@@ -220,7 +220,7 @@ void RapidsGUI::connectActions()
     });
     connect(consoleShort, &QShortcut::activated, [this]() {
         navMenu->selectAssets();
-        assetsWidget->show();
+        assetsWidget->showTokenSend();
         goToAssets();
     });
     connect(topBar, &TopBar::showHide, this, &RapidsGUI::showHide);

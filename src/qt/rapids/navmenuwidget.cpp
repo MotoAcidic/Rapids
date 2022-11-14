@@ -72,6 +72,7 @@ void NavMenuWidget::connectActions() {
     connect(ui->btnAddress, &QPushButton::clicked, this, &NavMenuWidget::onAddressClicked);
     connect(ui->btnMaster, &QPushButton::clicked, this, &NavMenuWidget::onMasterNodesClicked);
     connect(ui->btnSettings, &QPushButton::clicked, this, &NavMenuWidget::onSettingsClicked);
+    connect(ui->btnSettings, &QPushButton::clicked, this, &NavMenuWidget::onAssetsClicked);
     connect(ui->btnTokens, &QPushButton::clicked, this, &NavMenuWidget::onTokensClicked);
     connect(ui->btnReceive, &QPushButton::clicked, this, &NavMenuWidget::onReceiveClicked);
     connect(ui->btnColdStaking, &QPushButton::clicked, this, &NavMenuWidget::onColdStakingClicked);

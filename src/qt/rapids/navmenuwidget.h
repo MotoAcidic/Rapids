@@ -38,6 +38,7 @@ private Q_SLOTS:
     void onColdStakingClicked();
     void onGovClicked();
     void onSettingsClicked();
+    void onAssetsClicked();
     void onTokensClicked();
     void onReceiveClicked();
     void updateButtonStyles();
