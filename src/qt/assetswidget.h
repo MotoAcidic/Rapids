@@ -6,6 +6,7 @@
 #define ASSETSWIDGET_H
 
 #include <QWidget>
+#include "qt/rapids/pwidget.h"
 #include "qt/creatempdialog.h"
 #include "qt/usernamesdialog.h"
 #include "qt/txhistorydialog.h"
