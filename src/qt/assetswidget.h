@@ -32,49 +32,10 @@ public:
     ~AssetsWidget();
 
 
-    void loadClientModel() override;
-    void loadWalletModel() override;
-    void setMapper();
-    void showTokenCreate();
-    void showTokenUsername();
-    void showTokenHistory();
-    void showTokenSend();
-
-Q_SIGNALS:
-    /** Get restart command-line parameters and handle restart */
-    void handleRestart(QStringList args);
-
-private Q_SLOTS:
-    // Create Token
-    void onTokenCreateClicked();
-
-    // Username
-    void onTokenUsernamesClicked();
-
-    // Token History
-    void onTokenHistoryClicked();
-
-    // Token Send
-    void onTokenSendClicked();
-
 private:
     Ui::AssetsWidget *ui;
     int navAreaBaseHeight{0};
 
-    CreateMPDialog* assetsTokenCreate;
-    UsernamesDialog* assetsTokenUsernames;
-    TradeHistoryObject* assetsTokenHistory;
-    SendMPDialog* assetsTokenSend;
-
-    QDataWidgetMapper* mapper;
-
-    QList<QPushButton*> options;
-    // Map of: menu button -> sub menu items
-    QMap <QPushButton*, QWidget*> menus;
-
-    void selectOption(QPushButton* option);
-    bool openStandardDialog(const QString& title = "", const QString& body = "", const QString& okBtn = "OK", const QString& cancelBtn = "");
-    void selectMenu(QPushButton* btn);
 };
 
 #endif // ASSETSWIDGET_H
