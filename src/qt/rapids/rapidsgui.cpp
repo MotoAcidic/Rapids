@@ -66,7 +66,7 @@ RapidsGUI::RapidsGUI(const NetworkStyle* networkStyle, QWidget* parent) :
 
     QString windowTitle = QString::fromStdString(GetArg("-windowtitle", ""));
     if (windowTitle.isEmpty()) {
-        windowTitle = tr("Rapids") + " - ";
+        windowTitle = tr("RPD Chain") + " - ";
         windowTitle += ((enableWallet) ? tr("Wallet") : tr("Node"));
     }
     windowTitle += " " + networkStyle->getTitleAddText();
@@ -128,6 +128,7 @@ RapidsGUI::RapidsGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         coldStakingWidget = new ColdStakingWidget(this);
         governanceWidget = new GovernanceWidget(this);
         settingsWidget = new SettingsWidget(this);
+        assetsWidget = new AssetsWidget(this);
         // dexPage = new MetaDExDialog(this);
 
         // Token
@@ -138,13 +139,14 @@ RapidsGUI::RapidsGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         createTokenPage = new CreateMPDialog(this);
         // dexPage = new MetaDExDialog();
 
-        tabHolder = new QTabWidget();
-        tabHolder->setStyleSheet("background-color: #0f0f0f;");
-        tabHolder->addTab(sendTokenPage, tr("Send"));
-        tabHolder->addTab(balancesPage, tr("Tokens"));
-        tabHolder->addTab(usernamesPage, tr("Usernames"));
-        tabHolder->addTab(tokensHistory, tr("History"));
-        tabHolder->addTab(createTokenPage, tr("Create"));
+        // Tab holder for tokencore
+        //tabHolder = new QTabWidget();
+        //tabHolder->setStyleSheet("background-color: #0f0f0f;");
+        //tabHolder->addTab(sendTokenPage, tr("Send"));
+        //tabHolder->addTab(balancesPage, tr("Tokens"));
+        //tabHolder->addTab(usernamesPage, tr("Usernames"));
+        //tabHolder->addTab(tokensHistory, tr("History"));
+        //tabHolder->addTab(createTokenPage, tr("Create"));
 
         // Add to parent
         stackedContainer->addWidget(dashboard);
@@ -155,6 +157,7 @@ RapidsGUI::RapidsGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         stackedContainer->addWidget(coldStakingWidget);
         stackedContainer->addWidget(governanceWidget);
         stackedContainer->addWidget(settingsWidget);
+        stackedContainer->addWidget(assetsWidget);
         // stackedContainer->addWidget(balancesPage);
         // stackedContainer->addWidget(tokensHistory);
         // stackedContainer->addWidget(sendTokenPage);
@@ -215,10 +218,16 @@ void RapidsGUI::connectActions()
         settingsWidget->showDebugConsole();
         goToSettings();
     });
+    connect(consoleShort, &QShortcut::activated, [this]() {
+        navMenu->selectAssets();
+        assetsWidget->show();
+        goToSettings();
+    });
     connect(topBar, &TopBar::showHide, this, &RapidsGUI::showHide);
     connect(topBar, &TopBar::themeChanged, this, &RapidsGUI::changeTheme);
     connect(topBar, &TopBar::onShowHideColdStakingChanged, navMenu, &NavMenuWidget::onShowHideColdStakingChanged);
     connect(settingsWidget, &SettingsWidget::showHide, this, &RapidsGUI::showHide);
+    connect(assetsWidget, &AssetsWidget::showHide, this, &RapidsGUI::showHide);
     connect(sendWidget, &SendWidget::showHide, this, &RapidsGUI::showHide);
     connect(receiveWidget, &ReceiveWidget::showHide, this, &RapidsGUI::showHide);
     connect(addressesWidget, &AddressesWidget::showHide, this, &RapidsGUI::showHide);
@@ -229,6 +238,7 @@ void RapidsGUI::connectActions()
     connect(governanceWidget, &GovernanceWidget::showHide, this, &RapidsGUI::showHide);
     connect(governanceWidget, &GovernanceWidget::execDialog, this, &RapidsGUI::execDialog);
     connect(settingsWidget, &SettingsWidget::execDialog, this, &RapidsGUI::execDialog);
+    connect(assetsWidget, &AssetsWidget::execDialog, this, &RapidsGUI::execDialog);
 }
 
 
@@ -279,6 +289,7 @@ void RapidsGUI::setClientModel(ClientModel* clientModel)
         sendWidget->setClientModel(clientModel);
         masterNodesWidget->setClientModel(clientModel);
         settingsWidget->setClientModel(clientModel);
+        assetsWidget->setClientModel(clientModel);
         governanceWidget->setClientModel(clientModel);
 
         balancesPage->setClientModel(clientModel);
@@ -295,6 +306,9 @@ void RapidsGUI::setClientModel(ClientModel* clientModel)
 
         // Get restart command-line parameters and handle restart
         connect(settingsWidget, &SettingsWidget::handleRestart, [this](QStringList arg){handleRestart(arg);});
+
+        connect(assetsWidget, &AssetsWidget::handleRestart, [this](QStringList arg) { handleRestart(arg); });
+
 
         if (rpcConsole) {
             rpcConsole->setClientModel(clientModel);
@@ -541,6 +555,11 @@ void RapidsGUI::goToSettings(){
     showTop(settingsWidget);
 }
 
+void RapidsGUI::goToAssets()
+{
+    showTop(assetsWidget);
+}
+
 void RapidsGUI::gotoTokensPage(){
     balancesPage->balancesUpdated();
     usernamesPage->balancesUpdated();
@@ -678,6 +697,7 @@ bool RapidsGUI::addWallet(const QString& name, WalletModel* walletModel)
     coldStakingWidget->setWalletModel(walletModel);
     governanceWidget->setWalletModel(walletModel);
     settingsWidget->setWalletModel(walletModel);
+    assetsWidget->setWalletModel(walletModel);
 
     balancesPage->setWalletModel(walletModel);
     usernamesPage->setWalletModel(walletModel);
@@ -696,6 +716,8 @@ bool RapidsGUI::addWallet(const QString& name, WalletModel* walletModel)
     connect(addressesWidget, &AddressesWidget::message,this, &RapidsGUI::message);
     connect(governanceWidget, &GovernanceWidget::message, this, &RapidsGUI::message);
     connect(settingsWidget, &SettingsWidget::message, this, &RapidsGUI::message);
+    connect(assetsWidget, &AssetsWidget::message, this, &RapidsGUI::message);
+
 
     // Pass through transaction notifications
     connect(dashboard, &DashboardWidget::incomingTransaction, this, &RapidsGUI::incomingTransaction);
