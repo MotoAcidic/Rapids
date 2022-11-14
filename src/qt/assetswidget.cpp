@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include "qt/assetswidget.h"
-#include "qt/rapids/settings/forms/ui_assetswidget.h"
+//#include "qt/rapids/settings/forms/ui_assetswidget.h"
 #include "qt/rapids/defaultdialog.h"
 #include <QScrollBar>
 #include <QDataWidgetMapper>
