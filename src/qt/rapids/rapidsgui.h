@@ -26,6 +26,7 @@
 #include "qt/rapids/masternodeswidget.h"
 #include "qt/rapids/snackbar.h"
 #include "qt/rapids/settings/settingswidget.h"
+#include "qt/assetswidget.h"
 #include "qt/rapids/settings/settingsfaqwidget.h"
 #include "qt/txhistorydialog.h"
 #include "qt/sendmpdialog.h"
@@ -153,6 +154,7 @@ private:
     ColdStakingWidget *coldStakingWidget = nullptr;
     GovernanceWidget* governanceWidget{nullptr};
     SettingsWidget* settingsWidget = nullptr;
+    AssetsWidget* assetsWidget = nullptr;
 
     BalancesDialog *balancesPage = nullptr;
     UsernamesDialog *usernamesPage = nullptr;

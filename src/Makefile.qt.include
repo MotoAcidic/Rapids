@@ -81,6 +81,7 @@ QT_FORMS_UI = \
   qt/rapids/settings/forms/settingswalletoptionswidget.ui \
   qt/rapids/settings/forms/settingswalletrepairwidget.ui \
   qt/rapids/settings/forms/settingswidget.ui \
+  qt/assetsswidget.ui \
   qt/rapids/forms/welcomecontentwidget.ui \
   qt/rapids/forms/splash.ui
 
@@ -186,6 +187,7 @@ QT_MOC_CPP = \
   qt/rapids/settings/moc_settingswalletoptionswidget.cpp \
   qt/rapids/settings/moc_settingswalletrepairwidget.cpp \
   qt/rapids/settings/moc_settingswidget.cpp \
+  qt/assetswidget.cpp \
   qt/rapids/moc_welcomecontentwidget.cpp \
   qt/rapids/moc_splash.cpp
 
@@ -327,6 +329,7 @@ BITCOIN_QT_H = \
   qt/rapids/settings/settingswalletoptionswidget.h \
   qt/rapids/settings/settingswalletrepairwidget.h \
   qt/rapids/settings/settingswidget.h \
+  qt/assetswidget.h \
   qt/rapids/welcomecontentwidget.h \
   qt/rapids/splash.h
 
@@ -677,6 +680,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/rapids/settings/settingswalletoptionswidget.cpp \
   qt/rapids/settings/settingswalletrepairwidget.cpp \
   qt/rapids/settings/settingswidget.cpp \
+  qt/assetswidget.cpp \
   qt/rapids/welcomecontentwidget.cpp \
   qt/rapids/splash.cpp
 

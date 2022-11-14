@@ -8,7 +8,7 @@
 #include <QScrollBar>
 #include <QDataWidgetMapper>
 
-SettingsWidget::AssetsWidget(RapidsGUI* parent) :
+AssetsWidget::AssetsWidget(RapidsGUI* parent) :
     PWidget(parent),
     ui(new Ui::AssetsWidget)
 {
@@ -64,16 +64,16 @@ SettingsWidget::AssetsWidget(RapidsGUI* parent) :
     ui->stackedWidgetContainer->addWidget(assetsTokenCreate);
 
     // Token Send
-    connect(ui->pushButtonTokenSend, &QPushButton::clicked, this, &SettingsWidget::onTokenSendlicked);
+    connect(ui->pushButtonTokenSend, &QPushButton::clicked, this, &AssetsWidget::onTokenSendlicked);
 
     // Token Usernames
-    connect(ui->pushButtonTokenUsernames, &QPushButton::clicked, this, &SettingsWidget::onTokenUsernamesClicked);
+    connect(ui->pushButtonTokenUsernames, &QPushButton::clicked, this, &AssetsWidget::onTokenUsernamesClicked);
 
     // Token History
-    connect(ui->pushButtonTokenHistory, &QPushButton::clicked, this, &SettingsWidget::onTokenHistoryClicked);
+    connect(ui->pushButtonTokenHistory, &QPushButton::clicked, this, &AssetsWidget::onTokenHistoryClicked);
 
     // Token Create
-    connect(ui->pushButtonTokenCreate, &QPushButton::clicked, this, &SettingsWidget::onTokenCreateClicked);
+    connect(ui->pushButtonTokenCreate, &QPushButton::clicked, this, &AssetsWidget::onTokenCreateClicked);
 
     connect(assetsTokenSendWidget, &AssetsTokenSend::message, this, &AssetsWidget::message);
     connect(assetsTokenSendWidget, &AssetsTokenSend::showHide, this, &AssetsWidget::showHide);
@@ -91,18 +91,18 @@ SettingsWidget::AssetsWidget(RapidsGUI* parent) :
     connect(assetsTokenCreateWidget, &AssetsTokneCreate::showHide, this, &AssetsWidget::showHide);
     connect(assetsTokenCreateWidget, &AssetsTokneCreate::execDialog, this, &AssetsWidget::execDialog);
 
-    connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::message, this, &SettingsWidget::message);
-    connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::message, this, &SettingsWidget::message);
-    connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::message, this, &SettingsWidget::message);
+    connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::message, this, &AssetsWidget::message);
+    connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::message, this, &AssetsWidget::message);
+    connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::message, this, &AssetsWidget::message);
 
-    connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::saveSettings, this, &SettingsWidget::onSaveOptionsClicked);
-    connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::discardSettings, this, &SettingsWidget::onDiscardChanges);
+    connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::saveSettings, this, &AssetsWidget::onSaveOptionsClicked);
+    connect(settingsDisplayOptionsWidget, &SettingsDisplayOptionsWidget::discardSettings, this, &AssetsWidget::onDiscardChanges);
 
-    connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::saveSettings, this, &SettingsWidget::onSaveOptionsClicked);
-    connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::discardSettings, this, &SettingsWidget::onDiscardChanges);
+    connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::saveSettings, this, &AssetsWidget::onSaveOptionsClicked);
+    connect(settingsMainOptionsWidget, &SettingsMainOptionsWidget::discardSettings, this, &AssetsWidget::onDiscardChanges);
 
-    connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::saveSettings, this, &SettingsWidget::onSaveOptionsClicked);
-    connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::discardSettings, this, &SettingsWidget::onDiscardChanges);
+    connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::saveSettings, this, &AssetsWidget::onSaveOptionsClicked);
+    connect(settingsWalletOptionsWidget, &SettingsWalletOptionsWidget::discardSettings, this, &AssetsWidget::onDiscardChanges);
 
     /* Widget-to-option mapper */
     mapper = new QDataWidgetMapper(this);
@@ -123,7 +123,7 @@ SettingsWidget::AssetsWidget(RapidsGUI* parent) :
     ui->pushButtonFile2->setChecked(true);
 }
 
-void SettingsWidget::loadClientModel()
+void AssetsWidget::loadClientModel()
 {
     if (clientModel) {
         this->settingsInformationWidget->setClientModel(this->clientModel);
@@ -142,7 +142,7 @@ void SettingsWidget::loadClientModel()
     }
 }
 
-void SettingsWidget::loadWalletModel()
+void AssetsWidget::loadWalletModel()
 {
     this->assetsTokenSend->setWalletModel(this->walletModel);
     this->assetsTokenUsernames->setWalletModel(this->walletModel);
@@ -151,7 +151,7 @@ void SettingsWidget::loadWalletModel()
     this->settingsDisplayOptionsWidget->setWalletModel(this->walletModel);
 }
 
-void SettingsWidget::onResetAction()
+void AssetsWidget::onResetAction()
 {
     if (walletModel) {
         // confirmation dialog
@@ -164,7 +164,7 @@ void SettingsWidget::onResetAction()
     }
 }
 
-void SettingsWidget::selectMenu(QPushButton* btn)
+void AssetsWidget::selectMenu(QPushButton* btn)
 {
     QWidget* subMenuSelected = menus[btn];
     if (btn->isChecked()) {
@@ -186,64 +186,64 @@ menus.insert(ui->pushButtonTokenUsernames, ui->tokenUsernameWidget);
 menus.insert(ui->pushButtonTokenHistory, ui->tokenHistoryWidget);
 menus.insert(ui->pushButtonTokenCreate, ui->tokenCreateWidget);
 
-void SettingsWidget::onTokenSendClicked()
+void AssetsWidget::onTokenSendClicked()
 {
     selectMenu(ui->pushButtonTokenSend);
 }
 
-void SettingsWidget::onTokenUsernamesClicked()
+void AssetsWidget::onTokenUsernamesClicked()
 {
     selectMenu(ui->pushButtonTokenUsernames);
 }
 
-void SettingsWidget::onTokenHistoryClicked()
+void AssetsWidget::onTokenHistoryClicked()
 {
     selectMenu(ui->pushButtonTokenHistory);
 }
 
-void SettingsWidget::onTokenCreateClicked()
+void AssetsWidget::onTokenCreateClicked()
 {
     selectMenu(ui->pushButtonTokenCreate);
 }
 
-void SettingsWidget::onOptionsClicked()
+void AssetsWidget::onOptionsClicked()
 {
     selectMenu(ui->pushButtonOptions);
 }
 
-void SettingsWidget::onMainOptionsClicked()
+void AssetsWidget::onMainOptionsClicked()
 {
     ui->stackedWidgetContainer->setCurrentWidget(settingsMainOptionsWidget);
     selectOption(ui->pushButtonOptions1);
 }
 
-void SettingsWidget::onWalletOptionsClicked()
+void AssetsWidget::onWalletOptionsClicked()
 {
     ui->stackedWidgetContainer->setCurrentWidget(settingsWalletOptionsWidget);
     selectOption(ui->pushButtonOptions2);
 }
 
-void SettingsWidget::onDisplayOptionsClicked()
+void AssetsWidget::onDisplayOptionsClicked()
 {
     ui->stackedWidgetContainer->setCurrentWidget(settingsDisplayOptionsWidget);
     selectOption(ui->pushButtonOptions5);
 }
 
-void SettingsWidget::selectOption(QPushButton* option)
+void AssetsWidget::selectOption(QPushButton* option)
 {
     for (QPushButton* wid : options) {
         if (wid) wid->setChecked(wid == option);
     }
 }
 
-void SettingsWidget::setMapper()
+void AssetsWidget::setMapper()
 {
     settingsMainOptionsWidget->setMapper(mapper);
     settingsWalletOptionsWidget->setMapper(mapper);
     settingsDisplayOptionsWidget->setMapper(mapper);
 }
 
-bool SettingsWidget::openStandardDialog(const QString& title, const QString& body, const QString& okBtn, const QString& cancelBtn)
+bool AssetsWidget::openStandardDialog(const QString& title, const QString& body, const QString& okBtn, const QString& cancelBtn)
 {
     showHideOp(true);
     DefaultDialog *confirmDialog = new DefaultDialog(window);
@@ -254,7 +254,7 @@ bool SettingsWidget::openStandardDialog(const QString& title, const QString& bod
     return confirmDialog->isOk;
 }
 
-SettingsWidget::~SettingsWidget()
+AssetsWidget::~AssetsWidget()
 {
     delete ui;
 }
