@@ -221,7 +221,7 @@ void RapidsGUI::connectActions()
     connect(consoleShort, &QShortcut::activated, [this]() {
         navMenu->selectAssets();
         assetsWidget->show();
-        goToSettings();
+        goToAssets();
     });
     connect(topBar, &TopBar::showHide, this, &RapidsGUI::showHide);
     connect(topBar, &TopBar::themeChanged, this, &RapidsGUI::changeTheme);

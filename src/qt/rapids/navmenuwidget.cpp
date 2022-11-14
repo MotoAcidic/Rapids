@@ -157,7 +157,7 @@ void NavMenuWidget::selectSettings() {
 
 void NavMenuWidget::selectAssets()
 {
-    onSettingsClicked();
+    onAssetsClicked();
 }
 
 void NavMenuWidget::onShowHideColdStakingChanged(bool show) {

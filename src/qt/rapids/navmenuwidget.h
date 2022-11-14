@@ -27,6 +27,7 @@ public:
 
 public Q_SLOTS:
     void selectSettings();
+    void selectAssets();
     void onShowHideColdStakingChanged(bool show);
 
 private Q_SLOTS:
