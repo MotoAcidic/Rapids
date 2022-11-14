@@ -81,7 +81,7 @@ QT_FORMS_UI = \
   qt/rapids/settings/forms/settingswalletoptionswidget.ui \
   qt/rapids/settings/forms/settingswalletrepairwidget.ui \
   qt/rapids/settings/forms/settingswidget.ui \
-  qt/assetswidget.ui \
+  qt/forms/assetswidget.ui \
   qt/rapids/forms/welcomecontentwidget.ui \
   qt/rapids/forms/splash.ui
 
