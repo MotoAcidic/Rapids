@@ -62,7 +62,7 @@ private:
     int navAreaBaseHeight{0};
 
     CreateMPDialog* assetsTokenCreate;
-    UsernamesDialog* assetsTokenUsername;
+    UsernamesDialog* assetsTokenUsernames;
     TradeHistoryObject* assetsTokenHistory;
     SendMPDialog* assetsTokenSend;
 

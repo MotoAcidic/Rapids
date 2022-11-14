@@ -129,21 +129,11 @@ AssetsWidget::AssetsWidget(RapidsGUI* parent) :
 
 void AssetsWidget::loadClientModel()
 {
-    if (clientModel) {
-        this->settingsInformationWidget->setClientModel(this->clientModel);
-        this->settingsConsoleWidget->setClientModel(this->clientModel);
-
-        OptionsModel *optionsModel = this->clientModel->getOptionsModel();
-        if (optionsModel) {
-            settingsDisplayOptionsWidget->setClientModel(clientModel);
-            settingsMainOptionsWidget->setClientModel(clientModel);
-            settingsWalletOptionsWidget->setClientModel(clientModel);
-
-            mapper->setModel(optionsModel);
-            setMapper();
-            mapper->toFirst();
-        }
-    }
+    this->assetsTokenSend->setClientModel(this->clientModel);
+    this->assetsTokenUsernames->setClientModel(this->clientModel);
+    this->assetsTokenHistory->setClientModel(this->clientModel);
+    this->assetsTokenCreate->setClientModel(this->clientModel);
+    this->settingsDisplayOptionsWidget->setClientModel(this->clientModel);
 }
 
 void AssetsWidget::loadWalletModel()
