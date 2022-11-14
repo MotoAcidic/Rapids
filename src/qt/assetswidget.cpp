@@ -2,7 +2,7 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include "qt/assetsswidget.h"
+#include "qt/forms/assetsswidget.h"
 #include "qt/rapids/settings/forms/ui_assetswidget.h"
 #include "qt/rapids/defaultdialog.h"
 #include <QScrollBar>
