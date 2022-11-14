@@ -56,7 +56,6 @@ src/univalue/gen
 
 src/qt/*.moc
 src/qt/moc_*.cpp
-src/qt/forms/ui_*.h
 
 src/qt/test/moc*.cpp
 
@@ -92,7 +91,6 @@ src/qt/test/moc*.cpp
 *.qm
 Makefile
 rapids-qt
-Rapids-Qt.app
 background.tiff*
 
 # Rust
@@ -109,7 +107,6 @@ src/test/buildenv.py
 qrc_*.cpp
 
 # Qt creator
-*.pro.user
 
 # Mac specific
 .DS_Store
@@ -136,8 +133,6 @@ cache/*
 
 !src/leveldb*/Makefile
 
-.cproject
-.project
 /doc/doxygen/
 /nbproject/
 libbitcoinconsensus.pc
