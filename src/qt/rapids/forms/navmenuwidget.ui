@@ -116,7 +116,7 @@ background-color:transparent;
            <x>0</x>
            <y>0</y>
            <width>102</width>
-           <height>640</height>
+           <height>720</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -338,7 +338,7 @@ STAKING</string>
            </widget>
           </item>
           <item>
-           <widget class="QToolButton" name="btnTokens">
+           <widget class="QToolButton" name="btnAssets">
             <property name="minimumSize">
              <size>
               <width>100</width>

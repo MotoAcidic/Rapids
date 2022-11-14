@@ -37,11 +37,11 @@ NavMenuWidget::NavMenuWidget(RapidsGUI *mainWindow, QWidget *parent) :
     ui->btnColdStaking->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     ui->btnSettings->setProperty("name", "settings");
     ui->btnSettings->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    ui->btnTokens->setProperty("name", "tokens");
-    ui->btnTokens->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+    ui->btnAssets->setProperty("name", "tokens");
+    ui->btnAssets->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
     ui->btnGovernance->setProperty("name", "governance");
     ui->btnGovernance->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
-    btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnMaster, ui->btnColdStaking, ui->btnSettings, ui->btnGovernance, ui->btnTokens};
+    btns = {ui->btnDashboard, ui->btnSend, ui->btnReceive, ui->btnAddress, ui->btnMaster, ui->btnColdStaking, ui->btnSettings, ui->btnGovernance, ui->btnAssets};
     onNavSelected(ui->btnDashboard, true);
 
     ui->scrollAreaNav->setWidgetResizable(true);
@@ -73,7 +73,7 @@ void NavMenuWidget::connectActions() {
     connect(ui->btnMaster, &QPushButton::clicked, this, &NavMenuWidget::onMasterNodesClicked);
     connect(ui->btnSettings, &QPushButton::clicked, this, &NavMenuWidget::onSettingsClicked);
     connect(ui->btnSettings, &QPushButton::clicked, this, &NavMenuWidget::onAssetsClicked);
-    connect(ui->btnTokens, &QPushButton::clicked, this, &NavMenuWidget::onTokensClicked);
+    connect(ui->btnAssets, &QPushButton::clicked, this, &NavMenuWidget::onTokensClicked);
     connect(ui->btnReceive, &QPushButton::clicked, this, &NavMenuWidget::onReceiveClicked);
     connect(ui->btnColdStaking, &QPushButton::clicked, this, &NavMenuWidget::onColdStakingClicked);
     connect(ui->btnGovernance, &QPushButton::clicked, this, &NavMenuWidget::onGovClicked);
@@ -85,7 +85,7 @@ void NavMenuWidget::connectActions() {
     ui->btnMaster->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_5));
     ui->btnColdStaking->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_6));
     ui->btnSettings->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_7));
-    ui->btnTokens->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
+    ui->btnAssets->setShortcut(QKeySequence(SHORT_KEY + Qt::Key_8));
 }
 
 void NavMenuWidget::onSendClicked(){
@@ -128,11 +128,6 @@ void NavMenuWidget::onAssetsClicked()
 {
     window->goToAssets();
     onNavSelected(ui->btnAssets);
-}
-
-void NavMenuWidget::onTokensClicked(){
-    window->gotoTokensPage();
-    onNavSelected(ui->btnTokens);
 }
 
 void NavMenuWidget::onReceiveClicked(){
@@ -181,7 +176,6 @@ void NavMenuWidget::updateButtonStyles(){
          ui->btnAddress,
          ui->btnMaster,
          ui->btnSettings,
-         ui->btnTokens,
          ui->btnReceive,
          ui->btnColdStaking,
          ui->btnGovernance
