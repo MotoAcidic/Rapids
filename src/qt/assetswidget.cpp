@@ -229,6 +229,34 @@ void AssetsWidget::onDisplayOptionsClicked()
     selectOption(ui->pushButtonOptions5);
 }
 
+void SettingsWidget::showTokenCreate()
+{
+    ui->pushButtonTools->setChecked(true);
+    onTokenCreateClicked();
+
+}
+
+void SettingsWidget::showTokenUsername()
+{
+    ui->pushButtonTools->setChecked(true);
+    onTokenUsernameClicked();
+
+}
+
+void SettingsWidget::showTokenHistory()
+{
+    ui->pushButtonTokenHistory->setChecked(true);
+    onTokenHistoryClicked();
+
+}
+
+void SettingsWidget::showTokenSend()
+{
+    ui->pushButtonTokenSend->setChecked(true);
+    onTokkenSendClicked();
+
+}
+
 void AssetsWidget::selectOption(QPushButton* option)
 {
     for (QPushButton* wid : options) {

@@ -7,7 +7,7 @@
 
 #include <QWidget>
 #include "qt/creatempdialog.h"
-#include "qt/usernamedialog.h"
+#include "qt/usernamesdialog.h"
 #include "qt/txhistorydialog.h"
 #include "qt/sendmpdialog.h"
 #include "qt/tradehistorydialog.h"
@@ -30,8 +30,12 @@ public:
     explicit AssetsWidget(RapidsGUI* parent);
     ~AssetsWidget();
 
-    void showTokenCreate() override;
-    void showTokenUsername() override;
+
+    void loadClientModel() override;
+    void loadWalletModel() override;
+    void setMapper();
+    void showTokenCreate();
+    void showTokenUsername();
     void showTokenHistory();
     void showTokenSend();
 
