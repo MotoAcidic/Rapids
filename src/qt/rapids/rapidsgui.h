@@ -82,6 +82,7 @@ public Q_SLOTS:
     void goToGovernance();
     void goToColdStaking();
     void goToSettings();
+    void goToAssets();
     void gotoTokensPage();
     void goToSettingsInfo();
     void openNetworkMonitor();
