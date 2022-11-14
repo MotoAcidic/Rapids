@@ -123,6 +123,12 @@ void NavMenuWidget::onSettingsClicked(){
     onNavSelected(ui->btnSettings);
 }
 
+void NavMenuWidget::onAssetsClicked()
+{
+    window->goToAssets();
+    onNavSelected(ui->btnAssets);
+}
+
 void NavMenuWidget::onTokensClicked(){
     window->gotoTokensPage();
     onNavSelected(ui->btnTokens);
@@ -146,6 +152,11 @@ void NavMenuWidget::onNavSelected(QWidget* active, bool startup) {
 }
 
 void NavMenuWidget::selectSettings() {
+    onSettingsClicked();
+}
+
+void NavMenuWidget::selectAssets()
+{
     onSettingsClicked();
 }
 
