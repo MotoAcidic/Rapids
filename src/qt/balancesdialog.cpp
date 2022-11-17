@@ -35,6 +35,7 @@
 #include <QString>
 #include <QTableWidgetItem>
 #include <QWidget>
+#include <QMessageBox>
 
 using std::ostringstream;
 using std::string;
@@ -337,5 +338,11 @@ void BalancesDialog::resizeEvent(QResizeEvent* event)
 {
     QWidget::resizeEvent(event);
     borrowedColumnResizingFixer->stretchColumnWidth(1);
+}
+
+
+void BalancesDialog::on_pushButton_clicked()
+{
+QMessageBox::critical(this, tr("This worked");
 }
 

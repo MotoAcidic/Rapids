@@ -60,6 +60,8 @@ private Q_SLOTS:
     void balancesCopyCol2();
     void balancesCopyCol3();
 
+    void on_pushButton_clicked();
+
 Q_SIGNALS:
     /**  Fired when a message should be reported to the user */
     void message(const QString &title, const QString &message, unsigned int style);
