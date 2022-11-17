@@ -343,6 +343,5 @@ void BalancesDialog::resizeEvent(QResizeEvent* event)
 
 void BalancesDialog::on_pushButton_clicked()
 {
-QMessageBox::critical(this, tr("This worked"));
 }
 
