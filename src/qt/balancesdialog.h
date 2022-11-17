@@ -62,6 +62,12 @@ private Q_SLOTS:
 
     void on_pushButton_clicked();
 
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_4_clicked();
+
 Q_SIGNALS:
     /**  Fired when a message should be reported to the user */
     void message(const QString &title, const QString &message, unsigned int style);

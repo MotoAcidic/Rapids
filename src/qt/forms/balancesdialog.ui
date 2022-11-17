@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>664</width>
-    <height>474</height>
+    <width>674</width>
+    <height>499</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,10 +16,10 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>3</x>
-     <y>3</y>
+     <x>10</x>
+     <y>10</y>
      <width>661</width>
-     <height>471</height>
+     <height>491</height>
     </rect>
    </property>
    <layout class="QGridLayout" name="gridLayout">
@@ -65,17 +65,38 @@
       </property>
      </widget>
     </item>
-    <item row="1" column="1">
+    <item row="1" column="0">
      <widget class="QPushButton" name="pushButton">
       <property name="text">
-       <string>PushButton</string>
+       <string>Test 1</string>
       </property>
      </widget>
     </item>
-    <item row="1" column="2">
+    <item row="1" column="2" rowspan="3">
      <widget class="QTableWidget" name="balancesTable">
       <property name="alternatingRowColors">
        <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="text">
+       <string>Test 2</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QPushButton" name="pushButton_3">
+      <property name="text">
+       <string>Test 3</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QPushButton" name="pushButton_4">
+      <property name="text">
+       <string>Test 4</string>
       </property>
      </widget>
     </item>
