@@ -19,6 +19,7 @@
 #include "qt/rapids/topbar.h"
 #include "qt/rapids/dashboardwidget.h"
 #include "qt/rapids/send.h"
+#include "qt/rapids/assetswidget.h"
 #include "qt/rapids/receivewidget.h"
 #include "qt/rapids/addresseswidget.h"
 #include "qt/rapids/coldstakingwidget.h"
