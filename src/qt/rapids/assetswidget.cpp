@@ -6,7 +6,7 @@
 
 
 AssetsWidget::AssetsWidget(RapidsGUI* parent) : PWidget(parent),
-              ui(new Ui::assetswidget),
+              ui(new Ui::AssetsWidget),
               coinIcon(new QPushButton())
 {
     ui->setupUi(this);
@@ -92,7 +92,7 @@ void AssetsWidget::resizeEvent(QResizeEvent* event)
     QWidget::resizeEvent(event);
 }
 
-void SendWidget::resizeMenu()
+void AssetsWidget::resizeMenu()
 {
     if (menuContacts && menuContacts->isVisible() && focusedEntry) {
         int width = focusedEntry->getEditWidth();
