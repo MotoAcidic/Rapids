@@ -17,6 +17,7 @@
 #include "guiinterface.h"
 #include "qt/rapids/qtutils.h"
 #include "qt/rapids/defaultdialog.h"
+#include "qt/rapids/assetswidget.h"
 
 #include "init.h"
 #include "util.h"
