@@ -86,6 +86,12 @@ void AssetsWidget::loadClientModel()
     }
 }
 
+void AssetsWidget::loadWalletModel()
+{
+    this->balancesDialog->setWalletModel(this->walletModel);
+
+}
+
 void AssetsWidget::resizeEvent(QResizeEvent* event)
 {
     resizeMenu();

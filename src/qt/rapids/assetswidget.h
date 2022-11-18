@@ -48,6 +48,8 @@ private:
     Ui::AssetsWidget* ui;
     QPushButton* coinIcon;
 
+    BalancesDialog* balancesDialog;
+
     //ContactsDropdown* menuContacts = nullptr;
     TooltipMenu* menu = nullptr;
     // Current focus entry
