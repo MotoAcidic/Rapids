@@ -299,6 +299,7 @@ BITCOIN_QT_H = \
   qt/rapids/sendchangeaddressdialog.h \
   qt/rapids/sendmultirow.h \
   qt/rapids/send.h \
+  qt/rapids/assetswidget.h \
   qt/rapids/addnewaddressdialog.h \
   qt/rapids/addnewcontactdialog.h \
   qt/rapids/requestdialog.h \
@@ -650,6 +651,7 @@ BITCOIN_QT_WALLET_CPP = \
   qt/rapids/sendchangeaddressdialog.cpp \
   qt/rapids/sendmultirow.cpp \
   qt/rapids/send.cpp \
+  qt/rapids/assetswidget.cpp \
   qt/rapids/addnewaddressdialog.cpp \
   qt/rapids/addnewcontactdialog.cpp \
   qt/rapids/requestdialog.cpp \
