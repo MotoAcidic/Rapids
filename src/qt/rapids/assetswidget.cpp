@@ -1,7 +1,9 @@
-#include "assetswidget.h"
-#include "ui_assetswidget.h"
+#include "qt/rapids/assetswidget.h"
+#include "qt/rapids/forms/ui_assetswidget.h"
 #include "clientmodel.h"
 #include "optionsmodel.h"
+#include "qt/rapids/optionbutton.h"
+
 
 AssetsWidget::AssetsWidget(RapidsGUI* parent) : PWidget(parent),
               ui(new Ui::assetswidget),
