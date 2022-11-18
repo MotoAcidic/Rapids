@@ -14,7 +14,7 @@ class ClientModel;
 class WalletModel;
 
 namespace Ui {
-class assetswidget;
+class AssetsWidget;
 class QPushButton;
 }
 
@@ -45,7 +45,7 @@ private Q_SLOTS:
     //void onResetCustomOptions(bool fRefreshAmounts);
 
 private:
-    Ui::assetswidget* ui;
+    Ui::AssetsWidget* ui;
     QPushButton* coinIcon;
 
     //ContactsDropdown* menuContacts = nullptr;
