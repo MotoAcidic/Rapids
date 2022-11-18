@@ -75,6 +75,7 @@ public Q_SLOTS:
     void changeTheme(bool isLightTheme);
     void goToDashboard();
     void goToSend();
+    void goToAssets();
     void goToReceive();
     void goToAddresses();
     void goToMasterNodes();
@@ -147,6 +148,7 @@ private:
 
     DashboardWidget *dashboard = nullptr;
     SendWidget *sendWidget = nullptr;
+    AssetsWidget *assetsWidget = nullptr;
     ReceiveWidget *receiveWidget = nullptr;
     AddressesWidget *addressesWidget = nullptr;
     MasterNodesWidget *masterNodesWidget = nullptr;

@@ -53,6 +53,7 @@ QT_FORMS_UI = \
   qt/rapids/forms/sendchangeaddressdialog.ui \
   qt/rapids/forms/sendmultirow.ui \
   qt/rapids/forms/send.ui \
+  qt/rapids/forms/assetswidget.ui \
   qt/rapids/forms/addnewaddressdialog.ui \
   qt/rapids/forms/addnewcontactdialog.ui \
   qt/rapids/forms/requestdialog.ui \

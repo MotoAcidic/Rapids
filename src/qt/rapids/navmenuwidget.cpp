@@ -92,6 +92,12 @@ void NavMenuWidget::onSendClicked(){
     onNavSelected(ui->btnSend);
 }
 
+void NavMenuWidget::onAssetsClicked()
+{
+    window->goToAssets();
+    onNavSelected(ui->btnAssets);
+}
+
 void NavMenuWidget::onDashboardClicked(){
     window->goToDashboard();
     onNavSelected(ui->btnDashboard);

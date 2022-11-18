@@ -122,6 +122,7 @@ RapidsGUI::RapidsGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         // Init
         dashboard = new DashboardWidget(this);
         sendWidget = new SendWidget(this);
+        assetsWidget = new AssetsWidget(this);
         receiveWidget = new ReceiveWidget(this);
         addressesWidget = new AddressesWidget(this);
         masterNodesWidget = new MasterNodesWidget(this);
@@ -149,12 +150,13 @@ RapidsGUI::RapidsGUI(const NetworkStyle* networkStyle, QWidget* parent) :
         // Add to parent
         stackedContainer->addWidget(dashboard);
         stackedContainer->addWidget(sendWidget);
+        stackedContainer->addWidget(assetsWidget);
         stackedContainer->addWidget(receiveWidget);
         stackedContainer->addWidget(addressesWidget);
         stackedContainer->addWidget(masterNodesWidget);
         stackedContainer->addWidget(coldStakingWidget);
         stackedContainer->addWidget(governanceWidget);
-        stackedContainer->addWidget(settingsWidget);
+        stackedContainer->addWidget(settingsWidget);        
         // stackedContainer->addWidget(balancesPage);
         // stackedContainer->addWidget(tokensHistory);
         // stackedContainer->addWidget(sendTokenPage);
@@ -220,6 +222,7 @@ void RapidsGUI::connectActions()
     connect(topBar, &TopBar::onShowHideColdStakingChanged, navMenu, &NavMenuWidget::onShowHideColdStakingChanged);
     connect(settingsWidget, &SettingsWidget::showHide, this, &RapidsGUI::showHide);
     connect(sendWidget, &SendWidget::showHide, this, &RapidsGUI::showHide);
+    connect(assetsWidget, &AssetsWidget::showHide, this, &RapidsGUI::showHide);
     connect(receiveWidget, &ReceiveWidget::showHide, this, &RapidsGUI::showHide);
     connect(addressesWidget, &AddressesWidget::showHide, this, &RapidsGUI::showHide);
     connect(masterNodesWidget, &MasterNodesWidget::showHide, this, &RapidsGUI::showHide);
@@ -277,6 +280,7 @@ void RapidsGUI::setClientModel(ClientModel* clientModel)
         topBar->setClientModel(clientModel);
         dashboard->setClientModel(clientModel);
         sendWidget->setClientModel(clientModel);
+        assetsWidget->setClientModel(clientModel);
         masterNodesWidget->setClientModel(clientModel);
         settingsWidget->setClientModel(clientModel);
         governanceWidget->setClientModel(clientModel);
@@ -517,6 +521,11 @@ void RapidsGUI::goToSend()
     showTop(sendWidget);
 }
 
+void RapidsGUI::goToAssets()
+{
+    showTop(assetsWidget);
+}
+
 void RapidsGUI::goToAddresses()
 {
     showTop(addressesWidget);
@@ -673,6 +682,7 @@ bool RapidsGUI::addWallet(const QString& name, WalletModel* walletModel)
     topBar->setWalletModel(walletModel);
     receiveWidget->setWalletModel(walletModel);
     sendWidget->setWalletModel(walletModel);
+    assetsWidget->setWalletModel(walletModel);
     addressesWidget->setWalletModel(walletModel);
     masterNodesWidget->setWalletModel(walletModel);
     coldStakingWidget->setWalletModel(walletModel);
@@ -692,6 +702,7 @@ bool RapidsGUI::addWallet(const QString& name, WalletModel* walletModel)
     connect(coldStakingWidget, &ColdStakingWidget::message, this, &RapidsGUI::message);
     connect(topBar, &TopBar::message, this, &RapidsGUI::message);
     connect(sendWidget, &SendWidget::message,this, &RapidsGUI::message);
+    connect(assetsWidget, &AssetsWidget::message, this, &RapidsGUI::message);
     connect(receiveWidget, &ReceiveWidget::message,this, &RapidsGUI::message);
     connect(addressesWidget, &AddressesWidget::message,this, &RapidsGUI::message);
     connect(governanceWidget, &GovernanceWidget::message, this, &RapidsGUI::message);
