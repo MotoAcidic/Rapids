@@ -88,7 +88,7 @@ void AssetsWidget::loadClientModel()
 
 void AssetsWidget::loadWalletModel()
 {
-    this->balancesDialog->setWalletModel(this->walletModel);
+    //this->balancesDialog->setWalletModel(this->walletModel);
 
 }
 

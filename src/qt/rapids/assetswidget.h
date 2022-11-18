@@ -6,6 +6,7 @@
 #include <QPushButton>
 
 #include "qt/rapids/pwidget.h"
+#include "qt/rapids/balancesdialog.h"
 #include "walletmodel.h"
 #include "qt/rapids/tooltipmenu.h"
 
@@ -48,7 +49,7 @@ private:
     Ui::AssetsWidget* ui;
     QPushButton* coinIcon;
 
-    BalancesDialog* balancesDialog;
+    //BalancesDialog* balancesDialog;
 
     //ContactsDropdown* menuContacts = nullptr;
     TooltipMenu* menu = nullptr;
