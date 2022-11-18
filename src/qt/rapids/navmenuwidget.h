@@ -31,6 +31,7 @@ public Q_SLOTS:
 
 private Q_SLOTS:
     void onSendClicked();
+    void onAssetsClicked();
     void onDashboardClicked();
     void onAddressClicked();
     void onMasterNodesClicked();

@@ -69,6 +69,7 @@ void NavMenuWidget::loadWalletModel() {
 void NavMenuWidget::connectActions() {
     connect(ui->btnDashboard, &QPushButton::clicked, this, &NavMenuWidget::onDashboardClicked);
     connect(ui->btnSend, &QPushButton::clicked, this, &NavMenuWidget::onSendClicked);
+    connect(ui->btnAssets, &QPushButton::clicked, this, &NavMenuWidget::onAssetsClicked);
     connect(ui->btnAddress, &QPushButton::clicked, this, &NavMenuWidget::onAddressClicked);
     connect(ui->btnMaster, &QPushButton::clicked, this, &NavMenuWidget::onMasterNodesClicked);
     connect(ui->btnSettings, &QPushButton::clicked, this, &NavMenuWidget::onSettingsClicked);

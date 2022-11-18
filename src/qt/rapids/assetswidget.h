@@ -36,8 +36,8 @@ public:
 protected:
     void resizeEvent(QResizeEvent* event) override;
 
-//private Q_SLOTS:
-    //void onSendClicked();
+private Q_SLOTS:
+    void onAssetsClicked();
     //void onContactsClicked(SendMultiRow* entry);
     //void onMenuClicked(SendMultiRow* entry);
     //void onContactMultiClicked();
