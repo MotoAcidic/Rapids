@@ -6,7 +6,7 @@
 #include <QPushButton>
 
 #include "qt/rapids/pwidget.h"
-#include "qt/rapids/balancesdialog.h"
+#include "qt/balancesdialog.h"
 #include "walletmodel.h"
 #include "qt/rapids/tooltipmenu.h"
 
