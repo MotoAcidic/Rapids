@@ -6,8 +6,11 @@
 
 
 AssetsWidget::AssetsWidget(RapidsGUI* parent) : PWidget(parent),
-              ui(new Ui::AssetsWidget),
-              coinIcon(new QPushButton())
+    ui(new Ui::AssetsWidget),
+    coinIcon(new QPushButton()),
+    clientModel(0),
+    walletModel(0),
+    QDialog(parent)
 {
     ui->setupUi(this);
 
