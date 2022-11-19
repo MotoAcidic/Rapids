@@ -2,62 +2,24 @@
 #define ASSETSWIDGET_H
 
 #include <QFrame>
-#include <QWidget>
-#include <QPushButton>
-
-#include "qt/rapids/pwidget.h"
-#include "qt/balancesdialog.h"
-#include "walletmodel.h"
-#include "qt/rapids/tooltipmenu.h"
-
-class RapidsGUI;
-class ClientModel;
-class WalletModel;
 
 namespace Ui {
 class AssetsWidget;
-class QPushButton;
 }
 
-class AssetsWidget : public PWidget
+class AssetsWidget : public QFrame
 {
     Q_OBJECT
 
 public:
-    explicit AssetsWidget(RapidsGUI* parent);
+    explicit AssetsWidget(QWidget *parent = nullptr);
     ~AssetsWidget();
 
-    void loadClientModel() override;
-
-//public Q_SLOTS:
-    //void onChangeAddressClicked();
-    //void onChangeCustomFeeClicked();
-    //void onCoinControlClicked();
-
-protected:
-    void resizeEvent(QResizeEvent* event) override;
-
-private Q_SLOTS:
-    void onAssetsClicked();
-    //void onContactsClicked(SendMultiRow* entry);
-    //void onMenuClicked(SendMultiRow* entry);
-    //void onContactMultiClicked();
-    //void onDeleteClicked();
-    //void onResetCustomOptions(bool fRefreshAmounts);
+private slots:
+    void on_pushButton_9_clicked();
 
 private:
-    Ui::AssetsWidget* ui;
-    QPushButton* coinIcon;
-
-    //BalancesDialog* balancesDialog;
-
-    //ContactsDropdown* menuContacts = nullptr;
-    TooltipMenu* menu = nullptr;
-    // Current focus entry
-    //SendMultiRow* focusedEntry = nullptr;
-
-    void resizeMenu();
-
+    Ui::AssetsWidget *ui;
 };
 
 #endif // ASSETSWIDGET_H
