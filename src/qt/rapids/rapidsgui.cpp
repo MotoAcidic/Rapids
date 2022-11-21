@@ -681,7 +681,6 @@ bool RapidsGUI::addWallet(const QString& name, WalletModel* walletModel)
     topBar->setWalletModel(walletModel);
     receiveWidget->setWalletModel(walletModel);
     sendWidget->setWalletModel(walletModel);
-    assetsWidget->setWalletModel(walletModel);
     addressesWidget->setWalletModel(walletModel);
     masterNodesWidget->setWalletModel(walletModel);
     coldStakingWidget->setWalletModel(walletModel);
