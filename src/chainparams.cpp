@@ -259,8 +259,13 @@ public:
 	    pchMessageStart[3] = 0xcb;
         nDefaultPort = 1591;
 
-        vFixedSeeds.clear();
-        vSeeds.clear();
+        // Note that of those with the service bits flag, most only support a subset of possible options
+        vSeeds.emplace_back("137.184.57.239", true);
+        vSeeds.emplace_back("143.244.203.196", true);
+        vSeeds.emplace_back("147.182.216.99", true);
+        vSeeds.emplace_back("159.223.143.73", true);
+        vSeeds.emplace_back("45.55.107.153", true);
+        vSeeds.emplace_back("157.230.64.181", true);
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 61);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 6);
