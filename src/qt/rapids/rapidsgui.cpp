@@ -700,7 +700,6 @@ bool RapidsGUI::addWallet(const QString& name, WalletModel* walletModel)
     connect(coldStakingWidget, &ColdStakingWidget::message, this, &RapidsGUI::message);
     connect(topBar, &TopBar::message, this, &RapidsGUI::message);
     connect(sendWidget, &SendWidget::message,this, &RapidsGUI::message);
-    connect(assetsWidget, &AssetsWidget::message, this, &RapidsGUI::message);
     connect(receiveWidget, &ReceiveWidget::message,this, &RapidsGUI::message);
     connect(addressesWidget, &AddressesWidget::message,this, &RapidsGUI::message);
     connect(governanceWidget, &GovernanceWidget::message, this, &RapidsGUI::message);
