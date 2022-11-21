@@ -223,7 +223,6 @@ void RapidsGUI::connectActions()
     connect(topBar, &TopBar::onShowHideColdStakingChanged, navMenu, &NavMenuWidget::onShowHideColdStakingChanged);
     connect(settingsWidget, &SettingsWidget::showHide, this, &RapidsGUI::showHide);
     connect(sendWidget, &SendWidget::showHide, this, &RapidsGUI::showHide);
-    connect(assetsWidget, &AssetsWidget::showHide, this, &RapidsGUI::showHide);
     connect(receiveWidget, &ReceiveWidget::showHide, this, &RapidsGUI::showHide);
     connect(addressesWidget, &AddressesWidget::showHide, this, &RapidsGUI::showHide);
     connect(masterNodesWidget, &MasterNodesWidget::showHide, this, &RapidsGUI::showHide);
