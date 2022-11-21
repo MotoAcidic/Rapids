@@ -15,7 +15,7 @@ public:
     explicit AssetsWidget(QWidget *parent = nullptr);
     ~AssetsWidget();
 
-private slots:
+private Q_SLOTS:
     void on_pushButton_9_clicked();
 
 private:
