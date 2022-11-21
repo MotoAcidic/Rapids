@@ -280,7 +280,6 @@ void RapidsGUI::setClientModel(ClientModel* clientModel)
         topBar->setClientModel(clientModel);
         dashboard->setClientModel(clientModel);
         sendWidget->setClientModel(clientModel);
-        assetsWidget->setClientModel(clientModel);
         masterNodesWidget->setClientModel(clientModel);
         settingsWidget->setClientModel(clientModel);
         governanceWidget->setClientModel(clientModel);
