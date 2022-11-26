@@ -19,5 +19,6 @@ cd
 
 sudo apt-get install libssl-dev
 sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 libqt5svg5-dev libqt5charts5-dev qttools5-dev qttools5-dev-tools libqrencode-dev
+sudo apt install protobuf-compiler
 cd Rapids/scripts/build
 ./compile-linux.sh
