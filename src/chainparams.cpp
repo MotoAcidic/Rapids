@@ -419,6 +419,9 @@ public:
         pchMessageStart[3] = 0x44;
         nDefaultPort = 11591;
 
+        vFixedSeeds.clear();
+        vSeeds.clear();
+
         vSeeds.push_back(CDNSSeedData("137.184.57.239 ", "137.184.57.239 ", true));
         vSeeds.push_back(CDNSSeedData("143.244.203.196", "143.244.203.196", true));
         vSeeds.push_back(CDNSSeedData("147.182.216.99 ", "147.182.216.99 ", true));
