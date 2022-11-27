@@ -617,6 +617,8 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
     while (fGenerateBitcoins || fProofOfStake) {
 
+        fMasternodeSync = sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
+
         if (IsInitialBlockDownload()) {
             MilliSleep(5000);
             continue;
