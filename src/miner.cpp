@@ -645,7 +645,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                 utxo_dirty = false;
             }
 
-            if (sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC)) {
+            if (sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC)) {
                 if (!GetArg("-emergencystaking", false)) {
                     while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins) {
                         MilliSleep(5000);
@@ -653,7 +653,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
                         if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
                     }
                 }
-            } else if (!sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC)) {
+            } else if (!sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC)) {
                 if (!GetArg("-emergencystaking", false)) {
                     while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || !masternodeSync.NotCompleted()) {
                         MilliSleep(5000);
