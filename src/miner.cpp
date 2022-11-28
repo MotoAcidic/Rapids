@@ -589,7 +589,6 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
 
 bool fGenerateBitcoins = false;
 bool fStakeableCoins = false;
-bool fMasternodeSync = false;
 int nMintableLastCheck = 0;
 
 void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
@@ -618,8 +617,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
     while (fGenerateBitcoins || fProofOfStake) {
 
-        fMasternodeSync = sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
-
         if (IsInitialBlockDownload()) {
             MilliSleep(5000);
             continue;
@@ -627,12 +624,6 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
         if (!isStakingAllowed()) {
             MilliSleep(250);
-            continue;
-        }
-
-        if (!fMasternodeSync) {  // if not in sync with masternode second layer then
-            SleepUntilNexSlot(); // sleep a time slot and try again
-            fStakingStatus = false;
             continue;
         }
 
@@ -652,6 +643,24 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             if (utxo_dirty) {
                 CheckForCoins(pwallet, 5, &availableCoins);
                 utxo_dirty = false;
+            }
+
+            if (sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC)) {
+                if (!GetArg("-emergencystaking", false)) {
+                    while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins) {
+                        MilliSleep(5000);
+                        // Do a separate 1 minute check here to ensure fStakeableCoins is updated
+                        if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
+                    }
+                }
+            } else if (!sporkManager.IsSporkActive(SPORK_106_STAKING_SKIP_MN_SYNC)) {
+                if (!GetArg("-emergencystaking", false)) {
+                    while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || !masternodeSync.NotCompleted()) {
+                        MilliSleep(5000);
+                        // Do a separate 1 minute check here to ensure fStakeableCoins is updated
+                        if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
+                    }
+                }
             }
 
             if (!GetArg("-emergencystaking", false)) {
