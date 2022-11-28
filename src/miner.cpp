@@ -589,6 +589,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
 
 bool fGenerateBitcoins = false;
 bool fStakeableCoins = false;
+bool fMasternodeSync = false;
 int nMintableLastCheck = 0;
 
 void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
@@ -626,6 +627,12 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
         if (!isStakingAllowed()) {
             MilliSleep(250);
+            continue;
+        }
+
+        if (!fMasternodeSync) {  // if not in sync with masternode second layer then
+            SleepUntilNexSlot(); // sleep a time slot and try again
+            fStakingStatus = false;
             continue;
         }
 
