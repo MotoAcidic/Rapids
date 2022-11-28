@@ -587,7 +587,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
     return true;
 }
 
-bool fGenerateRpd = false;
+bool fGenerateBitcoins = false;
 bool fStakeableCoins = false;
 int nMintableLastCheck = 0;
 
@@ -596,7 +596,7 @@ void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* av
     fStakeableCoins = pwallet->StakeableCoins(availableCoins);
 }
 
-void RpdMiner(CWallet* pwallet, bool fProofOfStake)
+void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 {
     LogPrintf("RPDMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
@@ -615,7 +615,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     std::vector<COutput> availableCoins;
     unsigned int nExtraNonce = 0;
 
-    while (fGenerateRpd || fProofOfStake) {
+    while (fGenerateBitcoins || fProofOfStake) {
 
         if (IsInitialBlockDownload()) {
             MilliSleep(5000);
@@ -786,12 +786,12 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     }
 }
 
-void static ThreadRpdMiner(void* parg)
+void static ThreadBitcoinMiner(void* parg)
 {
     boost::this_thread::interruption_point();
     CWallet* pwallet = (CWallet*)parg;
     try {
-        RpdMiner(pwallet, false);
+        BitcoinMiner(pwallet, false);
         boost::this_thread::interruption_point();
     } catch (const std::exception& e) {
         LogPrintf("RPDMiner exception");
@@ -802,10 +802,10 @@ void static ThreadRpdMiner(void* parg)
     LogPrintf("RPDMiner exiting\n");
 }
 
-void GenerateRpd(bool fGenerate, CWallet* pwallet, int nThreads)
+void GenerateBitcoins(bool fGenerate, CWallet* pwallet, int nThreads)
 {
     static boost::thread_group* minerThreads = NULL;
-    fGenerateRpd = fGenerate;
+    fGenerateBitcoins = fGenerate;
 
     if (minerThreads != NULL) {
         minerThreads->interrupt_all();
@@ -818,7 +818,7 @@ void GenerateRpd(bool fGenerate, CWallet* pwallet, int nThreads)
 
     minerThreads = new boost::thread_group();
     for (int i = 0; i < nThreads; i++)
-        minerThreads->create_thread(std::bind(&ThreadRpdMiner, pwallet));
+        minerThreads->create_thread(std::bind(&ThreadBitcoinMiner, pwallet));
 }
 
 // ppcoin: stake minter thread
@@ -828,7 +828,7 @@ void ThreadStakeMinter()
     LogPrintf("ThreadStakeMinter started\n");
     CWallet* pwallet = pwalletMain;
     try {
-        RpdMiner(pwallet, true);
+        BitcoinMiner(pwallet, true);
         boost::this_thread::interruption_point();
     } catch (const std::exception& e) {
         LogPrintf("ThreadStakeMinter() exception \n");

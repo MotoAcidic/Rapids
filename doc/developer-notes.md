@@ -305,7 +305,7 @@ Threads
 
 - ThreadRPCServer : Remote procedure call handler, listens on port 8332 for connections and services them.
 
-- RpdMiner : Generates PIVs (if wallet is enabled).
+- BitcoinMiner : Generates PIVs (if wallet is enabled).
 
 - Shutdown : Does an orderly shutdown of everything.
 
