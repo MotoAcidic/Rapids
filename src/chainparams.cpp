@@ -345,8 +345,13 @@ public:
         //                         = f832ed97 (first 4 bytes)
         //                         = eff3ef66a62a9a1a9154c2822e75430f6d23653400b6b7b60d8248caa4e5d440bbf832ed97 (private key + privkey byte + checksum4b)
         //                  base58 = 93SMACiTD5eUF28mmpgZgwGboWXDgj6HXx15wCrgrr7wfrBFWt6
-        consensus.strSporkPubKey = "0457fe3e90da4bb4899ced14cbed073fb0174294975cb1b9e1a085990674117860a90912d9e91b83d8e2fff11716ed0e938a742e9862af37a6e545318e1ccd7472";
-        consensus.strSporkPubKeyOld = "";
+
+        // Address xyT264deWQZ6p8YJwQT3rVcqpf8dkCeJfM
+        // Pubkey 03c064d2dadca0c11d4f31bc9f1857b3b1a51289f3c8e2be6653f49951c53bf083
+        // Privkey cNX6wDaf33qeNHSgiz85EWBzTQCbX9rKtgiu5h8DgvMwFf4T8kSB
+
+        consensus.strSporkPubKey = "03c064d2dadca0c11d4f31bc9f1857b3b1a51289f3c8e2be6653f49951c53bf083";
+        consensus.strSporkPubKeyOld = "0457fe3e90da4bb4899ced14cbed073fb0174294975cb1b9e1a085990674117860a90912d9e91b83d8e2fff11716ed0e938a742e9862af37a6e545318e1ccd7472";
         consensus.nTime_EnforceNewSporkKey = 0;
         consensus.nTime_RejectOldSporkKey = 0;
 
