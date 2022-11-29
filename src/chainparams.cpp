@@ -184,7 +184,6 @@ public:
         consensus.nPosTargetSpacing = 6;
         consensus.nRpdProtocolHeight = std::numeric_limits<int>::max();
         consensus.nTimeSlotLength = 15;
-        consensus.nTimeSlotLength2 = 1;
         consensus.nMaxProposalPayments = 6;
 
         // spork keys
@@ -336,7 +335,6 @@ public:
         consensus.nRpdProtocolHeight = std::numeric_limits<int>::max();
 
         consensus.nTimeSlotLength = 15;
-        consensus.nTimeSlotLength2 = 1;
         consensus.nMaxProposalPayments = 6;
 
         // spork keys
@@ -459,7 +457,7 @@ public:
         tokenSubFee = 0 * COIN;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        genesis = CreateGenesisBlock(1665871306, 1, 0x207fffff, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1664023996, 3, 0x207fffff, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         consensus.nPosTargetSpacing = 6;
         consensus.height_last_PoW = 150;
@@ -470,6 +468,7 @@ public:
         pchMessageStart[0] = 0xff;
         vFixedSeeds.clear();
         vSeeds.clear();
+        consensus.nTimeSlotLength = 1;
         ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
