@@ -182,6 +182,7 @@ public:
         consensus.nTargetTimespan = 30 * 60;
         consensus.nTargetSpacing = 2 * 60;
         consensus.nPosTargetSpacing = 6;
+        consensus.nRpdProtocolHeight = std::numeric_limits<int>::max();
         consensus.nTimeSlotLength = 15;
         consensus.nTimeSlotLength2 = 1;
         consensus.nMaxProposalPayments = 6;
@@ -332,6 +333,7 @@ public:
         consensus.nTargetTimespan = 30 * 6;
         consensus.nTargetSpacing = 6;
         consensus.nPosTargetSpacing = 6;
+        consensus.nRpdProtocolHeight = 0;
 
         consensus.nTimeSlotLength = 15;
         consensus.nTimeSlotLength2 = 1;
