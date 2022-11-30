@@ -352,8 +352,8 @@ public:
 
         consensus.strSporkPubKey = "03c064d2dadca0c11d4f31bc9f1857b3b1a51289f3c8e2be6653f49951c53bf083";
         consensus.strSporkPubKeyOld = "0457fe3e90da4bb4899ced14cbed073fb0174294975cb1b9e1a085990674117860a90912d9e91b83d8e2fff11716ed0e938a742e9862af37a6e545318e1ccd7472";
-        consensus.nTime_EnforceNewSporkKey = 0;
-        consensus.nTime_RejectOldSporkKey = 0;
+        consensus.nTime_EnforceNewSporkKey = 1669797609; //Wed Nov 30 2022 03:40:09 GMT-0500 (Eastern Standard Time)
+        consensus.nTime_RejectOldSporkKey = 1669797309; //Wed Nov 30 2022 03:35:09 GMT-0500 (Eastern Standard Time)
 
         // height based activations
         consensus.height_last_PoW = 19;
