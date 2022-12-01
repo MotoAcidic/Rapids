@@ -312,8 +312,8 @@ public:
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
 
-        // genesis = CreateGenesisBlock(1663187196, 401, 0x1f3fffff, 1, 0 * COIN);
-        // consensus.hashGenesisBlock = genesis.GetHash();
+        genesis = CreateGenesisBlock(1663187196, 401, 0x1f3fffff, 1, 0 * COIN);                                     
+        consensus.hashGenesisBlock = genesis.GetHash();
         //assert(consensus.hashGenesisBlock == uint256S("0x0037274f17e8df00a86e0db5d2f73fa8331e5306e1409e08c9ec83adc892f10d"));
         //assert(genesis.hashMerkleRoot == uint256S("0xb8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
 
@@ -426,11 +426,8 @@ public:
         vSeeds.clear();
 
         vSeeds.push_back(CDNSSeedData("137.184.57.239 ", "137.184.57.239 ", true));
-        vSeeds.push_back(CDNSSeedData("143.244.203.196", "143.244.203.196", true));
         vSeeds.push_back(CDNSSeedData("147.182.216.99 ", "147.182.216.99 ", true));
         vSeeds.push_back(CDNSSeedData("159.223.143.73", "159.223.143.73", true));
-        vSeeds.push_back(CDNSSeedData("45.55.107.153 ", "45.55.107.153 ", true));
-        vSeeds.push_back(CDNSSeedData("157.230.64.181", "157.230.64.181", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet pivx addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet pivx script addresses start with '8' or '9'
@@ -449,11 +446,19 @@ public:
         bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ptestsapling";
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviewtestsapling";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivktestsapling";
-        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-test";
+        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]   = "p-secret-spending-key-test";
 
-        devFundAddress = "y76GjREPurY29hD4bxTtKRrRDsw2zgxJyc";
-        strMasterAddress = "y76GjREPurY29hD4bxTtKRrRDsw2zgxJyc";
-        strFeeAddress = "y76GjREPurY29hD4bxTtKRrRDsw2zgxJyc";
+        strMasterAddress = "yKvgjULiZYkikTNCqJaD9YuUYkLrEyRg3m";
+        //Master pubkey 03c8b46e7a2894c9cc049a679b76ed40ad1ef65c6601f4f6987c193611369b3a9d
+        //Master privkey cSgY6DmSKhG2ci2sckpQSoy1cgwRCx7eEMHd82HgwtqL7ieGSgjy
+
+        devFundAddress = "yEMBsHESUmk1mVNugUrGmazWEhA4qesSmm";
+        //Devfund pubkey 031ce00e132c89ce5a50c17d6dd8e734c2283f217e46ccc1a7f833d12e34141578
+        //DevFund privkey cNrKLx5PqtBzHYbkoA7KNg18pzyargQ4hMx9m5bz3tJLZ8bn212x
+
+        strFeeAddress = "xwwLWkB1nr8NsPgfRXt63wxBDLYaJZ7dSM";
+        //Fee pubkey 029704f22d19be0d31205dfe30e7928b509408dbc7c943aae62f708d50a3c028cc
+        //Fee privkey cVcBR3TwmLaBkuNBYi5YGFr3AxGexwJ3Qu2miH8BcGhEyB7UwF6h
 
         tokenFixedFee = 1 * COIN;
         tokenManagedFee = 1 * COIN;
@@ -462,7 +467,7 @@ public:
         tokenSubFee = 0 * COIN;
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////
-        genesis = CreateGenesisBlock(1665871306, 1, 0x207fffff, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         consensus.nPosTargetSpacing = 6;
         consensus.height_last_PoW = 150;
@@ -586,8 +591,13 @@ public:
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pregivks";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-reg-secret-spending-key-main";
 
-        devFundAddress = "yCvUVd72w7xpimf981m114FSFbmAmne7j9";
-        strFeeAddress = "yCvUVd72w7xpimf981m114FSFbmAmne7j9";
+        devFundAddress = "yEMBsHESUmk1mVNugUrGmazWEhA4qesSmm";
+        //Devfund pubkey 031ce00e132c89ce5a50c17d6dd8e734c2283f217e46ccc1a7f833d12e34141578
+        //DevFund privkey cNrKLx5PqtBzHYbkoA7KNg18pzyargQ4hMx9m5bz3tJLZ8bn212x
+
+        strFeeAddress = "xwwLWkB1nr8NsPgfRXt63wxBDLYaJZ7dSM";
+        //Fee pubkey 029704f22d19be0d31205dfe30e7928b509408dbc7c943aae62f708d50a3c028cc
+        //Fee privkey cVcBR3TwmLaBkuNBYi5YGFr3AxGexwJ3Qu2miH8BcGhEyB7UwF6h
 
         tokenFixedFee = 1 * COIN;
         tokenManagedFee = 1 * COIN;
