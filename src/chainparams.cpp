@@ -312,23 +312,20 @@ public:
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
 
-        //genesis = CreateGenesisBlock(1663187196, 401, 0x1f3fffff, 1, 0 * COIN);                                     
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x0037274f17e8df00a86e0db5d2f73fa8331e5306e1409e08c9ec83adc892f10d"));
-        assert(genesis.hashMerkleRoot == uint256S("0xb8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
+        genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        //assert(consensus.hashGenesisBlock == uint256S("0x0037274f17e8df00a86e0db5d2f73fa8331e5306e1409e08c9ec83adc892f10d"));
+        //assert(genesis.hashMerkleRoot == uint256S("0xb8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
+
+        printf("block.nNonce = %u \n", genesis.nNonce);
+        printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
         
-        //block.nNonce = 401
-        //block.GetHash = 0037274f17e8df00a86e0db5d2f73fa8331e5306e1409e08c9ec83adc892f10d 
-        //block.MerkleRoot = b8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3
-        
-        //printf("block.nNonce = %u \n", genesis.nNonce);
-        //printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        //printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
+        consensus.powLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.posLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+
         consensus.fPowAllowMinDifficultyBlocks = true;
-
-        // consensus.powLimit = uint256S("0x003fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        // consensus.posLimit = uint256S("0x003fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-
+        
         consensus.nProposalEstablishmentTime = 60;      // at least minute old to make it into a budget
         consensus.nBudgetCycleBlocks = 300;             // every 5 minutes (60 blocks)
         consensus.nBudgetFeeConfirmations = 3;          // only 3-blocks window for finalization on testnet
@@ -343,6 +340,10 @@ public:
 
         consensus.nTimeSlotLength = 15;
         consensus.nMaxProposalPayments = 6;
+
+        consensus.height_last_PoW = 150;
+
+        consensus.nRpdProtocolHeight = consensus.height_last_PoW;
 
         // spork keys
         // private key for testnet = f3ef66a62a9a1a9154c2822e75430f6d23653400b6b7b60d8248caa4e5d440bb
@@ -389,20 +390,17 @@ public:
         consensus.ZC_WrappedSerialsSupply = 0;   // WrappedSerials only on main net
 
         // Network upgrades
-        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight =
-                Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
-        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight =
-                Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 20;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = 21;
+        consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight          = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
+        consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = consensus.height_last_PoW;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = consensus.height_last_PoW + 1;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 22;
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 23;
-        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight =
-                Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
+        consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight      = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock =
                 uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
@@ -473,19 +471,6 @@ public:
         tokenUsernameFee = 1 * COIN;
         tokenSubFee = 0 * COIN;
 
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
-        genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        consensus.nPosTargetSpacing = 6;
-        consensus.height_last_PoW = 150;
-        consensus.nRpdProtocolHeight = consensus.height_last_PoW;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight = consensus.height_last_PoW;
-        consensus.powLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.posLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        pchMessageStart[0] = 0xff;
-        vFixedSeeds.clear();
-        vSeeds.clear();
-        ////////////////////////////////////////////////////////////////////////////////////////////////////
     }
 
     const Checkpoints::CCheckpointData& Checkpoints() const
