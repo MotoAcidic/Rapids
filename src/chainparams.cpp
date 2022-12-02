@@ -426,9 +426,9 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        vSeeds.push_back(CDNSSeedData("137.184.57.239 ", "137.184.57.239 ", true));
-        vSeeds.push_back(CDNSSeedData("147.182.216.99 ", "147.182.216.99 ", true));
-        vSeeds.push_back(CDNSSeedData("159.223.143.73", "159.223.143.73", true));
+        vSeeds.push_back(CDNSSeedData("146.190.13.2409 ", "146.190.13.240 ", true));
+        vSeeds.push_back(CDNSSeedData("24.199.68.190 ", "24.199.68.190 ", true));
+        vSeeds.push_back(CDNSSeedData("24.199.68.69", "24.199.68.69", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet pivx addresses start with 'x' or 'y'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet pivx script addresses start with '8' or '9'
