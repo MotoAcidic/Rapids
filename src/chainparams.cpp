@@ -80,7 +80,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Rapids Social Media Network by VYP";
+    const char* pszTimestamp = "RPD Social Media Network by VYP";
     const CScript genesisOutputScript = CScript() << ParseHex("04f51fa7f2cf12177576b4294618ded175db33f3c644b68e3fb66f59ea49e02f1eae1afcdb000481226685708661abb4ce72824958ef23994a086d07fff8e1e7d1") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -312,17 +312,36 @@ public:
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
         
+    printf("Searching for genesis block...\n");
 
-        //Searching for genesis block...
-        //genesis.nTime = 1542153600
-        //genesis.nNonce = 2465608
-        //genesis.GetHash = 00000d628fa6a8e91fe47554fa6ba00c7aa535fccd430b22214a71f9b7b344a7
-        //genesis.MerkleRoot = b8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3
+        uint256 hash;
+        bool fNegative;
+        bool fOverflow;
+        arith_uint256 bnTarget;
+        bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
 
-        genesis = CreateGenesisBlock(1542153600, 2465608, 0x207fffff, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000d628fa6a8e91fe47554fa6ba00c7aa535fccd430b22214a71f9b7b344a7"));
-        assert(genesis.hashMerkleRoot == uint256S("b8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
+        while (true) {
+            hash = genesis.GetHash();
+            if (UintToArith256(hash) <= bnTarget)
+                break;
+            if ((genesis.nNonce & 0xFFF) == 0) {
+                printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
+            }
+            ++genesis.nNonce;
+            if (genesis.nNonce == 0) {
+                printf("NONCE WRAPPED, incrementing time\n");
+                ++genesis.nTime;
+            }
+        }
+
+        printf("block.nNonce = %u \n", genesis.nNonce);
+        printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
+
+        //genesis = CreateGenesisBlock(1542153600, 1, 0x207fffff, 1, 0 * COIN);
+        //consensus.hashGenesisBlock = genesis.GetHash();
+        //assert(consensus.hashGenesisBlock == uint256S("0x00000d628fa6a8e91fe47554fa6ba00c7aa535fccd430b22214a71f9b7b344a7"));
+        //assert(genesis.hashMerkleRoot == uint256S("0xb8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
         
         consensus.powLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
