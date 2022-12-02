@@ -313,7 +313,7 @@ public:
         strNetworkID = "test";
         
 
-        genesis = GenesisGenerator;
+        genesis = GenesisGenerator();
 
 
 
