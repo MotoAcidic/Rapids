@@ -140,7 +140,7 @@ static const Checkpoints::CCheckpointData data = {
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of
-    (0, uint256S("0x000004e4f2fa6bf2fa3bb685664ef63b19d40fbf22e75309f32204123655c059"))
+    (0, uint256S("0x001"))
  ;
 
 static const Checkpoints::CCheckpointData dataTestnet = {
@@ -311,9 +311,15 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
+        
 
-        genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
+        genesis = GenesisGenerator;
+
+
+
+
+        //genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
+        //consensus.hashGenesisBlock = genesis.GetHash();
         //assert(consensus.hashGenesisBlock == uint256S("0x0037274f17e8df00a86e0db5d2f73fa8331e5306e1409e08c9ec83adc892f10d"));
         //assert(genesis.hashMerkleRoot == uint256S("0xb8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
         
