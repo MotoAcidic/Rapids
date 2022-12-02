@@ -313,7 +313,33 @@ public:
         strNetworkID = "test";
         
 
-        genesis = GenesisGenerator();
+        printf("Searching for genesis block...\n");
+
+        // This will figure out a valid hash and Nonce if you're
+        // creating a different genesis block:
+        uint256 hashTarget = uint256().SetCompact(genesis.nBits);
+        uint256 thash;
+
+        while (true) {
+            thash = HashQuark(BEGIN(genesis.nVersion), END(genesis.nNonce));
+            if (thash <= hashTarget)
+                break;
+            if ((genesis.nNonce & 0xFFF) == 0) {
+                //printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
+            }
+            ++genesis.nNonce;
+            if (genesis.nNonce == 0) {
+                printf("NONCE WRAPPED, incrementing time\n");
+                ++genesis.nTime;
+            }
+        }
+
+        printf("genesis.nTime = %u \n", genesis.nTime);
+        printf("genesis.nNonce = %u \n", genesis.nNonce);
+        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("genesis.MerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        printf("=============================================================================================================================\n");
+        ```
 
 
 
