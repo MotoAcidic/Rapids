@@ -339,9 +339,6 @@ public:
         printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
         printf("genesis.MerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
         printf("=============================================================================================================================\n");
-        ```
-
-
 
 
         //genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
