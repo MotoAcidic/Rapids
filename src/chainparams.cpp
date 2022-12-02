@@ -313,38 +313,16 @@ public:
         strNetworkID = "test";
         
 
-        printf("Searching for genesis block...\n");
+        //Searching for genesis block...
+        //genesis.nTime = 1542153600
+        //genesis.nNonce = 2465608
+        //genesis.GetHash = 00000d628fa6a8e91fe47554fa6ba00c7aa535fccd430b22214a71f9b7b344a7
+        //genesis.MerkleRoot = b8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3
 
-        // This will figure out a valid hash and Nonce if you're
-        // creating a different genesis block:
-        uint256 hashTarget = uint256().SetCompact(genesis.nBits);
-        uint256 thash;
-
-        while (true) {
-            thash = HashQuark(BEGIN(genesis.nVersion), END(genesis.nNonce));
-            if (thash <= hashTarget)
-                break;
-            if ((genesis.nNonce & 0xFFF) == 0) {
-                //printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
-            }
-            ++genesis.nNonce;
-            if (genesis.nNonce == 0) {
-                printf("NONCE WRAPPED, incrementing time\n");
-                ++genesis.nTime;
-            }
-        }
-
-        printf("genesis.nTime = %u \n", genesis.nTime);
-        printf("genesis.nNonce = %u \n", genesis.nNonce);
-        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-        printf("genesis.MerkleRoot = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-        printf("=============================================================================================================================\n");
-
-
-        //genesis = CreateGenesisBlock(1669856516, 1, 0x207fffff, 1, 0 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x0037274f17e8df00a86e0db5d2f73fa8331e5306e1409e08c9ec83adc892f10d"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xb8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
+        genesis = CreateGenesisBlock(1542153600, 2465608, 0x207fffff, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x00000d628fa6a8e91fe47554fa6ba00c7aa535fccd430b22214a71f9b7b344a7"));
+        assert(genesis.hashMerkleRoot == uint256S("b8ac00f6c7839f841a053c5f63e81015d631b81cc633692aab3858021fb9cab3"));
         
         consensus.powLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
