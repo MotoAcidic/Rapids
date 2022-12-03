@@ -147,7 +147,7 @@ public:
                     std::cout << std::string("Mainnet NONCE WRAPPED, incrementing time:\n");
                     ++genesis.nTime;
                 }
-                if (genesis.nNonce % 10000 == 0) {
+                if (genesis.nNonce % 1 == 0) {
                     printf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
                 }
             }
