@@ -136,54 +136,10 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-
-
-                uint32_t nGenesisTime = 1626521690; // 2021-02-03T13:51:41+00:00
-
-        arith_uint256 test;
-        bool fNegative;
-        bool fOverflow;
-        test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
-        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
-
-        int genesisNonce = 0;
-        uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
-        uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        for (int i = 0; i < 40000000; i++) {
-            genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 4, 250 * COIN);
-            //genesis.hashPrevBlock = TempHashHolding;
-            consensus.hashGenesisBlock = genesis.GetHash();
-
-            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-            if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-                BestBlockHash = consensus.hashGenesisBlock;
-                std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-                std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
-            }
-
-            TempHashHolding = consensus.hashGenesisBlock;
-
-            if (BestBlockHashArith < test) {
-                genesisNonce = i - 1;
-                break;
-            }
-            //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
-        }
-        std::cout << "\n";
-        std::cout << "\n";
-        std::cout << "\n";
-
-        std::cout << "Genesis Time " << genesis.nTime << std::endl;
-        std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-        std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-        std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
-
-        exit(0);
-
-        //genesis = CreateGenesisBlock(1626521690, 1439677, 0x1e0ffff0, 1, 0 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x000006988e47a39d62ba0f5bb1bd060c648b398af1a1a376e35d2ac268f091b1"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        genesis = CreateGenesisBlock(1626521690, 59928, 0x1e0ffff0, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x000001f313938dc27dc5af5cbead2108c15d27f382060e680fd7759484f51a5b"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa633621adf485354e99a46a00481fd6b895e72c1f5bc759dc852117c8a6c89dd"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
@@ -326,10 +282,10 @@ public:
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
         
-        genesis = CreateGenesisBlock(1626521690, 1439677, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1626521690, 59928, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000006988e47a39d62ba0f5bb1bd060c648b398af1a1a376e35d2ac268f091b1"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000001f313938dc27dc5af5cbead2108c15d27f382060e680fd7759484f51a5b"));
+        assert(genesis.hashMerkleRoot == uint256S("0xa633621adf485354e99a46a00481fd6b895e72c1f5bc759dc852117c8a6c89dd"));
         
         consensus.powLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
