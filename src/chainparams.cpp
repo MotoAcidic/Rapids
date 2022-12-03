@@ -145,8 +145,9 @@ public:
         }  
 
         printf("genesis.nTime = %u \n", genesis.nTime);
-        printf("genesis.nNonce = %u \n", genesis.nNonce);
-        printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("block.nNonce = %u \n", genesis.nNonce);
+        printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+        printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
 
         //genesis = CreateGenesisBlock(1626521690, 59928, 0x1e0ffff0, 1, 0 * COIN);
         //consensus.hashGenesisBlock = genesis.GetHash();
