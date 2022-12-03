@@ -136,32 +136,42 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        static bool regenerate = true;
-
-
-        if (regenerate) {
-            consensus.hashGenesisBlock = uint256S("");
-            genesis.nNonce = 0;
+            // calculate Genesis Block
+        // Reset genesis
+        consensus.hashGenesisBlock = uint256S("0x");
+        std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");
+        if (true && (genesis.GetHash(consensus) != consensus.hashGenesisBlock)) {
+            //                     LogPrintf("Calculating Mainnet Genesis Block:\n");
             arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
-            if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
-                while (UintToArith256(genesis.GetHash()) > hashTarget) {
-                    ++genesis.nNonce;
-                    if (genesis.nNonce == 0) {
-                        ++genesis.nTime;
-                    }
+            uint256 hash;
+            genesis.nNonce = ArithToUint256(0);
+            while (UintToArith256(genesis.GetHash(consensus)) > hashTarget) {
+                genesis.nNonce = ArithToUint256(UintToArith256(genesis.nNonce) + 1);
+                if (genesis.nNonce == ArithToUint256(arith_uint256(0))) {
+                    LogPrintf("NONCE WRAPPED, incrementing time");
+                    std::cout << std::string("NONCE WRAPPED, incrementing time:\n");
+                    ++genesis.nTime;
                 }
-                LogPrintf("Mainnet:\n");
-                LogPrintf("-nonce: %u\n", genesis.nNonce);
-                LogPrintf("-time: %u\n", genesis.nTime);
-                LogPrintf("-hash: 0x%s\n", genesis.GetHash().ToString().c_str());
-                LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
+
+                if ((int)genesis.nNonce.GetUint64(0) % 10000 == 0) {
+                    std::cout << strNetworkID << " hashTarget: " << hashTarget.ToString() << " nonce: " << genesis.nNonce.ToString() << " time: " << genesis.nTime << " hash: " << genesis.GetHash(consensus).ToString().c_str() << "\r";
+                }
             }
-        } else {
-            assert(consensus.hashGenesisBlock == uint256S("0x000001f313938dc27dc5af5cbead2108c15d27f382060e680fd7759484f51a5b"));
-            assert(genesis.hashMerkleRoot == uint256S("0xa633621adf485354e99a46a00481fd6b895e72c1f5bc759dc852117c8a6c89dd"));
+            std::cout << "Mainnet ---\n";
+            std::cout << "  nonce: " << genesis.nNonce.ToString() << "\n";
+            std::cout << "   time: " << genesis.nTime << "\n";
+            std::cout << "   hash: " << genesis.GetHash(consensus).ToString().c_str() << "\n";
+            std::cout << "   merklehash: " << genesis.hashMerkleRoot.ToString().c_str() << "\n";
         }
+        std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
+
+        printf("TEST GENESIS HASH: %s\n", consensus.hashGenesisBlock.ToString().c_str());
+        printf("TEST MERKLE ROOT: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+        //assert(consensus.hashGenesisBlock == uint256S("0x0009b0d830d5e13f7a39dd6c30cae59ff95e1a4aa4fc22435dc1fcb92561cd8e"));
+        //assert(genesis.hashMerkleRoot == uint256S("0xf1552bf3d58facdc6d7ec8461aff6b0560d20eb16e41749b9f8f5a7eaa1220fc"));
+
         consensus.fPowAllowMinDifficultyBlocks = false;
-        consensus.powLimit   = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+        consensus.powLimit   = uint256S("0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit   = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nBudgetCycleBlocks = 43200;       // approx. 1 every 30 days
         consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
