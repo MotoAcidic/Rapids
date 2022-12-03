@@ -180,19 +180,6 @@ public:
          std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
          std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
 
-         std::cout << "\n";
-         std::cout << "\n";
-         int totalHits = 0;
-         double totalTime = 0.0;
-
-         for(int x = 0; x < 16; x++) {
-         	totalHits += algoHashHits[x];
-         	totalTime += algoHashTotal[x];
-         	std::cout << "hash algo " << x << " hits " << algoHashHits[x] << " total " << algoHashTotal[x] << " avg " << algoHashTotal[x]/algoHashHits[x] << std::endl;
-         }
-
-         std::cout << "Totals: hash algo " <<  " hits " << totalHits << " total " << totalTime << " avg " << totalTime/totalHits << std::endl;
-
          exit(0);
 
         // /////////////////////////////////////////////////////////////////
