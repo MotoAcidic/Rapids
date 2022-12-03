@@ -135,6 +135,7 @@ public:
     {
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
+        /*
 
         uint32_t nTime = 1626521690;
         uint32_t nNonce = 0;
@@ -149,10 +150,17 @@ public:
         printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
         printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
 
-        //genesis = CreateGenesisBlock(1626521690, 59928, 0x1e0ffff0, 1, 0 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x000001f313938dc27dc5af5cbead2108c15d27f382060e680fd7759484f51a5b"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xa633621adf485354e99a46a00481fd6b895e72c1f5bc759dc852117c8a6c89dd"));
+
+        genesis.nTime = 1626521690 
+        block.nNonce = 4999564 
+        block.GetHash = 00000c75ac7e74305d14b187eb11c35477584f5eeab5623f171b304371710e87 
+        block.MerkleRoot = fb60697c99f0eea655f1db419df777b6f0db9c28bcf404552ae1afad0930058d
+        */
+
+        genesis = CreateGenesisBlock(1626521690, 4999564, 0x1e0ffff0, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x00000c75ac7e74305d14b187eb11c35477584f5eeab5623f171b304371710e87"));
+        assert(genesis.hashMerkleRoot == uint256S("0xfb60697c99f0eea655f1db419df777b6f0db9c28bcf404552ae1afad0930058d"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
