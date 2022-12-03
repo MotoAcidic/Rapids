@@ -136,11 +136,30 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1626521690, 59928, 0x1e0ffff0, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x000001f313938dc27dc5af5cbead2108c15d27f382060e680fd7759484f51a5b"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xa633621adf485354e99a46a00481fd6b895e72c1f5bc759dc852117c8a6c89dd"));
+        static bool regenerate = false;
 
+
+        if (regenerate) {
+            consensus.hashGenesisBlock = uint256S("");
+            genesis.nNonce = 0;
+            arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
+            if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
+                while (UintToArith256(genesis.GetHash()) > hashTarget) {
+                    ++genesis.nNonce;
+                    if (genesis.nNonce == 0) {
+                        ++genesis.nTime;
+                    }
+                }
+                LogPrintf("Mainnet:\n");
+                LogPrintf("-nonce: %u\n", genesis.nNonce);
+                LogPrintf("-time: %u\n", genesis.nTime);
+                LogPrintf("-hash: 0x%s\n", genesis.GetHash().ToString().c_str());
+                LogPrintf("-merklehash: 0x%s\n", genesis.hashMerkleRoot.ToString().c_str());
+            }
+        } else {
+            assert(consensus.hashGenesisBlock == uint256S("0x000001f313938dc27dc5af5cbead2108c15d27f382060e680fd7759484f51a5b"));
+            assert(genesis.hashMerkleRoot == uint256S("0xa633621adf485354e99a46a00481fd6b895e72c1f5bc759dc852117c8a6c89dd"));
+        }
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit   = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
