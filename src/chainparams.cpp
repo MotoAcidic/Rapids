@@ -136,7 +136,7 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        static bool regenerate = false;
+        static bool regenerate = true;
 
 
         if (regenerate) {
