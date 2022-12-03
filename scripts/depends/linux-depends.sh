@@ -1,4 +1,5 @@
 #!/bin/bash
+
 sudo apt update
 sudo apt upgrade
 sudo apt install build-essential libtool autotools-dev automake pkg-config bsdmainutils curl git python3
@@ -23,3 +24,4 @@ sudo apt-get install libqt5gui5 libqt5core5a libqt5dbus5 libqt5svg5-dev libqt5ch
 sudo apt install protobuf-compiler
 cd ../build
 bash compile-linux.sh
+
