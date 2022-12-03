@@ -140,7 +140,7 @@ public:
 
         // // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
         // /////////////////////////////////////////////////////////////////
-
+        /*
          uint32_t nGenesisTime = 1626521690; // 2021-02-02T14:37:31+00:00
 
          arith_uint256 test;
@@ -183,10 +183,11 @@ public:
          exit(0);
 
         // /////////////////////////////////////////////////////////////////
-        //genesis = CreateGenesisBlock(1626521690, 59928, 0x1e0ffff0, 1, 0 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x0009b0d830d5e13f7a39dd6c30cae59ff95e1a4aa4fc22435dc1fcb92561cd8e"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xf1552bf3d58facdc6d7ec8461aff6b0560d20eb16e41749b9f8f5a7eaa1220fc"));
+        */
+        genesis = CreateGenesisBlock(1626521690, 1187313, 0x1e0ffff0, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x000003053360edf16eea7c0f25026dc55c511b3fc8fdbbbb986012359273b5ca"));
+        assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.powLimit   = uint256S("0000000fffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
