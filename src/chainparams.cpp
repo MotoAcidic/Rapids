@@ -105,6 +105,7 @@ void GenesisGeneratorV2(CBlock genesis)
     uint32_t nGenesisTime = 1626521690; // 2021-02-02T14:37:31+00:00
 
     arith_uint256 test;
+    uint256 hashGenesisBlock;
     bool fNegative;
     bool fOverflow;
     test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
