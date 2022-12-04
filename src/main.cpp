@@ -1395,7 +1395,7 @@ int64_t GetBlockValue(int nHeight)
     // Snapshot payments
     // ToDo: update it
     if (nHeight == 1)
-        return 10 000 000 * COIN;
+        return 10000000 * COIN;
 
     // Subsidy
     int64_t nSubsidy = 0.17835 * COIN;
