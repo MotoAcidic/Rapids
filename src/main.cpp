@@ -2274,7 +2274,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         return true;
     }
 
-    const bool isPoSActive = nHeight >= consensus.height_last_PoW;
+    const bool isPoSActive = chainActive.Height() >= consensus.height_last_PoW;
     if (!isPoSActive && block.IsProofOfStake())
         return state.DoS(100, error("ConnectBlock() : PoS period not active"),
             REJECT_INVALID, "PoS-early");
