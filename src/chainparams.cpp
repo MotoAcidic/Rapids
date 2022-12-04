@@ -259,7 +259,7 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = 202;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = std::numeric_limits<int>::max();
-        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = 0;
+        consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = 1;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = consensus.height_last_PoW;
         consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = consensus.height_last_PoW + 1;
@@ -364,14 +364,13 @@ public:
         consensus.nTargetTimespan = 30 * 6;
         consensus.nTargetSpacing = 6;
         consensus.nPosTargetSpacing = 6;
-        consensus.nRpdProtocolHeight = std::numeric_limits<int>::max();
 
         consensus.nTimeSlotLength = 15;
         consensus.nMaxProposalPayments = 6;
 
         consensus.height_last_PoW = 150;
 
-        consensus.nRpdProtocolHeight = consensus.height_last_PoW;
+        consensus.nRpdProtocolHeight = 150;
 
         // spork keys
         // private key for testnet = f3ef66a62a9a1a9154c2822e75430f6d23653400b6b7b60d8248caa4e5d440bb
@@ -420,8 +419,8 @@ public:
         // Network upgrades
         consensus.vUpgrades[Consensus::BASE_NETWORK].nActivationHeight          = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_TESTDUMMY].nActivationHeight     = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
-        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = consensus.height_last_PoW;
-        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = consensus.height_last_PoW + 1;
+        consensus.vUpgrades[Consensus::UPGRADE_POS].nActivationHeight           = 150;
+        consensus.vUpgrades[Consensus::UPGRADE_POS_V2].nActivationHeight        = 151;
         consensus.vUpgrades[Consensus::UPGRADE_ZC].nActivationHeight            = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
