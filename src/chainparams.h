@@ -72,8 +72,6 @@ public:
     /** Default value for -checkmempool and -checkblockindex argument */
     bool DefaultConsistencyChecks() const { return IsRegTestNet(); }
 
-    /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
-    bool MineBlocksOnDemand() const { return fMineBlocksOnDemand; }
     /** Return the BIP70 network string (main, test or regtest) */
     std::string NetworkIDString() const { return strNetworkID; }
     const std::vector<CDNSSeedData>& DNSSeeds() const { return vSeeds; }
@@ -118,7 +116,6 @@ protected:
     std::vector<unsigned char> base58Prefixes[MAX_BASE58_TYPES];
     std::string bech32HRPs[MAX_BECH32_TYPES];
     std::vector<SeedSpec6> vFixedSeeds;
-    bool fMineBlocksOnDemand;
 
     std::string devFundAddress;
 
