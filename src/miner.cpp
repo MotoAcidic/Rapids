@@ -626,14 +626,15 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
         if (!isStakingAllowed()) {
             MilliSleep(250);
             continue;
-        }
+        }        
+        */
 
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
             MilliSleep(nSpacingMillis);       // sleep a block
             continue;
         }
-        */
+
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
