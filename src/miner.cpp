@@ -617,6 +617,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
     while (fGenerateBitcoins || fProofOfStake) {
         // Comment out the below two sections if this doesnt go past block 18
+        /*
         if (IsInitialBlockDownload()) {
             MilliSleep(5000);
             continue;
@@ -632,7 +633,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
             MilliSleep(nSpacingMillis);       // sleep a block
             continue;
         }
-
+        */
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
