@@ -2603,6 +2603,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     int nHeight = pindex->pprev->nHeight;
 
     CAmount nExpectedMint = nFees + GetBlockValue(nHeight);
+    if (block.IsProofOfWork()) {
+            nExpectedMint = GetBlockValue(nHeight);
+        }
+    
 
     //Check that the block does not overmint
     if (!(nMint <= nExpectedMint)) {
@@ -3509,7 +3513,9 @@ CBlockIndex* AddToBlockIndex(const CBlock& block)
         pindexNew->BuildSkip();
 
         const Consensus::Params& consensus = Params().GetConsensus();
-        if (pindexNew->nHeight <= 915000) {
+        // Commented out from old original chain
+        //if (pindexNew->nHeight <= 915000) {
+        if (!consensus.NetworkUpgradeActive(pindexNew->nHeight, Consensus::UPGRADE_V3_4)){
             // compute and set new V1 stake modifier (entropy bits)
             pindexNew->SetNewStakeModifier();
         } else {
@@ -3654,6 +3660,10 @@ bool FindUndoPos(CValidationState& state, int nFile, CDiskBlockPos& pos, unsigne
 
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
 {
+
+    if (fCheckPOW && !CheckProofOfWork(block.GetHash(), block.nBits))
+        return state.DoS(50, false, REJECT_INVALID, "high-hash", false, "proof of work failed.");
+    if (Params().IsRegTestNet()) return true;
     //! there are no pow blocks after 200, so its safe to return true here
     return true;
 }

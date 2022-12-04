@@ -428,8 +428,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = Consensus::NetworkUpgrade::ALWAYS_ACTIVE;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = std::numeric_limits<int>::max();
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 22;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 23;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 151; // Setting 1 block past last pow
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 152; // Setting 2 blocks past last pow
         consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight      = Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
         consensus.vUpgrades[Consensus::UPGRADE_ZC].hashActivationBlock =
