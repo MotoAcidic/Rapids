@@ -154,14 +154,14 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
         return error("CheckProofOfWork() : nBits below minimum work");
 
     // Check proof of work matches claimed amount
-    if (UintToArith256(hash) > bnTarget) {
-        if (Params().MineBlocksOnDemand()) {
+    if (UintToArith256(hash) > bnTarget)
+        if (Params().MineBlocksOnDemand())
             return false;
-        } else {
+        else
             return error("CheckProofOfWork() : hash doesn't match nBits");
-        }
-        return true;
     }
+
+    return true;
 }
 
 arith_uint256 GetBlockProof(const CBlockIndex& block)
