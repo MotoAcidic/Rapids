@@ -2275,6 +2275,10 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
     }
 
     const bool isPoSActive = consensus.NetworkUpgradeActive(pindex->nHeight, Consensus::UPGRADE_POS);
+    if (!isPoSActive && block.IsProofOfStake())
+        return state.DoS(100, error("ConnectBlock() : PoS period not active"),
+            REJECT_INVALID, "PoS-early");
+
     if (isPoSActive && block.IsProofOfWork())
         return state.DoS(100, error("ConnectBlock() : PoW period ended"),
             REJECT_INVALID, "PoW-ended");
