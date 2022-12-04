@@ -1395,7 +1395,7 @@ int64_t GetBlockValue(int nHeight)
     // Snapshot payments
     // ToDo: update it
     if (nHeight == 1)
-        return 10000000 * COIN;
+        return 10 000 000 * COIN;
 
     // Subsidy
     int64_t nSubsidy = 0.17835 * COIN;
@@ -3913,8 +3913,15 @@ bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIn
         return state.Invalid(error("%s : block timestamp too far in the future", __func__), REJECT_INVALID, "time-too-new");
 
     // Check blocktime against prev (WANT: blk_time > MinPastBlockTime)
-    if (blockTime <= pindexPrev->MinPastBlockTime())
-        return state.DoS(50, error("%s : block timestamp too old", __func__), REJECT_INVALID, "time-too-old");
+
+    if (Params().IsTestNet()) {
+        // All good
+        return true;
+    } else {
+        if (blockTime <= pindexPrev->MinPastBlockTime())
+            return state.DoS(50, error("%s : block timestamp too old", __func__), REJECT_INVALID, "time-too-old");
+    }
+
 
     // Check blocktime mask
     if (!Params().GetConsensus().IsValidBlockTimeStamp(blockTime, blockHeight))
