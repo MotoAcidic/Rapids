@@ -117,16 +117,16 @@ void GenesisGeneratorV2(CBlock genesis)
     for (int i = 0; i < 40000000; i++) {
         genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
         //genesis.hashPrevBlock = TempHashHolding;
-        consensus.hashGenesisBlock = genesis.GetHash();
+        hashGenesisBlock = genesis.GetHash();
 
         arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-        if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-            BestBlockHash = consensus.hashGenesisBlock;
+        if (UintToArith256(hashGenesisBlock) < BestBlockHashArith) {
+            BestBlockHash = hashGenesisBlock;
             std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
             std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
         }
 
-        TempHashHolding = consensus.hashGenesisBlock;
+        TempHashHolding = hashGenesisBlock;
 
         if (BestBlockHashArith < test) {
             genesisNonce = i - 1;
