@@ -47,6 +47,67 @@ void GenesisGenerator(CBlock genesis) {
     printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
 }
 
+void GenesisGeneratorV2(CBlock genesis)
+{
+    // This is used inorder to mine the genesis block. 
+    // Once found, we can use the nonce and block hash found to create a valid genesis block.
+    // To use this comment out the bellow and change the nGenesisTime here to the current UnixTimeStamp
+    // 
+    //  genesis = CreateGenesisBlock(1626521690, 1187313, 0x1e0ffff0, 1, 0 * COIN);
+    //  consensus.hashGenesisBlock = genesis.GetHash();
+    //  assert(consensus.hashGenesisBlock == uint256S("0x000003053360edf16eea7c0f25026dc55c511b3fc8fdbbbb986012359273b5ca"));
+    //  assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+    // 
+    // Now add above the lines you just commented out and recompile the source and launch the daemon to generate a new genesis.
+    // 
+    //  GenesisGeneratorV2(genesis)
+    //
+    // /////////////////////////////////////////////////////////////////
+
+         uint32_t nGenesisTime = 1626521690; // 2021-02-02T14:37:31+00:00
+
+         arith_uint256 test;
+         bool fNegative;
+         bool fOverflow;
+         test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+         std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+
+         int genesisNonce = 0;
+         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+         for (int i=0;i<40000000;i++) {
+             genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
+             //genesis.hashPrevBlock = TempHashHolding;
+             consensus.hashGenesisBlock = genesis.GetHash();
+
+            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
+             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
+                 BestBlockHash = consensus.hashGenesisBlock;
+                 std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
+                 std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
+             }
+
+             TempHashHolding = consensus.hashGenesisBlock;
+
+            if (BestBlockHashArith < test) {
+                 genesisNonce = i - 1;
+                break;
+             }
+             //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
+         }
+         std::cout << "\n";
+         std::cout << "\n";
+         std::cout << "\n";
+
+         std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
+         std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
+         std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
+
+         exit(0);
+
+        // /////////////////////////////////////////////////////////////////
+}
+
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
@@ -136,60 +197,13 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1626521690, 1071713, 0x1e0ffff0, 1, 1 * COIN);
-
-        // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
-        // /////////////////////////////////////////////////////////////////
-        /*
-         uint32_t nGenesisTime = 1626521690; // 2021-02-02T14:37:31+00:00
-
-         arith_uint256 test;
-         bool fNegative;
-         bool fOverflow;
-         test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
-        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
-
-         int genesisNonce = 0;
-         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
-         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-         for (int i=0;i<40000000;i++) {
-             genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
-             //genesis.hashPrevBlock = TempHashHolding;
-             consensus.hashGenesisBlock = genesis.GetHash();
-
-            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-                 BestBlockHash = consensus.hashGenesisBlock;
-                 std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-                 std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
-             }
-
-             TempHashHolding = consensus.hashGenesisBlock;
-
-            if (BestBlockHashArith < test) {
-                 genesisNonce = i - 1;
-                break;
-             }
-             //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
-         }
-         std::cout << "\n";
-         std::cout << "\n";
-         std::cout << "\n";
-
-         std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-         std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-         std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
-
-         exit(0);
-
-        // /////////////////////////////////////////////////////////////////
-        */
         genesis = CreateGenesisBlock(1626521690, 1187313, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x000003053360edf16eea7c0f25026dc55c511b3fc8fdbbbb986012359273b5ca"));
         assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
         consensus.fPowAllowMinDifficultyBlocks = false;
+        consensus.fMineBlocksOnDemand = false;
         consensus.powLimit   = ~UINT256_ZERO >> 2; 
         consensus.posLimit   = ~UINT256_ZERO >> 24;
         consensus.nBudgetCycleBlocks = 43200;       // approx. 1 every 30 days
@@ -299,8 +313,7 @@ public:
         bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ps";
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviews";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivks";
-        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-main";
-        fMineBlocksOnDemand = false;
+        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-main";        
 
         devFundAddress = "RbuTqj3g88CU4Z8ipFP8ANBJ8ER7TejAd4";
         strFeeAddress = "RbuTqj3g88CU4Z8ipFP8ANBJ8ER7TejAd4";
@@ -331,53 +344,6 @@ public:
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
 
-        // This is used inorder to mine the genesis block. Once found, we can use the nonce and block hash found to create a valid genesis block
-        // /////////////////////////////////////////////////////////////////
-        /*
-         uint32_t nGenesisTime = 1670029271; // 2021-02-02T14:37:31+00:00
-
-         arith_uint256 test;
-         bool fNegative;
-         bool fOverflow;
-         test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
-        std::cout << "Test threshold: " << test.GetHex() << "\n\n";
-
-         int genesisNonce = 0;
-         uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
-         uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-         for (int i=0;i<40000000;i++) {
-             genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
-             //genesis.hashPrevBlock = TempHashHolding;
-             consensus.hashGenesisBlock = genesis.GetHash();
-
-            arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
-             if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
-                 BestBlockHash = consensus.hashGenesisBlock;
-                 std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
-                 std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
-             }
-
-             TempHashHolding = consensus.hashGenesisBlock;
-
-            if (BestBlockHashArith < test) {
-                 genesisNonce = i - 1;
-                break;
-             }
-             //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
-         }
-         std::cout << "\n";
-         std::cout << "\n";
-         std::cout << "\n";
-
-         std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
-         std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
-         std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
-
-         exit(0);
-
-        // /////////////////////////////////////////////////////////////////
-        */
-
         genesis = CreateGenesisBlock(1670029271, 1981596, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000d1d370c02219d64444c30ef5de54e8c069334d0a87afa9a7091143b7c6f"));
@@ -387,6 +353,7 @@ public:
         consensus.posLimit = uint256S("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 
         consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fMineBlocksOnDemand = true;
         
         consensus.nProposalEstablishmentTime = 60;      // at least minute old to make it into a budget
         consensus.nBudgetCycleBlocks = 300;             // every 5 minutes (60 blocks)
@@ -516,7 +483,6 @@ public:
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviewtestsapling";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivktestsapling";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]   = "p-secret-spending-key-test";
-        fMineBlocksOnDemand = false;
 
         strMasterAddress = "yKvgjULiZYkikTNCqJaD9YuUYkLrEyRg3m";
         //Master pubkey 03c8b46e7a2894c9cc049a679b76ed40ad1ef65c6601f4f6987c193611369b3a9d
@@ -562,6 +528,7 @@ public:
         //assert(genesis.hashMerkleRoot == uint256S("0x1b2ef6e2f28be914103a277377ae7729dcd125dfeb8bf97bd5964ba72b6dc39b"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
+        consensus.fMineBlocksOnDemand = false;
         consensus.powLimit   = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit   = uint256S("0x00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nBudgetCycleBlocks = 43200;         // approx 10 cycles per day
@@ -647,7 +614,6 @@ public:
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pregviews";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pregivks";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-reg-secret-spending-key-main";
-        fMineBlocksOnDemand = true;
 
         devFundAddress = "yEMBsHESUmk1mVNugUrGmazWEhA4qesSmm";
         //Devfund pubkey 031ce00e132c89ce5a50c17d6dd8e734c2283f217e46ccc1a7f833d12e34141578

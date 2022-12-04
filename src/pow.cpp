@@ -155,7 +155,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
 
     // Check proof of work matches claimed amount
     if (UintToArith256(hash) > bnTarget) {
-        if (Params().MineBlocksOnDemand()) {
+        if (Params().GetConsensus().fMineBlocksOnDemand) {
             return false;
         } else {
             return error("CheckProofOfWork() : hash doesn't match nBits");

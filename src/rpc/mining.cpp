@@ -133,8 +133,11 @@ UniValue generate(const JSONRPCRequest& request)
             + HelpExampleCli("generate", "11")
         );
 
-    if (!Params().MineBlocksOnDemand())
-        throw JSONRPCError(RPC_METHOD_NOT_FOUND, "This method can only be used on regtest");
+    // Commenting this out so we dont have to have the (Params().GetConsensus().fMineBlocksOnDemand) flag as true 
+    // to use the generate flag.
+    // 
+    // if (!Params().GetConsensus().fMineBlocksOnDemand)
+    //    throw JSONRPCError(RPC_METHOD_NOT_FOUND, "This method can only be used on regtest");
 
     const int nGenerate = request.params[0].get_int();
     int nHeightEnd = 0;
@@ -227,8 +230,8 @@ UniValue setgenerate(const JSONRPCRequest& request)
     if (pwalletMain == NULL)
         throw JSONRPCError(RPC_METHOD_NOT_FOUND, "Method not found (disabled)");
 
-    if (Params().MineBlocksOnDemand())
-        throw JSONRPCError(RPC_INVALID_REQUEST, "Use the generate method instead of setgenerate on this network");
+    if (!Params().GetConsensus().fMineBlocksOnDemand)
+        throw JSONRPCError(RPC_INVALID_REQUEST, "Set fMinerBlocksOnDemand to true for setgenerate to work on this network");
 
     bool fGenerate = true;
     if (request.params.size() > 0)

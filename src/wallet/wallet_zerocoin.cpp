@@ -157,8 +157,12 @@ void CWallet::doZPivRescan(const CBlockIndex* pindex, const CBlock& block,
 
 std::string CWallet::MintZerocoin(CAmount nValue, CWalletTx& wtxNew, std::vector<CDeterministicMint>& vDMints, const CCoinControl* coinControl)
 {
-    if (!Params().MineBlocksOnDemand())
-        return _("Zerocoin minting available only on regtest/unittest");
+    if (!Params().IsRegTestNet()) {        
+        if (!Params().GetConsensus().fMineBlocksOnDemand)
+            return _("Zerocoin minting must have fMineBlockOnDemand set to true and be on regtest.");
+        return _("Zerocoin minting available only on regtest");
+    }
+
 
     // Check amount
     if (nValue <= 0)
