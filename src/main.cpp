@@ -3905,6 +3905,10 @@ bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIn
     if (Params().IsRegTestNet())
         return true;
 
+    //Bypass for now until we generate a newer genesis block to meet mainnet specs.
+    if (Params().IsTestNet())
+        return true;
+
     const int64_t blockTime = block.GetBlockTime();
     const int blockHeight = pindexPrev->nHeight + 1;
 
@@ -3914,14 +3918,8 @@ bool CheckBlockTime(const CBlockHeader& block, CValidationState& state, CBlockIn
 
     // Check blocktime against prev (WANT: blk_time > MinPastBlockTime)
 
-    if (Params().IsTestNet()) {
-        // All good
-        return true;
-    } else {
-        if (blockTime <= pindexPrev->MinPastBlockTime())
-            return state.DoS(50, error("%s : block timestamp too old", __func__), REJECT_INVALID, "time-too-old");
-    }
-
+    if (blockTime <= pindexPrev->MinPastBlockTime())
+        return state.DoS(50, error("%s : block timestamp too old", __func__), REJECT_INVALID, "time-too-old");
 
     // Check blocktime mask
     if (!Params().GetConsensus().IsValidBlockTimeStamp(blockTime, blockHeight))
