@@ -390,8 +390,6 @@ public:
         consensus.nTime_EnforceNewSporkKey = 1669797609; //Wed Nov 30 2022 03:40:09 GMT-0500 (Eastern Standard Time)
         consensus.nTime_RejectOldSporkKey = 1669797309; //Wed Nov 30 2022 03:35:09 GMT-0500 (Eastern Standard Time)
 
-        // height based activations
-        consensus.height_last_PoW = 19;
         consensus.height_last_ZC_AccumCheckpoint = std::numeric_limits<int>::max();
         consensus.height_last_ZC_WrappedSerials = std::numeric_limits<int>::max();
         consensus.height_start_InvalidUTXOsCheck = std::numeric_limits<int>::max();
