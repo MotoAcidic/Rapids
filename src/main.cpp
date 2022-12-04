@@ -2274,11 +2274,11 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
         return true;
     }
 
-    if (pindex->nHeight <= Params().LAST_POW_BLOCK() && block.IsProofOfStake())
+    if (pindex->nHeight <= consensus.height_last_PoW && block.IsProofOfStake())
         return state.DoS(100, error("ConnectBlock() : PoS period not active"),
             REJECT_INVALID, "PoS-early");
 
-    if (pindex->nHeight > Params().LAST_POW_BLOCK() && block.IsProofOfWork())
+    if (pindex->nHeight > consensus.height_last_PoW && block.IsProofOfWork())
         return state.DoS(100, error("ConnectBlock() : PoW period ended"),
             REJECT_INVALID, "PoW-ended");
 
@@ -2618,7 +2618,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                          REJECT_INVALID, "bad-cb-amount");
     }
 
-    if (isPoSActive) {
+    if (chainActive.Height >= consensus.height_last_PoW) {
         // Dev fund checks
         CTxDestination dest = DecodeDestination(Params().DevFundAddress());
         CScript devScriptPubKey = GetScriptForDestination(dest);
