@@ -1258,14 +1258,8 @@ UniValue setmocktime(const JSONRPCRequest& request)
             "1. timestamp  (integer, required) Unix seconds-since-epoch timestamp\n"
             "   Pass 0 to go back to using the system time.");
 
-    if (!Params().IsRegTestNet()) {
-        if (!Params().GetConsensus().fMineBlocksOnDemand)
-            return _("Must have fMineBlockOnDemand set to true and setmocktime for regression testing (-regtest mode) only");
-        return _("setmocktime for regression testing (-regtest mode) only");
-    }
-
-    if (!Params().GetConsensus().fMineBlocksOnDemand)
-        throw std::runtime_error("");
+    if (!Params().MineBlocksOnDemand())
+        throw std::runtime_error("setmocktime for regression testing (-regtest mode) only");
 
     LOCK(cs_main);
 

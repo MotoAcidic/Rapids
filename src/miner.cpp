@@ -221,7 +221,7 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     pblock->nVersion = CBlockHeader::CURRENT_VERSION;
     // -regtest only: allow overriding block.nVersion with
     // -blockversion=N to test forking scenarios
-    if (Params().GetConsensus().fMineBlocksOnDemand) {
+    if (Params().MineBlocksOnDemand()) {
         pblock->nVersion = GetArg("-blockversion", pblock->nVersion);
     }
 
@@ -737,7 +737,7 @@ void BitcoinMiner(CWallet* pwallet, bool fProofOfStake)
 
                     // In regression test mode, stop mining after a block is found. This
                     // allows developers to controllably generate a block on demand.
-                    if (Params().GetConsensus().fMineBlocksOnDemand)
+                    if (Params().MineBlocksOnDemand())
                         throw boost::thread_interrupted();
 
                     break;

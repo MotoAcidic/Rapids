@@ -87,8 +87,6 @@ struct NetworkUpgrade {
 struct Params {
     uint256 hashGenesisBlock;
     bool fPowAllowMinDifficultyBlocks;
-    /** Make miner stop after a block is found. In RPC, don't return until nGenProcLimit blocks are generated */
-    bool fMineBlocksOnDemand;
     uint256 powLimit;
     uint256 posLimit;
     int nBudgetCycleBlocks;
