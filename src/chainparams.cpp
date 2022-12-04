@@ -300,6 +300,7 @@ public:
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviews";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivks";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-main";
+        fMineBlocksOnDemand = false;
 
         devFundAddress = "RbuTqj3g88CU4Z8ipFP8ANBJ8ER7TejAd4";
         strFeeAddress = "RbuTqj3g88CU4Z8ipFP8ANBJ8ER7TejAd4";
@@ -515,6 +516,7 @@ public:
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviewtestsapling";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivktestsapling";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]   = "p-secret-spending-key-test";
+        fMineBlocksOnDemand = false;
 
         strMasterAddress = "yKvgjULiZYkikTNCqJaD9YuUYkLrEyRg3m";
         //Master pubkey 03c8b46e7a2894c9cc049a679b76ed40ad1ef65c6601f4f6987c193611369b3a9d
@@ -645,6 +647,7 @@ public:
         bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pregviews";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pregivks";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-reg-secret-spending-key-main";
+        fMineBlocksOnDemand = true;
 
         devFundAddress = "yEMBsHESUmk1mVNugUrGmazWEhA4qesSmm";
         //Devfund pubkey 031ce00e132c89ce5a50c17d6dd8e734c2283f217e46ccc1a7f833d12e34141578
