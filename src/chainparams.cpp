@@ -368,7 +368,7 @@ public:
         consensus.nTimeSlotLength = 15;
         consensus.nMaxProposalPayments = 6;
 
-        consensus.height_last_PoW = 150;
+        consensus.height_last_PoW = 149;
 
         consensus.nRpdProtocolHeight = 150;
 
