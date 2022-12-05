@@ -626,7 +626,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
             MilliSleep(250);
             continue;
         }        
-        */
 
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
