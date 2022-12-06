@@ -197,13 +197,14 @@ public:
     {
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
-
+        
         genesis = CreateGenesisBlock(1670029271, 1981596, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000d1d370c02219d64444c30ef5de54e8c069334d0a87afa9a7091143b7c6f"));
         assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
         consensus.fPowAllowMinDifficultyBlocks = true;
+
         consensus.powLimit   = ~UINT256_ZERO >> 2; 
         consensus.posLimit   = ~UINT256_ZERO >> 24;
         consensus.nBudgetCycleBlocks = 43200;       // approx. 1 every 30 days
@@ -348,7 +349,7 @@ public:
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000d1d370c02219d64444c30ef5de54e8c069334d0a87afa9a7091143b7c6f"));
         assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
-        
+
         consensus.powLimit = ~UINT256_ZERO >> 2;
         consensus.posLimit = ~UINT256_ZERO >> 24;
 
@@ -380,7 +381,7 @@ public:
         //                         = f832ed97 (first 4 bytes)
         //                         = eff3ef66a62a9a1a9154c2822e75430f6d23653400b6b7b60d8248caa4e5d440bbf832ed97 (private key + privkey byte + checksum4b)
         //                  base58 = 93SMACiTD5eUF28mmpgZgwGboWXDgj6HXx15wCrgrr7wfrBFWt6
-
+        
         // Address xyT264deWQZ6p8YJwQT3rVcqpf8dkCeJfM
         // Pubkey 03c064d2dadca0c11d4f31bc9f1857b3b1a51289f3c8e2be6653f49951c53bf083
         // Privkey cNX6wDaf33qeNHSgiz85EWBzTQCbX9rKtgiu5h8DgvMwFf4T8kSB
