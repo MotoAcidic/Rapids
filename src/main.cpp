@@ -1394,43 +1394,46 @@ int64_t GetBlockValue(int nHeight)
 {
     // Snapshot payments
     // ToDo: update it
-    if (nHeight == 1)
-        return 10000000 * COIN;
 
-    // Subsidy
-    int64_t nSubsidy = 0.17835 * COIN;
+    CAmount premine = Params().GetConsensus().nPreMine;
+    CAmount blockValue = Params().GetConsensus().nBlockReward;
+    int rewardReduction = nHeight / Params().GetConsensus().nHalvingInterval;
 
-    return nSubsidy;
+    blockValue >>= rewardReduction;
+    if (nHeight > 1) return blockValue;
+
+    return premine;
 }
 
 CAmount GetBlockDevSubsidy(int nHeight)
 {
-    CAmount reward = GetBlockValue(nHeight);
-
+    CAmount blockValue = GetBlockValue(nHeight);
+    int64_t devReward = Params().GetConsensus().nDevReward;
     if (nHeight == 1)
         return 0;
 
-    return reward * 0.1;
+    return blockValue * devReward;
 }
 
 CAmount GetBlockStakeSubsidy(int nHeight)
 {
-    CAmount reward = GetBlockValue(nHeight);
-
+    CAmount blockValue = GetBlockValue(nHeight);
+    int64_t stakeReward = Params().GetConsensus().nStakeReward;
     if (nHeight == 1)
         return reward;
 
-    return reward * 0.2;
+    return blockValue * stakeReward;
 }
 
 CAmount GetBlockMasternodeSubsidy(int nHeight)
 {
-    CAmount reward = GetBlockValue(nHeight);
+    CAmount blockValue = GetBlockValue(nHeight);
+    int64_t mnReward = Params().GetConsensus().nMasternodeReward;
 
     if (nHeight == 1)
         return 0;
 
-    return reward * 0.7;
+    return blockValue * mnReward;
 }
 
 bool IsInitialBlockDownload()

@@ -38,9 +38,9 @@ static arith_uint256 GetTargetLimit(int64_t nTime, bool fProofOfStake, const Con
 
 unsigned int Lwma3CalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
-    const int64_t T = params.nPosTargetSpacing;
+    const int64_t T = params.nPosTargetSpacing; // 6 seconds
     const int64_t N = 8;
-    const int64_t k = N * (N + 1) * T / 2;
+    const int64_t k = N * (N + 1) * T / 2; // 162
     const int64_t height = pindexLast->nHeight;
     const arith_uint256 posLimit = GetTargetLimit(pindexLast->GetBlockTime(), fProofOfStake, params);
 
@@ -82,7 +82,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     bool fProofOfStake = pindexLast->IsProofOfStake();
     unsigned int nTargetLimit = UintToArith256(fProofOfStake ? params.posLimit : params.powLimit).GetCompact();
 
-    if (pindexLast->nHeight + 1 > params.nRpdProtocolHeight) {
+    if (pindexLast->nHeight + 1 > params.nLwmaProtocolHeight) {
         return Lwma3CalculateNextWorkRequired(pindexLast, fProofOfStake, params);
     } else {
         return nTargetLimit;
