@@ -1400,7 +1400,8 @@ int64_t GetBlockValue(int nHeight)
     int rewardReduction = nHeight / Params().GetConsensus().nHalvingInterval;
 
     blockValue >>= rewardReduction;
-    if (nHeight > 1) return blockValue;
+    if (nHeight > 1) 
+        return blockValue;
 
     return premine;
 }
@@ -1420,7 +1421,7 @@ CAmount GetBlockStakeSubsidy(int nHeight)
     CAmount blockValue = GetBlockValue(nHeight);
     int64_t stakeReward = Params().GetConsensus().nStakeReward;
     if (nHeight == 1)
-        return reward;
+        return stakeReward;
 
     return blockValue * stakeReward;
 }
