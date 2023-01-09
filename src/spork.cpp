@@ -27,6 +27,8 @@ std::vector<CSporkDef> sporkDefs = {
     MAKE_SPORK_DEF(SPORK_18_ZEROCOIN_PUBLICSPEND_V4,        4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_19_STAKE_SKIP_MN_SYNC,             4070908800ULL), // OFF
     MAKE_SPORK_DEF(SPORK_20_FORCE_ENABLE_MASTERNODE,        4070908800ULL), // OFF
+    MAKE_SPORK_DEF(SPORK_21_POS_TARGET_SPACING,             6),             // 6 Seconds by defualt
+    MAKE_SPORK_DEF(SPORK_22_TARGET_SPACING,                 6),             // 6 Seconds by defualt
 };
 
 CSporkManager sporkManager;

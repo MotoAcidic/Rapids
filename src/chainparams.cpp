@@ -10,6 +10,7 @@
 #include "chainparamsseeds.h"
 #include "consensus/merkle.h"
 #include "util.h"
+#include "spork.h"
 #include "utilstrencodings.h"
 
 #include <boost/assign/list_of.hpp>
@@ -222,9 +223,9 @@ public:
 
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nTargetTimespan = 30 * 60;
-        consensus.nTargetSpacing = 2 * 60;
-        consensus.nPosTargetSpacing = 6;
-        consensus.nLwmaProtocolHeight = std::numeric_limits<int>::max();
+        consensus.nTargetSpacing = sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
+        consensus.nPosTargetSpacing = sporkManager.GetSporkValue(SPORK_21_POS_TARGET_SPACING);
+        consensus.nLwmaProtocolHeight = 150
         consensus.nTimeSlotLength = 15;
         consensus.nMaxProposalPayments = 6;
 
@@ -381,8 +382,8 @@ public:
         consensus.nCoinbaseMaturity = 10;
 
         consensus.nTargetTimespan = 30 * 6;
-        consensus.nTargetSpacing = 6;
-        consensus.nPosTargetSpacing = 6;
+        consensus.nTargetSpacing = sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
+        consensus.nPosTargetSpacing = sporkManager.GetSporkValue(SPORK_21_POS_TARGET_SPACING);
 
         consensus.nTimeSlotLength = 15;
         
