@@ -225,7 +225,7 @@ public:
         consensus.nTargetTimespan = 30 * 60;
         consensus.nTargetSpacing = sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
         consensus.nPosTargetSpacing = sporkManager.GetSporkValue(SPORK_21_POS_TARGET_SPACING);
-        consensus.nLwmaProtocolHeight = 150
+        consensus.nLwmaProtocolHeight = 150;
         consensus.nTimeSlotLength = 15;
         consensus.nMaxProposalPayments = 6;
 
