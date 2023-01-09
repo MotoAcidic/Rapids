@@ -7,6 +7,7 @@
 
 #include "legacy/stakemodifier.h"
 #include "main.h"   // mapBlockIndex, chainActive
+#include "../spork.h"
 
 /*
  * Old Modifier - Only for IBD
@@ -165,7 +166,8 @@ bool ComputeNextStakeModifier(const CBlockIndex* pindexPrev, uint64_t& nStakeMod
 
     // Sort candidate blocks by timestamp
     std::vector<std::pair<int64_t, uint256> > vSortedByTimestamp;
-    vSortedByTimestamp.reserve(64 * MODIFIER_INTERVAL  / Params().GetConsensus().nTargetSpacing);
+    //vSortedByTimestamp.reserve(64 * MODIFIER_INTERVAL  / Params().GetConsensus().nTargetSpacing);
+    vSortedByTimestamp.reserve(64 * MODIFIER_INTERVAL / sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
     int64_t nSelectionIntervalStart = (pindexPrev->GetBlockTime() / MODIFIER_INTERVAL ) * MODIFIER_INTERVAL  - OLD_MODIFIER_INTERVAL;
     const CBlockIndex* pindex = pindexPrev;
 

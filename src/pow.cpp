@@ -116,7 +116,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
         return pindexLast->nBits;
 
     int64_t nActualSpacing = pindexLast->GetBlockTime() - nFirstBlockTime;
-    int64_t nTargetSpacing = params.nTargetSpacing;
+    int64_t nTargetSpacing = sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
 
     // Limit adjustment step
     if (nActualSpacing < 0) {
