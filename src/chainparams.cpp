@@ -223,8 +223,8 @@ public:
 
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nTargetTimespan = 30 * 60;
-        consensus.nTargetSpacing = sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
-        consensus.nPosTargetSpacing = sporkManager.GetSporkValue(SPORK_21_POS_TARGET_SPACING);
+        consensus.nTargetSpacing = 6;
+        consensus.nPosTargetSpacing = 6;
         consensus.nLwmaProtocolHeight = 150;
         consensus.nTimeSlotLength = 15;
         consensus.nMaxProposalPayments = 6;
@@ -382,8 +382,8 @@ public:
         consensus.nCoinbaseMaturity = 10;
 
         consensus.nTargetTimespan = 30 * 6;
-        consensus.nTargetSpacing = sporkManager.GetSporkValue(SPORK_22_TARGET_SPACING);
-        consensus.nPosTargetSpacing = sporkManager.GetSporkValue(SPORK_21_POS_TARGET_SPACING);
+        consensus.nTargetSpacing = 6;
+        consensus.nPosTargetSpacing = 6;
 
         consensus.nTimeSlotLength = 15;
         
