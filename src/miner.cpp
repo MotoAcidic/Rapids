@@ -590,12 +590,10 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
 bool fGenerateRpd = false;
 bool fStakeableCoins = false;
 int nMintableLastCheck = 0;
-bool fMasternodeSync = false;
 
 void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
 {
     fStakeableCoins = pwallet->StakeableCoins(availableCoins);
-    fMasternodeSync = sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
 }
 
 void RpdMiner(CWallet* pwallet, bool fProofOfStake)
@@ -647,11 +645,13 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 utxo_dirty = false;
             }
 
-                while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || fMasternodeSync) {
+            if (!GetArg("-emergencystaking", false)) {
+                while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
                     MilliSleep(5000);
                     // Do a separate 1 minute check here to ensure fStakeableCoins is updated
-                    if (!fStakeableCoins || !fMasternodeSync) CheckForCoins(pwallet, 1, &availableCoins);
+                    if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
                 }
+            }
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
             if (pwallet->pStakerStatus &&
