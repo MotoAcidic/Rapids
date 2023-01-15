@@ -30,6 +30,7 @@
 #include "script/sigcache.h"
 #include "script/standard.h"
 #include "sync.h"
+#include "spork.h"
 #include "tinyformat.h"
 #include "txmempool.h"
 #include "uint256.h"
@@ -103,7 +104,7 @@ static const unsigned int BLOCKFILE_CHUNK_SIZE = 0x1000000; // 16 MiB
 /** The pre-allocation chunk size for rev?????.dat files (since 0.8) */
 static const unsigned int UNDOFILE_CHUNK_SIZE = 0x100000; // 1 MiB
 /** Maximum number of script-checking threads allowed */
-static const int MAX_SCRIPTCHECK_THREADS = 16;
+static const int MAX_SCRIPTCHECK_THREADS = sporkManager.GetSporkValue(SPORK_22_BLOCKS_IN_TRANSIT);
 /** -par default (number of script-checking threads, 0 = auto) */
 static const int DEFAULT_SCRIPTCHECK_THREADS = 0;
 /** Number of blocks that can be requested at any given time from a single peer. */
