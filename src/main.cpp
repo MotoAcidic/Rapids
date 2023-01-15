@@ -6636,11 +6636,11 @@ bool SendMessages(CNode* pto, CConnman& connman, std::atomic<bool>& interruptMsg
         //
         std::vector<CInv> vGetData;
         //if (!pto->fClient && fFetch && state.nBlocksInFlight < MAX_BLOCKS_IN_TRANSIT_PER_PEER) {
-        if (!pto->fClient && fFetch && state.nBlocksInFlight < sporkManager.GetSporkValue(SPORK_22_BLOCKS_IN_TRANSIT) {
+        if (!pto->fClient && fFetch && state.nBlocksInFlight < sporkManager.GetSporkValue(SPORK_22_BLOCKS_IN_TRANSIT)) {
             std::vector<CBlockIndex*> vToDownload;
             NodeId staller = -1;
             //FindNextBlocksToDownload(pto->GetId(), MAX_BLOCKS_IN_TRANSIT_PER_PEER - state.nBlocksInFlight, vToDownload, staller);
-            FindNextBlocksToDownload(pto->GetId(), sporkManager.GetSporkValue(SPORK_22_BLOCKS_IN_TRANSIT) - state.nBlocksInFlight, vToDownload, staller);
+            FindNextBlocksToDownload(pto->GetId(), sporkManager.GetSporkValue(SPORK_22_BLOCKS_IN_TRANSIT)) - state.nBlocksInFlight, vToDownload, staller);
             for (CBlockIndex* pindex : vToDownload) {
                 vGetData.push_back(CInv(MSG_BLOCK, pindex->GetBlockHash()));
                 MarkBlockAsInFlight(pto->GetId(), pindex->GetBlockHash(), pindex);
