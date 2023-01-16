@@ -230,7 +230,9 @@ public:
         consensus.nMaxProposalPayments = 6;
 
         // spork keys
-        consensus.strSporkPubKey = "03c064d2dadca0c11d4f31bc9f1857b3b1a51289f3c8e2be6653f49951c53bf083";
+        consensus.strSporkPubKey = "02f8564bbb59972e10fb297f55f401c6743dba1a0f864e526a25476984717f5856";
+        // new spork privkey for testing on mainnet
+        // 7uS7r5smJVipqE1Fv7YYDWmENHKnR56TTUdqVFN9ixaUnzcmQYDp
         consensus.strSporkPubKeyOld = "0457fe3e90da4bb4899ced14cbed073fb0174294975cb1b9e1a085990674117860a90912d9e91b83d8e2fff11716ed0e938a742e9862af37a6e545318e1ccd7472";
         consensus.nTime_EnforceNewSporkKey = 1669797609; //Wed Nov 30 2022 03:40:09 GMT-0500 (Eastern Standard Time)
         consensus.nTime_RejectOldSporkKey = 1669797309;  //Wed Nov 30 2022 03:35:09 GMT-0500 (Eastern Standard Time)
