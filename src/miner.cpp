@@ -645,13 +645,11 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 utxo_dirty = false;
             }
 
-            if (!GetArg("-emergencystaking", false)) {
                 while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
                     MilliSleep(5000);
                     // Do a separate 1 minute check here to ensure fStakeableCoins is updated
                     if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
-                }
-            }
+                }            
 
             //search our map of hashed blocks, see if bestblock has been hashed yet
             if (pwallet->pStakerStatus &&
