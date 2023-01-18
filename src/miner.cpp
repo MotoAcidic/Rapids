@@ -630,25 +630,21 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
 
             if (IsInitialBlockDownload()) {
                 MilliSleep(5000);
-                fStakingStatus = false;
                 continue;
             }
 
             if (!isStakingAllowed()) {
                 MilliSleep(250);
-                fStakingStatus = false;
                 continue;
             } 
 
             if (!fMasternodeSync) {  // if not in sync with masternode second layer then
                 MilliSleep(250);
-                fStakingStatus = false;
                 continue;
             }
 
             if (pwallet->IsLocked()) { // if the wallet is locked then
                 MilliSleep(250);
-                fStakingStatus = false;
                 continue;
             }
 
@@ -661,7 +657,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 &&
                 Params().MiningRequiresPeers()) { // if there is no connections to other peers then
                 MilliSleep(250);
-                fStakingStatus = false;
                 continue;
             }
 
@@ -690,7 +685,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
             CheckForCoins(pwallet, &availableCoins);
             if (!fStakeableCoins) {  // if there is no coins to stake then
                 MilliSleep(250);
-                fStakingStatus = false;
                 continue;
             }
 
