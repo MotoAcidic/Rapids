@@ -681,13 +681,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            // update fStakeableCoins
-            CheckForCoins(pwallet, &availableCoins);
-            if (!fStakeableCoins) {  // if there is no coins to stake then
-                MilliSleep(250);
-                continue;
-            }
-
         } else if (pindexPrev->nHeight > 6 && consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
             // Late PoW: run for a little while longer, just in case there is a rewind on the chain.
             LogPrintf("%s: Exiting PoW Mining Thread at height: %d\n", __func__, pindexPrev->nHeight);
