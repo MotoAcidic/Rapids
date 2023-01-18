@@ -590,6 +590,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
 bool fGenerateRpd = false;
 bool fStakeableCoins = false;
 int nMintableLastCheck = 0;
+bool fMasternodeSync = false;
 
 void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
 {
@@ -617,15 +618,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
 
     while (fGenerateRpd || fProofOfStake) {
 
-        if (IsInitialBlockDownload()) {
-            MilliSleep(5000);
-            continue;
-        }
-
-        if (!isStakingAllowed()) {
-            MilliSleep(250);
-            continue;
-        }        
+        fMasternodeSync = sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
 
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
@@ -634,9 +627,28 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
         }
 
         if (fProofOfStake) {
-            if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
-                // The last PoW block hasn't even been mined yet.
-                MilliSleep(nSpacingMillis); // sleep a block
+
+            if (IsInitialBlockDownload()) {
+                MilliSleep(5000);
+                fStakingStatus = false;
+                continue;
+            }
+
+            if (!isStakingAllowed()) {
+                MilliSleep(250);
+                fStakingStatus = false;
+                continue;
+            } 
+
+            if (!fMasternodeSync) {  // if not in sync with masternode second layer then
+                MilliSleep(250);
+                fStakingStatus = false;
+                continue;
+            }
+
+            if (pwallet->IsLocked()) { // if the wallet is locked then
+                MilliSleep(250);
+                fStakingStatus = false;
                 continue;
             }
 
@@ -645,25 +657,48 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 utxo_dirty = false;
             }
 
-                while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins || masternodeSync.NotCompleted()) {
-                    MilliSleep(5000);
-                    // Do a separate 1 minute check here to ensure fStakeableCoins is updated
-                    if (!fStakeableCoins) CheckForCoins(pwallet, 1, &availableCoins);
-                }            
-
-            //search our map of hashed blocks, see if bestblock has been hashed yet
-            if (pwallet->pStakerStatus &&
-                    pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
-                    pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
-                MilliSleep(1000);
+            if (g_connman &&
+                g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 &&
+                Params().MiningRequiresPeers()) { // if there is no connections to other peers then
+                MilliSleep(250);
+                fStakingStatus = false;
                 continue;
             }
 
-        } else if (consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
+            //search our map of hashed blocks, see if bestblock has been hashed yet
+            if (pwallet->pStakerStatus &&
+                pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
+                pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
+                for (int i = 0; i < (GetNextTimeSlot() - GetAdjustedTime()); i++) {
+                    if (pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
+                        pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
+                        MilliSleep(1000);
+                    } else {
+                        break;
+                    }
+                }
+                continue;
+            }
+
+            if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
+                // The last PoW block hasn't even been mined yet.
+                MilliSleep(250);
+                continue;
+            }
+
+            // update fStakeableCoins
+            CheckForCoins(pwallet, &availableCoins);
+            if (!fStakeableCoins) {  // if there is no coins to stake then
+                MilliSleep(250);
+                fStakingStatus = false;
+                continue;
+            }
+
+        } else if (pindexPrev->nHeight > 6 && consensus.NetworkUpgradeActive(pindexPrev->nHeight - 6, Consensus::UPGRADE_POS)) {
             // Late PoW: run for a little while longer, just in case there is a rewind on the chain.
             LogPrintf("%s: Exiting PoW Mining Thread at height: %d\n", __func__, pindexPrev->nHeight);
             return;
-       }
+        }
 
         //
         // Create new block
@@ -673,6 +708,9 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
         std::unique_ptr<CBlockTemplate> pblocktemplate((fProofOfStake ?
                                                         CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
                                                         CreateNewBlockWithKey(*opReservekey, pwallet)));
+
+        fStakingStatus = true;
+
         if (!pblocktemplate.get()) continue;
         CBlock* pblock = &pblocktemplate->block;
 
