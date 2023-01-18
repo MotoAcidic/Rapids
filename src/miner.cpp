@@ -703,8 +703,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                                                         CreateNewBlock(CScript(), pwallet, true, &availableCoins) :
                                                         CreateNewBlockWithKey(*opReservekey, pwallet)));
 
-        fStakingStatus = true;
-
         if (!pblocktemplate.get()) continue;
         CBlock* pblock = &pblocktemplate->block;
 
