@@ -595,6 +595,7 @@ bool fMasternodeSync = false;
 void CheckForCoins(CWallet* pwallet, const int minutes, std::vector<COutput>* availableCoins)
 {
     fStakeableCoins = pwallet->StakeableCoins(availableCoins);
+    fMasternodeSync = sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC) || !masternodeSync.NotCompleted();
 }
 
 void RpdMiner(CWallet* pwallet, bool fProofOfStake)
@@ -652,7 +653,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 CheckForCoins(pwallet, 5, &availableCoins);
                 utxo_dirty = false;
             }
-
+            
             if (g_connman &&
                 g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 &&
                 Params().MiningRequiresPeers()) { // if there is no connections to other peers then
