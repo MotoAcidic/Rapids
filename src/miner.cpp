@@ -600,7 +600,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
 {
     LogPrintf("RPDMiner started\n");
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
-    util::ThreadRename("pivx-miner");
+    util::ThreadRename("rpd-miner");
     const Consensus::Params& consensus = Params().GetConsensus();
     const int64_t nSpacingMillis = consensus.nTargetSpacing * 1000;
 
@@ -611,15 +611,27 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     }
 
     // Available UTXO set
+    bool utxo_dirty = true;
     std::vector<COutput> availableCoins;
     unsigned int nExtraNonce = 0;
 
-    while (fGenerateBitcoins || fProofOfStake) {
+    while (fGenerateRpd || fProofOfStake) {
+        if (IsInitialBlockDownload()) {
+            MilliSleep(5000);
+            continue;
+        }
+
+        if (!isStakingAllowed()) {
+            MilliSleep(250);
+            continue;
+        }
+
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
             MilliSleep(nSpacingMillis); // sleep a block
             continue;
         }
+
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
@@ -627,9 +639,11 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            // update fStakeableCoins (5 minute check time);
-            CheckForCoins(pwallet, 5, &availableCoins);
-            
+            if (utxo_dirty) {
+                CheckForCoins(pwallet, 5, &availableCoins);
+                utxo_dirty = false;
+            }
+
             if (sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC)) {
                 while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins) {
                     MilliSleep(5000);
@@ -648,7 +662,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
             if (pwallet->pStakerStatus &&
                 pwallet->pStakerStatus->GetLastHash() == pindexPrev->GetBlockHash() &&
                 pwallet->pStakerStatus->GetLastTime() >= GetCurrentTimeSlot()) {
-                MilliSleep(2000);
+                MilliSleep(1000);
                 continue;
             }
 
@@ -671,6 +685,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
 
         // POS - block found: process it
         if (fProofOfStake) {
+            utxo_dirty = true;
             LogPrintf("%s : proof-of-stake block was signed %s \n", __func__, pblock->GetHash().ToString().c_str());
             SetThreadPriority(THREAD_PRIORITY_NORMAL);
             if (!ProcessBlockFound(pblock, *pwallet, opReservekey)) {
@@ -691,13 +706,13 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
         // Search
         //
         int64_t nStart = GetTime();
-        uint256 hashTarget = uint256().SetCompact(pblock->nBits);
+        arith_uint256& hashTarget = arith_uint256().SetCompact(pblock->nBits);
         while (true) {
             unsigned int nHashesDone = 0;
 
-            uint256 hash;
+            arith_uint256 hash;
             while (true) {
-                hash = pblock->GetHash();
+                hash = UintToArith256(pblock->GetHash());
                 if (hash <= hashTarget) {
                     // Found a solution
                     SetThreadPriority(THREAD_PRIORITY_NORMAL);
