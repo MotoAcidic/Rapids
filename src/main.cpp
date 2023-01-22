@@ -1403,38 +1403,38 @@ int64_t GetBlockValue(int nHeight)
     int64_t blockValue = 0.17835 * COIN;
     int rewardReduction = nHeight / 500000;
 
-
     blockValue >>= rewardReduction;
 
     if (nHeight == 1) return premine;
-    else if (nHeight > 1) return blockValue;
+   
+    return blockValue;
 }
 
 CAmount GetBlockFoundationSubsidy(int nHeight)
 {
-    int64_t blockValue = GetBlockValue(nHeight);
-    int64_t foundationReward = 0.1;
+    CAmount blockValue = GetBlockValue(nHeight);
 
     if (nHeight == 1) return 0;
-    else if (nHeight > 1) return blockValue * foundationReward;
+    
+    return blockValue * 0.1;
 }
 
 CAmount GetBlockStakeSubsidy(int nHeight)
 {
-    int64_t blockValue = GetBlockValue(nHeight);
-    int64_t stakeReward = 0.2;
+    CAmount blockValue = GetBlockValue(nHeight);
 
     if (nHeight == 1) return 0;
-    else if (nHeight > 1) return blockValue * stakeReward;    
+    
+    return blockValue * 0.2;
 }
 
 CAmount GetBlockMasternodeSubsidy(int nHeight)
 {
-    int64_t blockValue = GetBlockValue(nHeight);
-    CAmount mnReward = 0.7;
+    CAmount blockValue = GetBlockValue(nHeight);
 
     if (nHeight == 1) return 0;
-    if (nHeight > 1) return blockValue * mnReward;    
+    
+    return blockValue * 0.7;
 }
 
 bool IsInitialBlockDownload()
