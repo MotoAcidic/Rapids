@@ -1390,57 +1390,50 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
-/*
-        consensus.nMaxMoneyOut = 35000000000 * COIN;
-        consensus.nHalvingInterval = 500000;  // Halve block reward every 500k blocks
-        consensus.nPreMine = 10000000 * COIN; // 10m premined coins
-        consensus.nBlockReward = 0.17835 * COIN;
-        consensus.nMasternodeReward = 0.1; // 10%
-        consensus.nDevReward = 0.7;        // 70%
-        consensus.nStakeReward = 0.2;      // 20%
-*/
-
 int64_t GetBlockValue(int nHeight)
 {
     // Snapshot payments
     // ToDo: update it
 
-    //CAmount premine = Params().GetConsensus().nPreMine;
-    //CAmount blockValue = Params().GetConsensus().nBlockReward;
+    //int64_t premine = Params().GetConsensus().nPreMine;
+    //int64_t blockValue = Params().GetConsensus().nBlockReward;
     //int rewardReduction = nHeight / Params().GetConsensus().nHalvingInterval;
 
-    int64_t premine = Params().GetConsensus().nPreMine;
-    int64_t blockValue = Params().GetConsensus().nBlockReward;
-    int rewardReduction = nHeight / Params().GetConsensus().nHalvingInterval;
+    int64_t premine = 10000000 * COIN;
+    int64_t blockValue = 0.17835 * COIN;
+    int rewardReduction = nHeight / 500000;
 
 
     blockValue >>= rewardReduction;
 
-    if (nHeight > 1) return blockValue;
-    
-    return premine;   
+    if (nHeight == 1) return premine;
+    else if (nHeight > 1) return blockValue;
 }
 
 CAmount GetBlockFoundationSubsidy(int nHeight)
 {
     int64_t blockValue = GetBlockValue(nHeight);
-    int64_t foundationReward = Params().GetConsensus().nDevReward;
+    int64_t foundationReward = 0.1;
 
-    if (nHeight > 1) return blockValue * foundationReward;
+    if (nHeight == 1) return 0;
+    else if (nHeight > 1) return blockValue * foundationReward;
 }
 
 CAmount GetBlockStakeSubsidy(int nHeight)
 {
     int64_t blockValue = GetBlockValue(nHeight);
-    int64_t stakeReward = Params().GetConsensus().nStakeReward;
-    if (nHeight > 1) return blockValue * stakeReward;    
+    int64_t stakeReward = 0.2;
+
+    if (nHeight == 1) return 0;
+    else if (nHeight > 1) return blockValue * stakeReward;    
 }
 
 CAmount GetBlockMasternodeSubsidy(int nHeight)
 {
     int64_t blockValue = GetBlockValue(nHeight);
-    CAmount mnReward = Params().GetConsensus().nMasternodeReward;
+    CAmount mnReward = 0.7;
 
+    if (nHeight == 1) return 0;
     if (nHeight > 1) return blockValue * mnReward;    
 }
 
