@@ -1409,7 +1409,7 @@ int64_t GetBlockValue(int nHeight)
     //CAmount blockValue = Params().GetConsensus().nBlockReward;
     //int rewardReduction = nHeight / Params().GetConsensus().nHalvingInterval;
 
-    CAmount premine = Params().GetConsensus().nPreMine;
+    int64_t premine = Params().GetConsensus().nPreMine;
     int64_t blockValue = Params().GetConsensus().nBlockReward;
     int rewardReduction = nHeight / Params().GetConsensus().nHalvingInterval;
 
@@ -1424,7 +1424,7 @@ int64_t GetBlockValue(int nHeight)
 CAmount GetBlockFoundationSubsidy(int nHeight)
 {
     int64_t blockValue = GetBlockValue(nHeight);
-    CAmount foundationReward = Params().GetConsensus().nDevReward;
+    int64_t foundationReward = Params().GetConsensus().nDevReward;
 
     if (nHeight > 1) return blockValue * foundationReward;
 }
@@ -1432,7 +1432,7 @@ CAmount GetBlockFoundationSubsidy(int nHeight)
 CAmount GetBlockStakeSubsidy(int nHeight)
 {
     int64_t blockValue = GetBlockValue(nHeight);
-    CAmount stakeReward = Params().GetConsensus().nStakeReward;
+    int64_t stakeReward = Params().GetConsensus().nStakeReward;
     if (nHeight > 1) return blockValue * stakeReward;    
 }
 
