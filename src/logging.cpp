@@ -15,7 +15,7 @@ const char * const DEFAULT_DEBUGLOGFILE = "debug.log";
 
 /** GUI-based logging */
 int logSize = 25; // Default amount of logs kept by the GUI logger before the oldest gets erased
-vector<string> logs;
+std::vector<string> logs;
 
 /**
  * NOTE: the logger instances is leaked on exit. This is ugly, but will be
