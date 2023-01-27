@@ -21,6 +21,7 @@
 #include <list>
 #include <mutex>
 #include <vector>
+#include <string>
 
 
 static const bool DEFAULT_LOGTIMEMICROS = false;
