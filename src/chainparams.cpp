@@ -418,6 +418,9 @@ public:
         consensus.nStakeMinDepth = 25; //25 blocks
         consensus.nTargetTimespanV2 = 30 * 60; //30mins
 
+        consensus.nSingleThreadMaxTxesSize = 500;
+        consensus.nMaxAmountLoadedRecords = 500;
+
         consensus.nTimeSlotLength = 15;
         
         // Height based params
@@ -604,6 +607,10 @@ public:
         consensus.nStakeMinDepth = 2;
         consensus.nTargetTimespan = 30 * 60;
         consensus.nTargetTimespanV2 = 30 * 60;
+
+
+        consensus.nSingleThreadMaxTxesSize = 500;
+        consensus.nMaxAmountLoadedRecords = 500;
 
         /* Spork Key for RegTest:
         WIF private key: 932HEevBSujW2ud7RfB1YF91AFygbBRQj3de3LyaCRqNzKKgWXi
