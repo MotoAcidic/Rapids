@@ -98,6 +98,8 @@ struct Params {
     int nPoolMaxTransactions;
     int nStakeMinAge;
     int nStakeMinDepth;
+    int nSingleThreadMaxTxesSize;
+    int nMaxAmountLoadedRecords;
     CAmount nMaxMoneyOut;
     int64_t nProposalEstablishmentTime;
     int64_t nTargetTimespan;

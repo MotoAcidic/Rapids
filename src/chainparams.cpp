@@ -220,6 +220,8 @@ public:
         consensus.nFutureTimeDriftPoS = 180;
         consensus.nPoolMaxTransactions = 3;
 
+        consensus.nSingleThreadMaxTxesSize = 500;
+        consensus.nMaxAmountLoadedRecords = 500;
 
         // Block reward related params
         consensus.nMaxMoneyOut = 35000000 * COIN;     // 35m
