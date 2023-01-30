@@ -38,8 +38,6 @@
 // TODO, add load on demand in pages (not every tx loaded all the time into the records list).
 #define MAX_AMOUNT_LOADED_RECORDS 500 // Default 20000
 
-const Consensus::Params& consensus = Params().GetConsensus();
-
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
     Qt::AlignLeft | Qt::AlignVCenter, /* status */
@@ -80,6 +78,8 @@ public:
                                                                            parent(parent)
     {
     }
+
+    const Consensus::Params& consensus = Params().GetConsensus();
 
     CWallet* wallet;
     TransactionTableModel* parent;
