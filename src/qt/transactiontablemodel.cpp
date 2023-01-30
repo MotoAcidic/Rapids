@@ -30,12 +30,12 @@
 #include <QtConcurrent/QtConcurrent>
 #include <QFuture>
 
-#define SINGLE_THREAD_MAX_TXES_SIZE 4000
+#define SINGLE_THREAD_MAX_TXES_SIZE 500 // Default 4000
 
 // Maximum amount of loaded records in ram in the first load.
 // If the user has more and want to load them:
 // TODO, add load on demand in pages (not every tx loaded all the time into the records list).
-#define MAX_AMOUNT_LOADED_RECORDS 20000
+#define MAX_AMOUNT_LOADED_RECORDS 500 // Default 20000
 
 // Amount column is right-aligned it contains numbers
 static int column_alignments[] = {
