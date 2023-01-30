@@ -233,6 +233,7 @@ public:
         consensus.nStakeReward = 0.2;                 // 20%
 
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
+
         consensus.nMaxProposalPayments = 6;
 
         consensus.nTargetTimespan = 30 * 60;    // 30mins
