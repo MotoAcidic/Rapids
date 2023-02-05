@@ -17,37 +17,6 @@
 
 #include <assert.h>
 
-void GenesisGenerator(CBlock genesis) {
-    printf("Searching for genesis block...\n");
-
-    uint256 hash;
-    bool fNegative;
-    bool fOverflow;
-    arith_uint256 bnTarget;
-    bnTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow);
-
-    while(true)
-    {
-        hash = genesis.GetHash();
-        if (UintToArith256(hash) <= bnTarget)
-            break;
-        if ((genesis.nNonce & 0xFFF) == 0)
-        {
-            printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, hash.ToString().c_str(), bnTarget.ToString().c_str());
-        }
-        ++genesis.nNonce;
-        if (genesis.nNonce == 0)
-        {
-            printf("NONCE WRAPPED, incrementing time\n");
-            ++genesis.nTime;
-        }
-    }
-
-    printf("block.nNonce = %u \n", genesis.nNonce);
-    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-    printf("block.MerkleRoot = %s \n", genesis.hashMerkleRoot.ToString().c_str());
-}
-
 static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
     CMutableTransaction txNew;
@@ -103,7 +72,7 @@ void GenesisGeneratorV2(CBlock genesis)
     //
     // /////////////////////////////////////////////////////////////////
 
-    uint32_t nGenesisTime = 1675578934; // Sun Feb 05 2023 01:35:34 GMT-0500 (Eastern Standard Time)
+    uint32_t nGenesisTime = 1675582043; // Sun Feb 05 2023 01:35:34 GMT-0500 (Eastern Standard Time)
 
     arith_uint256 test;
     uint256 hashGenesisBlock;
@@ -200,12 +169,12 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1675578934, 832408, 0x1e0ffff0, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000f491f790c0e8f6cd6a9742499d4cc06fbe7f0a724640fe75e62bbf713ff"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        //genesis = CreateGenesisBlock(1675578934, 832408, 0x1e0ffff0, 1, 0 * COIN);
+        //consensus.hashGenesisBlock = genesis.GetHash();
+        //assert(consensus.hashGenesisBlock == uint256S("0x00000f491f790c0e8f6cd6a9742499d4cc06fbe7f0a724640fe75e62bbf713ff"));
+        //assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
-        //GenesisGeneratorV2(genesis);
+        GenesisGeneratorV2(genesis);
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
