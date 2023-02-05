@@ -161,7 +161,7 @@ void GenesisGeneratorV2(CBlock genesis)
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256S("0x001"))
+	(0, uint256S("0x00000f491f790c0e8f6cd6a9742499d4cc06fbe7f0a724640fe75e62bbf713ff"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
