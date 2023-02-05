@@ -244,15 +244,14 @@ public:
         consensus.nStakeMinAge = 10 * 60;       // 10min
         consensus.nStakeMinDepth = 60;          // 60 blocks
         
-
-
         // spork keys
-        consensus.strSporkPubKey = "02f8564bbb59972e10fb297f55f401c6743dba1a0f864e526a25476984717f5856";
-        // new spork privkey for testing on mainnet
+        consensus.strSporkPubKey = "02b1f75be7556ab096f2fd94378c153e6164435e76d29393e1e6dc422edb8c9135";
+        // Address RqA8AmLpEL9MKUHn9m59W5ptruS8Z26WJq
+        // PrivKey 7tNyh74rJpNwVRhipzzCBW9FAFiY17UBpydV9LUVcGjrZmb3Thac
+        consensus.strSporkPubKeyOld = "02f8564bbb59972e10fb297f55f401c6743dba1a0f864e526a25476984717f5856";
         // 7uS7r5smJVipqE1Fv7YYDWmENHKnR56TTUdqVFN9ixaUnzcmQYDp
-        consensus.strSporkPubKeyOld = "0457fe3e90da4bb4899ced14cbed073fb0174294975cb1b9e1a085990674117860a90912d9e91b83d8e2fff11716ed0e938a742e9862af37a6e545318e1ccd7472";
-        consensus.nTime_EnforceNewSporkKey = 1669797609; //Wed Nov 30 2022 03:40:09 GMT-0500 (Eastern Standard Time)
-        consensus.nTime_RejectOldSporkKey = 1669797309;  //Wed Nov 30 2022 03:35:09 GMT-0500 (Eastern Standard Time)
+        consensus.nTime_EnforceNewSporkKey = 1675572203; //Wed Nov 30 2022 03:40:09 GMT-0500 (Eastern Standard Time)
+        consensus.nTime_RejectOldSporkKey = 1675572200;  //Wed Nov 30 2022 03:35:09 GMT-0500 (Eastern Standard Time)
 
         // height-based activations
         consensus.height_last_PoW = 199;
@@ -343,17 +342,17 @@ public:
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivks";
         bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-main";
 
-        strMasterAddress = "yKvgjULiZYkikTNCqJaD9YuUYkLrEyRg3m";
-        //Master pubkey 03c8b46e7a2894c9cc049a679b76ed40ad1ef65c6601f4f6987c193611369b3a9d
-        //Master privkey cSgY6DmSKhG2ci2sckpQSoy1cgwRCx7eEMHd82HgwtqL7ieGSgjy
+        strMasterAddress = "RgKH1GPkTzkrqSWyycW7YqxF5yhFCrGc7W";
+        //Master pubkey 76a9145470d8063798c610d935fb94105fefaf56dd4fd288ac
+        //Master privkey 7vca8MkNMpASidNYiK5V9R1Cx7KdN5RqUqHUGx6EmxLCLiKcYWkF
 
-        foundationFundAddress = "yEMBsHESUmk1mVNugUrGmazWEhA4qesSmm";
-        //foundationFundAddress pubkey 031ce00e132c89ce5a50c17d6dd8e734c2283f217e46ccc1a7f833d12e34141578
-        //foundationFundAddress privkey cNrKLx5PqtBzHYbkoA7KNg18pzyargQ4hMx9m5bz3tJLZ8bn212x
+        foundationFundAddress = "Rw7E4wNwr6AikK3TaZYQS9H79WMqU6z1WP";
+        //foundationFundAddress pubkey 76a914f6b349a29c8d13b9a1ff2bba7a735a92ae6a9b0888ac
+        //foundationFundAddress privkey 7r2ieUJGrbQ781U9qwbwnCcm7JJX7M77HeUSGF6zE9Ky6paNDmhe
 
-        strFeeAddress = "xwwLWkB1nr8NsPgfRXt63wxBDLYaJZ7dSM";
-        //Fee pubkey 029704f22d19be0d31205dfe30e7928b509408dbc7c943aae62f708d50a3c028cc
-        //Fee privkey cVcBR3TwmLaBkuNBYi5YGFr3AxGexwJ3Qu2miH8BcGhEyB7UwF6h
+        strFeeAddress = "Ram7H6Avt4WY1mL1avcXbjBVYHnKojC6Ai";
+        //Fee pubkey 76a9141782c8c898d1a5d29fd120202903bcde86e706c188ac
+        //Fee privkey 7rEfxZUajg7ZVk1rQNLFBodU4H4ea53y3wxHA2GcqikGDiNoGBAt
 
         tokenFixedFee = 1 * COIN;
         tokenManagedFee = 1 * COIN;
