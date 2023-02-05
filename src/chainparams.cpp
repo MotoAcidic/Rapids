@@ -200,12 +200,12 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        //genesis = CreateGenesisBlock(1675573163, 165262, 0x1e0ffff0, 1, 0 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x0000005fd685b42c63b2aa82fb7adef52bb35177a5ab22d60040ebd34ca62094"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        genesis = CreateGenesisBlock(1675578934, 832408, 0x1e0ffff0, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x00000f491f790c0e8f6cd6a9742499d4cc06fbe7f0a724640fe75e62bbf713ff"));
+        assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
-        GenesisGeneratorV2(genesis);
+        //GenesisGeneratorV2(genesis);
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
