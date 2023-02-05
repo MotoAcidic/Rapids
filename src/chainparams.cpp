@@ -103,7 +103,7 @@ void GenesisGeneratorV2(CBlock genesis)
     //
     // /////////////////////////////////////////////////////////////////
 
-    uint32_t nGenesisTime = 1674751352; // Thu Jan 26 2023 11:42:32 GMT-0500 (GMT-05:00)
+    uint32_t nGenesisTime = 1675573163; // Sat Feb 04 2023 23:59:23 GMT-0500 (Eastern Standard Time)
 
     arith_uint256 test;
     uint256 hashGenesisBlock;
@@ -200,12 +200,12 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1674751352, 1047466, 0x1e0ffff0, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000006bc3b91b1f97edfafe72c6226f5bd337087f2e4b0ca636ff9b0cfc12e7e"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        //genesis = CreateGenesisBlock(1674751352, 1047466, 0x1e0ffff0, 1, 0 * COIN);
+        //consensus.hashGenesisBlock = genesis.GetHash();
+        //assert(consensus.hashGenesisBlock == uint256S("0x000006bc3b91b1f97edfafe72c6226f5bd337087f2e4b0ca636ff9b0cfc12e7e"));
+        //assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
-        //GenesisGeneratorV2(genesis);
+        GenesisGeneratorV2(genesis);
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
