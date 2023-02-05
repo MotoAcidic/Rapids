@@ -166,7 +166,7 @@ static Checkpoints::MapCheckpoints mapCheckpoints =
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1674751352, // * UNIX timestamp of last checkpoint block
+    1675578934, // * UNIX timestamp of last checkpoint block
     2003954,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -321,9 +321,9 @@ public:
         nDefaultPort = 1591;
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        vSeeds.push_back(CDNSSeedData("146.190.13.2409 ", "146.190.13.240 ", true));
-        vSeeds.push_back(CDNSSeedData("24.199.68.190 ", "24.199.68.190 ", true));
-        vSeeds.push_back(CDNSSeedData("24.199.68.69", "24.199.68.69", true));
+        //vSeeds.push_back(CDNSSeedData("146.190.13.2409 ", "146.190.13.240 ", true));
+        //vSeeds.push_back(CDNSSeedData("24.199.68.190 ", "24.199.68.190 ", true));
+        //vSeeds.push_back(CDNSSeedData("24.199.68.69", "24.199.68.69", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 61);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 6);
