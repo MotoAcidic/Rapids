@@ -283,10 +283,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-	    pchMessageStart[0] = 0x61;
-	    pchMessageStart[1] = 0xa2;
-	    pchMessageStart[2] = 0xf5;
-	    pchMessageStart[3] = 0xcb;
+	    pchMessageStart[0] = 0x23;
+	    pchMessageStart[1] = 0xb6;
+	    pchMessageStart[2] = 0xa1;
+	    pchMessageStart[3] = 0x1c;
         nDefaultPort = 1591;
 
         // Note that of those with the service bits flag, most only support a subset of possible options
