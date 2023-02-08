@@ -477,10 +477,7 @@ padding-right:4px;</string>
                  </sizepolicy>
                 </property>
                 <property name="text">
-					<string>(un)select all</string>
-				</property>
-				<property name="autoDefault">
-					<bool>false</bool>
+					<string>Tree mode</string>
                 </property>
                </widget>
               </item>
