@@ -492,7 +492,7 @@ padding-right:4px;</string>
                 <property name="text">
 					<string>toggle lock status</string>
                 </property>
-					  <property name="autoDefault">
+					  <property name="checked">
 						  <bool>false</bool>
                 </property>
                </widget>
