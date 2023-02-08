@@ -87,6 +87,7 @@ private:
         COLUMN_DATE,
         COLUMN_CONFIRMATIONS,
         COLUMN_TXHASH,
+        COLUMN_PRIORITY,
         COLUMN_VOUT_INDEX,
     };
     friend class CCoinControlWidgetItem;
