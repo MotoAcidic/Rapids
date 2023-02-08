@@ -148,6 +148,8 @@ CoinControlDialog::CoinControlDialog(QWidget* parent, bool _forDelegation) : QDi
     // toggle tree/list mode
     connect(ui->radioTreeMode, &QRadioButton::toggled, this, &CoinControlDialog::radioTreeMode);
     connect(ui->radioListMode, &QRadioButton::toggled, this, &CoinControlDialog::radioListMode);
+    connect(ui->radioListMode, &QRadioButton::toggled, this, &CoinControlDialog::radioListMode);
+
 
     // click on checkbox
     connect(ui->treeWidget, &QTreeWidget::itemChanged, this, &CoinControlDialog::viewItemChanged);
