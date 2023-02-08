@@ -344,7 +344,7 @@ padding-right:4px;</string>
             <number>20</number>
            </property>
            <item>
-			   <widget class="QRadioButton" name="radioTreeMode">
+			   <widget class="QPushButton" name="pushButtonSelectAll">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -477,7 +477,10 @@ padding-right:4px;</string>
                  </sizepolicy>
                 </property>
                 <property name="text">
-					<string>Tree mode</string>
+					<string>(un)select all</string>
+				</property>
+				<property name="autoDefault">
+					<bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -492,7 +495,7 @@ padding-right:4px;</string>
                 <property name="text">
 					<string>toggle lock status</string>
                 </property>
-					  <property name="checked">
+					  <property name="autoDefault">
 						  <bool>false</bool>
                 </property>
                </widget>
