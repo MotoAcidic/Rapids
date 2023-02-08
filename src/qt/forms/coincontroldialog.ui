@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
+    <width>1035</width>
     <height>650</height>
    </rect>
   </property>
@@ -339,12 +339,12 @@ padding-right:4px;</string>
           <number>0</number>
          </property>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayoutPanel" stretch="0,0,0,0,0,0">
+          <layout class="QHBoxLayout" name="horizontalLayoutPanel" stretch="0,0,0,0,0,0,0">
            <property name="spacing">
             <number>20</number>
            </property>
            <item>
-            <widget class="QPushButton" name="pushButtonSelectAll">
+			   <widget class="QRadioButton" name="radioTreeMode">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -364,10 +364,7 @@ padding-right:4px;</string>
               </size>
              </property>
              <property name="text">
-              <string>Select all</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
+				 <string>Tree mode</string>
              </property>
              <property name="checked">
               <bool>false</bool>
@@ -397,7 +394,7 @@ padding-right:4px;</string>
             </spacer>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButtonToggleLock">
+			   <widget class="QRadioButton" name="radioListMode">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                <horstretch>0</horstretch>
@@ -417,7 +414,7 @@ padding-right:4px;</string>
               </size>
              </property>
              <property name="text">
-              <string>Toggle lock state</string>
+				 <string>List mode</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
@@ -425,8 +422,8 @@ padding-right:4px;</string>
              <property name="autoExclusive">
               <bool>false</bool>
              </property>
-             <property name="autoDefault">
-              <bool>false</bool>
+				   <property name="checked">
+					   <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -459,7 +456,20 @@ padding-right:4px;</string>
              </property>
              <layout class="QHBoxLayout" name="horizontalLayout_14">
               <item>
-               <widget class="QRadioButton" name="radioTreeMode">
+				  <widget class="QCheckBox" name="advanced">
+					  <property name="minimumSize">
+						  <size>
+							  <width>70</width>
+							  <height>17</height>
+						  </size>
+					  </property>
+					  <property name="text">
+						  <string>advanced</string>
+					  </property>
+				  </widget>
+			  </item>
+			  <item>
+				  <widget class="QPushButton" name="pushButtonSelectAll">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -467,12 +477,15 @@ padding-right:4px;</string>
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>Tree mode</string>
+					<string>(un)select all</string>
+				</property>
+				<property name="autoDefault">
+					<bool>false</bool>
                 </property>
                </widget>
               </item>
               <item>
-               <widget class="QRadioButton" name="radioListMode">
+				  <widget class="QPushButton" name="pushButtonToggleLock">
                 <property name="sizePolicy">
                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                   <horstretch>0</horstretch>
@@ -480,10 +493,10 @@ padding-right:4px;</string>
                  </sizepolicy>
                 </property>
                 <property name="text">
-                 <string>List mode</string>
+					<string>toggle lock status</string>
                 </property>
-                <property name="checked">
-                 <bool>false</bool>
+					  <property name="autoDefault">
+						  <bool>false</bool>
                 </property>
                </widget>
               </item>
@@ -502,6 +515,99 @@ padding-right:4px;</string>
         </layout>
        </widget>
       </item>
+		 <item>
+			 <layout class="QHBoxLayout" name="horizontalLayout_3">
+				 <item>
+					 <widget class="QPushButton" name="select_50">
+						 <property name="minimumSize">
+							 <size>
+								 <width>115</width>
+								 <height>23</height>
+							 </size>
+						 </property>
+						 <property name="text">
+							 <string>50</string>
+						 </property>
+					 </widget>
+				 </item>
+				 <item>
+					 <widget class="QPushButton" name="select_100">
+						 <property name="minimumSize">
+							 <size>
+								 <width>115</width>
+								 <height>23</height>
+							 </size>
+						 </property>
+						 <property name="text">
+							 <string>100</string>
+						 </property>
+					 </widget>
+				 </item>
+				 <item>
+					 <widget class="QPushButton" name="select_250">
+						 <property name="minimumSize">
+							 <size>
+								 <width>114</width>
+								 <height>23</height>
+							 </size>
+						 </property>
+						 <property name="text">
+							 <string>250</string>
+						 </property>
+					 </widget>
+				 </item>
+				 <item>
+					 <spacer name="horizontalSpacer_2">
+						 <property name="orientation">
+							 <enum>Qt::Horizontal</enum>
+						 </property>
+						 <property name="sizeHint" stdset="0">
+							 <size>
+								 <width>40</width>
+								 <height>20</height>
+							 </size>
+						 </property>
+					 </spacer>
+				 </item>
+				 <item>
+					 <widget class="QPushButton" name="GreaterThan">
+						 <property name="text">
+							 <string>Greater Than</string>
+						 </property>
+					 </widget>
+				 </item>
+				 <item>
+					 <widget class="QPushButton" name="LessThan">
+						 <property name="text">
+							 <string>Less Than</string>
+						 </property>
+					 </widget>
+				 </item>
+				 <item>
+					 <widget class="QPushButton" name="EqualTo">
+						 <property name="text">
+							 <string>Equal to</string>
+						 </property>
+					 </widget>
+				 </item>
+				 <item>
+					 <widget class="QDoubleSpinBox" name="num_box">
+						 <property name="minimumSize">
+							 <size>
+								 <width>96</width>
+								 <height>20</height>
+							 </size>
+						 </property>
+					 </widget>
+				 </item>
+			 </layout>
+		 </item>
+		 <item>
+			 <layout class="QVBoxLayout" name="verticalLayout_2"/>
+		 </item>
+		 <item>
+			 <layout class="QHBoxLayout" name="horizontalLayout_2"/>
+		 </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_13">
         <property name="leftMargin">
