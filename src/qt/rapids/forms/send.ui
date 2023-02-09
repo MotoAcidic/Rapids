@@ -70,27 +70,6 @@
             </property>
             <item>
              <widget class="QLabel" name="labelTitle">
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-              </property>
               <property name="text">
                <string>Send</string>
               </property>
@@ -101,27 +80,6 @@ margin-left:8px;</string>
             </item>
             <item>
              <widget class="QLabel" name="labelSubtitle1">
-              <property name="styleSheet">
-               <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-              </property>
               <property name="text">
                <string>Send public coins (RPD)</string>
               </property>
@@ -223,27 +181,6 @@ margin-left:8px;</string>
           </item>
           <item>
            <widget class="QLabel" name="labelSubtitleAmount">
-            <property name="styleSheet">
-             <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-            </property>
             <property name="text">
              <string>Amount</string>
             </property>
@@ -597,27 +534,6 @@ radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
                      </property>
                      <item>
                       <widget class="QLabel" name="labelTitleTotalSend">
-                       <property name="styleSheet">
-                        <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-                       </property>
                        <property name="text">
                         <string>Total to send</string>
                        </property>
@@ -625,27 +541,6 @@ margin-left:8px;</string>
                      </item>
                      <item>
                       <widget class="QLabel" name="labelAmountSend">
-                       <property name="styleSheet">
-                        <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-                       </property>
                        <property name="text">
                         <string notr="true">0.00 RPD</string>
                        </property>
@@ -711,27 +606,6 @@ margin-left:8px;</string>
                      </property>
                      <item>
                       <widget class="QLabel" name="labelTitleTotalRemaining">
-                       <property name="styleSheet">
-                        <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-                       </property>
                        <property name="text">
                         <string notr="true">N/A</string>
                        </property>
@@ -739,27 +613,6 @@ margin-left:8px;</string>
                      </item>
                      <item>
                       <widget class="QLabel" name="labelAmountRemaining">
-                       <property name="styleSheet">
-                        <string notr="true">QLabel {
-color: #fff;
-border: 2px solid #555;
-border-radius: 10px;
-border-style: outset;
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
-);
-padding: 5px;
-}
-
-QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}
-margin-left:8px;</string>
-                       </property>
                        <property name="text">
                         <string notr="true">N/A</string>
                        </property>
