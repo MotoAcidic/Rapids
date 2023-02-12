@@ -181,6 +181,27 @@ margin-left:8px;</string>
           </item>
           <item>
            <widget class="QLabel" name="labelSubtitleAmount">
+            <property name="styleSheet">
+             <string notr="true">QLabel {
+color: #fff;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
+);
+}
+margin-left:8px;</string>
+            </property>
             <property name="text">
              <string>Amount</string>
             </property>
