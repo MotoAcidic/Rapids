@@ -42,7 +42,7 @@ unsigned int Lwma3CalculateNextWorkRequired(const CBlockIndex* pindexLast, bool 
     const int64_t actualTime = params.nPosTargetSpacing;
 
     if (sporkManager.IsSporkActive(SPORK_21_BLOCK_TIME_V2))
-        actualTime = params.nPosTargetSpacingV2;
+        return actualTime = params.nPosTargetSpacingV2;
 
     const int64_t T = actualTime;
     const int64_t N = 8;
