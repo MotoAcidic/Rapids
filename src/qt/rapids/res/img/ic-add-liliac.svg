@@ -1,9 +1,21 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 26.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="ic-add-liliac" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
-	 y="0px" viewBox="0 0 30 22" style="enable-background:new 0 0 30 22;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill-rule:evenodd;clip-rule:evenodd;fill:#D1D5DB;}
-</style>
-<polygon id="Path_18951" class="st0" points="21,10 16,10 16,5 14,5 14,10 9,10 9,12 14,12 14,17 16,17 16,12 21,12 "/>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: none;
+      }
+
+      .cls-2 {
+        fill: #f53;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="Add-purple">
+    <g id="ic-add-purple">
+      <polygon id="Path_18951" data-name="Path 18951" class="cls-2" points="14 7 9 7 9 2 7 2 7 7 2 7 2 9 7 9 7 14 9 14 9 9 14 9 14 7"/>
+      <polygon id="Rectangle_4603" data-name="Rectangle 4603" class="cls-1" points="0 0 16 0 16 16 0 16 0 0"/>
+    </g>
+  </g>
 </svg>
