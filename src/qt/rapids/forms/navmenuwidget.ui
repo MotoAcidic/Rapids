@@ -167,12 +167,7 @@ background-color:transparent;
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton:hover {
-background: qradialgradient(
-cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
-);
-}</string>
+             <string notr="true"/>
             </property>
             <property name="text">
              <string>HOME
