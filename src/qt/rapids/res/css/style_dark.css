@@ -3,37 +3,37 @@ HH       CONTAINER
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container"] {
-    background-color: #14100B;
+    background-color: #caced8;
 }
 
 *[cssClass="container-border"] {
-    background-color: #14100B;
-    border: 1px solid #14100B;
+    background-color: #caced8;
+    border: 1px solid #caced8;
 }
 
 *[cssClass="container-border-light"] {
-    background-color: #14100B;
+    background-color: #caced8;
     border: 1px solid #33FFFFFF;
     border-radius: 2px;
 }
 
 *[cssClass="container_right"] {
-    background-color: #14100B;
+    background-color: #caced8;
     border-left: 1px solid #33FFFFFF;
 }
 
 *[cssClass="container-right"] {
-    background-color: #14100B;
+    background-color: #caced8;
     border-left: 1px solid #33FFFFFF;
 }
 
 *[cssClass="container-square"] {
-    background-color: #14100B;
+    background-color: #caced8;
     border: 1px solid #33FFFFFF;
 }
 
 *[cssClass="container-options"] {
-    background-color: #14100B;
+    background-color: #caced8;
     border-bottom: 1px solid #bababa;
 }
 
@@ -47,7 +47,7 @@ HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 }
 
 *[cssClass="container-border-purple"] {
-    background-color: #14100B;
+    background-color: #caced8;
     border: 1px solid #C69D10;
     border-radius: 2px;
 }
@@ -57,7 +57,7 @@ HH       NAVIGATION
 HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
 
 *[cssClass="container-nav"] {
-    background-color: qlineargradient(y1:0, y2: 1, stop: 0 #14100B, stop: 1 #746244);
+    background-color: qlineargradient(y1:0, y2: 1, stop: 0 #fe3719, stop: 1 #746244);
 }
 
 QPushButton[cssClass="img-nav-logo"] {
