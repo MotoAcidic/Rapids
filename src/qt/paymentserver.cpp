@@ -39,7 +39,7 @@
 #include <QStringList>
 #include <QTextDocument>
 #include <QUrlQuery>
-
+#include <QStyle>
 
 const int BITCOIN_IPC_CONNECT_TIMEOUT = 1000; // milliseconds
 const QString BITCOIN_IPC_PREFIX("rapids:");
