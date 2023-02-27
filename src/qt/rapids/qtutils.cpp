@@ -306,7 +306,7 @@ void setCssBtnSecondary(QPushButton* btn, bool forceUpdate)
 
 void setCssTextBodyDialog(std::initializer_list<QWidget*> args)
 {
-    Q_FOREACH (QWidget* w, args) {
+    for (QWidget* w : args) {
         setCssTextBodyDialog(w);
     }
 }
@@ -328,7 +328,7 @@ void setCssSubtitleScreen(QWidget* wid)
 
 void setCssProperty(std::initializer_list<QWidget*> args, QString value)
 {
-    Q_FOREACH (QWidget* w, args) {
+    for (QWidget* w : args) {
         setCssProperty(w, value);
     }
 }
@@ -347,7 +347,7 @@ void forceUpdateStyle(QWidget* widget, bool forceUpdate)
 
 void forceUpdateStyle(std::initializer_list<QWidget*> args)
 {
-    Q_FOREACH (QWidget* w, args) {
+    for (QWidget* w : args) {
         forceUpdateStyle(w, true);
     }
 }
