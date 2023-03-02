@@ -227,7 +227,6 @@ public:
 
         // height-based activations
         consensus.height_last_PoW = 199;
-        consensus.nLwmaProtocolHeight = 200;
         consensus.height_governance = 500000;
 
         consensus.height_last_ZC_AccumCheckpoint = std::numeric_limits<int>::max();
