@@ -511,37 +511,10 @@ CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet)
     return CreateNewBlock(scriptPubKey, pwallet, false);
 }
 
-/////////////////////////////////////
-std::mutex relayMutex;
-uint256 blockHashRelayed{};
-bool stakingAllowed = true;
-
-void haltUntilRelayed(const uint256& hash) {
-    relayMutex.lock();
-    blockHashRelayed = hash;
-    stakingAllowed = false;
-    relayMutex.unlock();
-    LogPrintf("staking halted..\n");
-}
-
-void resumeAfterRelayed() {
-    relayMutex.lock();
-    stakingAllowed = true;
-    relayMutex.unlock();
-    LogPrintf("staking resumed..\n");
-}
-
-bool isStakingAllowed() {
-    relayMutex.lock();
-    bool answer = stakingAllowed;
-    relayMutex.unlock();
-    return answer;
-}
-/////////////////////////////////////
-
 bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& reservekey)
 {
-    const uint256& blockHash = pblock->GetHash();
+    LogPrintf("%s\n", pblock->ToString());
+    LogPrintf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue));
 
     // Found a solution
     {
@@ -555,7 +528,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
         reservekey->KeepKey();
 
     // Inform about the new block
-    GetMainSignals().BlockFound(blockHash);
+    GetMainSignals().BlockFound(pblock->GetHash());
 
     // Process this block the same as if we had received it from another node
     CValidationState state;
@@ -563,12 +536,10 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
         return error("RPDMiner : ProcessNewBlock, block not accepted");
     }
 
-    g_connman->ForEachNode([&blockHash](CNode* node)
+    g_connman->ForEachNode([&pblock](CNode* node)
     {
-        node->PushInventory(CInv(MSG_BLOCK, blockHash));
+        node->PushInventory(CInv(MSG_BLOCK, pblock->GetHash()));
     });
-
-    haltUntilRelayed(blockHash);
 
     return true;
 }
@@ -601,16 +572,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     unsigned int nExtraNonce = 0;
 
     while (fGenerateRpd || fProofOfStake) {
-        if (IsInitialBlockDownload()) {
-            MilliSleep(5000);
-            continue;
-        }
-
-        if (!isStakingAllowed()) {
-            MilliSleep(250);
-            continue;
-        }
-
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
             MilliSleep(nSpacingMillis); // sleep a block
