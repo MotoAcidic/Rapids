@@ -202,9 +202,6 @@ public:
         consensus.nStakeReward = 0.2;                 // 20%
 
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
-        consensus.nTargetTimespan = 30 * 60;
-        consensus.nTargetSpacing = 2 * 60;
-        consensus.nTimeSlotLength = 15;
 
         consensus.nMaxProposalPayments = 6;
 
@@ -384,7 +381,12 @@ public:
         consensus.nCoinbaseMaturity = 10;
 
         consensus.nTargetTimespan = 30 * 6;
-        consensus.nTargetSpacing = 6;
+        consensus.nTargetSpacing = 15;
+        consensus.nPosTargetSpacing = 15;
+        consensus.nPosTargetSpacingV2 = 30;
+        consensus.nStakeMinAge = 5 * 60; //5min
+        consensus.nStakeMinDepth = 25; //25 blocks
+        consensus.nTargetTimespanV2 = 30 * 60; //30mins
 
         consensus.nSingleThreadMaxTxesSize = 500;
         consensus.nMaxAmountLoadedRecords = 500;
