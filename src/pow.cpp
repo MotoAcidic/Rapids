@@ -44,8 +44,6 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     bool fProofOfStake = pindexLast->IsProofOfStake();
     unsigned int nTargetLimit = UintToArith256(fProofOfStake ? params.posLimit : params.powLimit).GetCompact();
 
-    unsigned int nTargetLimit = UintToArith256(fProofOfStake ? params.posLimit : params.powLimit).GetCompact();
-
     // Genesis block
     if (pindexLast == NULL) {
         return nTargetLimit;
