@@ -396,7 +396,6 @@ public:
         
         // Height based params
         consensus.height_last_PoW = 199;
-        consensus.nLwmaProtocolHeight = 200;
         consensus.height_governance = 500000;
 
         // spork keys
