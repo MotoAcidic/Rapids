@@ -37,48 +37,6 @@ static arith_uint256 GetTargetLimit(int64_t nTime, bool fProofOfStake, const Con
     return UintToArith256(nLimit);
 }
 
-unsigned int Lwma3CalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
-{
-    const int64_t T = params.nTargetSpacing;
-    if (sporkManager.IsSporkActive(SPORK_21_BLOCK_TIME_V2))
-        const int64_t T = params.nPosTargetSpacingV2;
-
-    const int64_t N = 8;
-    const int64_t k = N * (N + 1) * T / 2; // 1080
-    const int64_t height = pindexLast->nHeight;
-    const arith_uint256 posLimit = GetTargetLimit(pindexLast->GetBlockTime(), fProofOfStake, params);
-
-    if (height < N) {
-        return posLimit.GetCompact();
-    }
-
-    arith_uint256 sumTarget, nextTarget;
-    int64_t thisTimestamp, previousTimestamp;
-    int64_t t = 0, j = 0;
-
-    const CBlockIndex* blockPreviousTimestamp = pindexLast->GetAncestor(height - N);
-    previousTimestamp = blockPreviousTimestamp->GetBlockTime();
-
-    // Loop through N most recent blocks.
-    for (int64_t i = height - N + 1; i <= height; i++) {
-        const CBlockIndex* block = pindexLast->GetAncestor(i);
-        thisTimestamp = (block->GetBlockTime() > previousTimestamp) ? block->GetBlockTime() : previousTimestamp + 1;
-        int64_t solvetime = std::min(6 * T, thisTimestamp - previousTimestamp);
-        previousTimestamp = thisTimestamp;
-        j++;
-        t += solvetime * j; // Weighted solvetime sum.
-        arith_uint256 target;
-        target.SetCompact(block->nBits);
-        sumTarget += target / (k * N);
-    }
-    nextTarget = t * sumTarget;
-    if (nextTarget > posLimit) {
-        nextTarget = posLimit;
-    }
-
-    return nextTarget.GetCompact();
-}
-
 unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
 {
     const Consensus::Params& params = Params().GetConsensus();
@@ -86,11 +44,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     bool fProofOfStake = pindexLast->IsProofOfStake();
     unsigned int nTargetLimit = UintToArith256(fProofOfStake ? params.posLimit : params.powLimit).GetCompact();
 
-    if (pindexLast->nHeight + 1 > params.nLwmaProtocolHeight) {
-        return Lwma3CalculateNextWorkRequired(pindexLast, fProofOfStake, params);
-    } else {
-        return nTargetLimit;
-    }
+    unsigned int nTargetLimit = UintToArith256(fProofOfStake ? params.posLimit : params.powLimit).GetCompact();
 
     // Genesis block
     if (pindexLast == NULL) {
