@@ -118,9 +118,10 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     bool fNegative;
     bool fOverflow;
     arith_uint256 bnTarget;
+    int nChainHeight = chainActive.Height();
 
     if (Params().IsRegTestNet()) return true;
-    if (nHeight <= Params().GetConsensus().height_last_PoW) return true;
+    if (nChainHeight <= Params().GetConsensus().height_last_PoW) return true;
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
