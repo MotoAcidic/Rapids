@@ -120,6 +120,7 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     arith_uint256 bnTarget;
 
     if (Params().IsRegTestNet()) return true;
+    if (nHeight <= Params().GetConsensus().height_last_PoW) return true;
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
