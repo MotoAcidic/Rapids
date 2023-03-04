@@ -146,13 +146,6 @@ bool CheckForDuplicatedSerials(const CTransaction& tx, const Consensus::Params& 
     return true;
 }
 
-uint64_t return_current_timestamp()
-{
-    struct timespec te;
-    clock_gettime(CLOCK_REALTIME, &te);
-    return (uint64_t) 1000LL*te.tv_sec + round(te.tv_nsec/1e6);
-}
-
 bool CreateCoinbaseTx(CBlock* pblock, const CScript& scriptPubKeyIn, CBlockIndex* pindexPrev)
 {
     // Create coinbase tx
@@ -175,21 +168,16 @@ bool CreateCoinbaseTx(CBlock* pblock, const CScript& scriptPubKeyIn, CBlockIndex
     return true;
 }
 
-bool SolveProofOfStake(CBlock* pblock, CBlockIndex* pindexPrev, CWallet* pwallet, std::vector<COutput>* availableCoins, uint64_t& elapsed)
+bool SolveProofOfStake(CBlock* pblock, CBlockIndex* pindexPrev, CWallet* pwallet, std::vector<COutput>* availableCoins)
 {
     boost::this_thread::interruption_point();
     pblock->nBits = GetNextWorkRequired(pindexPrev, pblock);
     CMutableTransaction txCoinStake;
     int64_t nTxNewTime = 0;
-
-    uint64_t stake_timer = return_current_timestamp();
-    bool foundStake = pwallet->CreateCoinStake(*pwallet, pindexPrev, pblock->nBits, txCoinStake, nTxNewTime, availableCoins);
-    elapsed = return_current_timestamp() - stake_timer;
-    if (!foundStake) {
+    if (!pwallet->CreateCoinStake(*pwallet, pindexPrev, pblock->nBits, txCoinStake, nTxNewTime, availableCoins)) {
         LogPrint(BCLog::STAKING, "%s : stake not found\n", __func__);
         return false;
     }
-
     // Stake found
     pblock->nTime = nTxNewTime;
     CMutableTransaction emptyTx;
@@ -226,10 +214,8 @@ CBlockTemplate* CreateNewBlock(const CScript& scriptPubKeyIn, CWallet* pwallet, 
     }
 
     // Depending on the tip height, try to find a coinstake who solves the block or create a coinbase tx.
-    uint64_t elapsed;
-    if (!(fProofOfStake ? SolveProofOfStake(pblock, pindexPrev, pwallet, availableCoins, elapsed)
+    if (!(fProofOfStake ? SolveProofOfStake(pblock, pindexPrev, pwallet, availableCoins)
                         : CreateCoinbaseTx(pblock, scriptPubKeyIn, pindexPrev))) {
-        LogPrintf("SolveProofOfStake returned in %dms\n", elapsed);
         return nullptr;
     }
 
@@ -525,37 +511,10 @@ CBlockTemplate* CreateNewBlockWithKey(CReserveKey& reservekey, CWallet* pwallet)
     return CreateNewBlock(scriptPubKey, pwallet, false);
 }
 
-/////////////////////////////////////
-std::mutex relayMutex;
-uint256 blockHashRelayed{};
-bool stakingAllowed = true;
-
-void haltUntilRelayed(const uint256& hash) {
-    relayMutex.lock();
-    blockHashRelayed = hash;
-    stakingAllowed = false;
-    relayMutex.unlock();
-    LogPrintf("staking halted..\n");
-}
-
-void resumeAfterRelayed() {
-    relayMutex.lock();
-    stakingAllowed = true;
-    relayMutex.unlock();
-    LogPrintf("staking resumed..\n");
-}
-
-bool isStakingAllowed() {
-    relayMutex.lock();
-    bool answer = stakingAllowed;
-    relayMutex.unlock();
-    return answer;
-}
-/////////////////////////////////////
-
 bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& reservekey)
 {
-    const uint256& blockHash = pblock->GetHash();
+    LogPrintf("%s\n", pblock->ToString());
+    LogPrintf("generated %s\n", FormatMoney(pblock->vtx[0].vout[0].nValue));
 
     // Found a solution
     {
@@ -569,7 +528,7 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
         reservekey->KeepKey();
 
     // Inform about the new block
-    GetMainSignals().BlockFound(blockHash);
+    GetMainSignals().BlockFound(pblock->GetHash());
 
     // Process this block the same as if we had received it from another node
     CValidationState state;
@@ -577,12 +536,10 @@ bool ProcessBlockFound(CBlock* pblock, CWallet& wallet, Optional<CReserveKey>& r
         return error("RPDMiner : ProcessNewBlock, block not accepted");
     }
 
-    g_connman->ForEachNode([&blockHash](CNode* node)
+    g_connman->ForEachNode([&pblock](CNode* node)
     {
-        node->PushInventory(CInv(MSG_BLOCK, blockHash));
+        node->PushInventory(CInv(MSG_BLOCK, pblock->GetHash()));
     });
-
-    haltUntilRelayed(blockHash);
 
     return true;
 }
@@ -611,27 +568,15 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     }
 
     // Available UTXO set
-    bool utxo_dirty = true;
     std::vector<COutput> availableCoins;
     unsigned int nExtraNonce = 0;
 
     while (fGenerateRpd || fProofOfStake) {
-        if (IsInitialBlockDownload()) {
-            MilliSleep(5000);
-            continue;
-        }
-
-        if (!isStakingAllowed()) {
-            MilliSleep(250);
-            continue;
-        }
-
         CBlockIndex* pindexPrev = GetChainTip();
         if (!pindexPrev) {
             MilliSleep(nSpacingMillis); // sleep a block
             continue;
         }
-
         if (fProofOfStake) {
             if (!consensus.NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_POS)) {
                 // The last PoW block hasn't even been mined yet.
@@ -639,10 +584,8 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
                 continue;
             }
 
-            if (utxo_dirty) {
-                CheckForCoins(pwallet, 5, &availableCoins);
-                utxo_dirty = false;
-            }
+            // update fStakeableCoins (5 minute check time);
+            CheckForCoins(pwallet, 5, &availableCoins);
 
             if (sporkManager.IsSporkActive(SPORK_19_STAKE_SKIP_MN_SYNC)) {
                 while ((g_connman && g_connman->GetNodeCount(CConnman::CONNECTIONS_ALL) == 0 && Params().MiningRequiresPeers()) || pwallet->IsLocked() || !fStakeableCoins) {
@@ -685,7 +628,6 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
 
         // POS - block found: process it
         if (fProofOfStake) {
-            utxo_dirty = true;
             LogPrintf("%s : proof-of-stake block was signed %s \n", __func__, pblock->GetHash().ToString().c_str());
             SetThreadPriority(THREAD_PRIORITY_NORMAL);
             if (!ProcessBlockFound(pblock, *pwallet, opReservekey)) {
