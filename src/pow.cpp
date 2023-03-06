@@ -118,10 +118,9 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
     bool fNegative;
     bool fOverflow;
     arith_uint256 bnTarget;
-    //int nChainHeight = chainActive.Height();
+    int nChainHeight = chainActive.Height();
 
     if (Params().IsRegTestNet()) return true;
-    //if (nChainHeight <= Params().GetConsensus().height_last_PoW) return true;
 
     bnTarget.SetCompact(nBits, &fNegative, &fOverflow);
 
@@ -130,8 +129,9 @@ bool CheckProofOfWork(uint256 hash, unsigned int nBits)
         return error("CheckProofOfWork() : nBits below minimum work");
 
     // Check proof of work matches claimed amount
-    if (UintToArith256(hash) > bnTarget)
-        return error("CheckProofOfWork() : hash doesn't match nBits");
+    if (nChainHeight > Params().GetConsensus().height_last_PoW)
+        if (UintToArith256(hash) > bnTarget)
+            return error("CheckProofOfWork() : hash doesn't match nBits");
 
     return true;
 }
