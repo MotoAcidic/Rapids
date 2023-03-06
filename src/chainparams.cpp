@@ -178,9 +178,9 @@ public:
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
-        consensus.powLimit   = ~UINT256_ZERO >> 2; 
-        consensus.posLimit   = ~UINT256_ZERO >> 24;
-        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
+        consensus.powLimit = ~uint256(0) >> 20;
+        consensus.posLimit = ~uint256(0) >> 24;
+        consensus.posLimitV2 = ~uint256(0) >> 20;
         consensus.nBudgetCycleBlocks = 43200;       // approx. 1 every 30 days
         consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
         consensus.nCoinbaseMaturity = 10;
