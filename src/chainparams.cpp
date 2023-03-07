@@ -258,8 +258,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = 1;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = std::numeric_limits<int>::max();
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 201;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 202;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 2;
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 3;
         consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight =
                 Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
