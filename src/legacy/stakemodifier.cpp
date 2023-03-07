@@ -12,9 +12,9 @@
  * Old Modifier - Only for IBD
  */
 
-static const unsigned int MODIFIER_INTERVAL = 60;
+static const unsigned int MODIFIER_INTERVAL = 15;
 static const int MODIFIER_INTERVAL_RATIO = 3;
-static const int64_t OLD_MODIFIER_INTERVAL = 2087;
+static const int64_t OLD_MODIFIER_INTERVAL = 15;
 
 // Get selection interval section (in seconds)
 static int64_t GetStakeModifierSelectionIntervalSection(int nSection)
