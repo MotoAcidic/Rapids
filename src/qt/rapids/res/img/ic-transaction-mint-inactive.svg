@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 27.2.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="ic-transaction-mint" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-	 x="0px" y="0px" viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
+	 x="0px" y="0px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#3C3C3B;}
 	.st1{fill:none;}
 </style>
 <g id="Group_8823">
+<<<<<<< Updated upstream
 	<path id="Path_18880" class="st0" d="M8,12c0,2.2,1.8,4,4,4s4-1.8,4-4s-1.8-4-4-4S8,9.8,8,12z M14,12c0,1.1-0.9,2-2,2s-2-0.9-2-2
 		s0.9-2,2-2S14,10.9,14,12z"/>
 	<path id="Path_18881" class="st0" d="M7,8H5.1C7.3,4.2,12.2,2.9,16,5.1c2.5,1.4,4,4.1,4,6.9h2c0-5.5-4.5-10-10-10
@@ -15,4 +16,15 @@
 		c3.2,0,6.1-1.5,8-4v1h2v-5h-5V16z"/>
 </g>
 <path id="Rectangle_4408" class="st1" d="M0,0h24v24H0V0z"/>
+=======
+	<path id="Path_18880" class="st0" d="M15,25c0,5.5,4.5,10,10,10s10-4.5,10-10s-4.5-10-10-10S15,19.5,15,25z M30,25c0,2.8-2.2,5-5,5
+		s-5-2.2-5-5s2.2-5,5-5S30,22.2,30,25z"/>
+	<path id="Path_18881" class="st0" d="M12.5,15H7.8C13.2,5.5,25.5,2.3,35,7.8C41.2,11.2,45,18,45,25h5C50,11.2,38.8,0,25,0
+		C17.2,0,9.8,3.8,5,10V7.5H0V20h12.5V15z"/>
+	<path id="Path_18882" class="st0" d="M37.5,35h4.8c-5.5,9.5-17.8,12.8-27.2,7.2C8.8,38.8,5,32,5,25H0c0,13.8,11.2,25,25,25
+		c8,0,15.2-3.8,20-10v2.5h5V30H37.5V35z"/>
+</g>
+<path id="Rectangle_4408" class="st1" d="M13,13h24v24H13V13z"/>
+<rect x="-0.7" y="0.6" class="st1" width="50" height="50"/>
+>>>>>>> Stashed changes
 </svg>

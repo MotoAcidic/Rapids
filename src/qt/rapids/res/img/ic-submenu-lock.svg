@@ -8,9 +8,15 @@
 </style>
 <g id="Sub-Menu-Locked-Copy-2">
 	<g id="ic-check-locked" transform="translate(4.000000, 0.000000)">
+<<<<<<< Updated upstream
 		<path id="Path_18899" class="st0" d="M18,10V8c0-3.3-2.7-6-6-6S6,4.7,6,8v2H4v12h16V10H18z M8,8c0-2.2,1.8-4,4-4s4,1.8,4,4v2H8V8z
 			 M18,20H6v-8h12V20z"/>
 		<polygon id="Rectangle_4417" class="st1" points="0,0 24,0 24,24 0,24 		"/>
+=======
+		<path id="Path_18899" class="st0" d="M16,10V8c0-3.3-2.7-6-6-6S4,4.7,4,8v2H2v12h16V10H16z M6,8c0-2.2,1.8-4,4-4s4,1.8,4,4v2H6V8z
+			 M16,20H4v-8h12V20z"/>
+		<polygon id="Rectangle_4417" class="st1" points="-2,0 22,0 22,24 -2,24 		"/>
+>>>>>>> Stashed changes
 	</g>
 </g>
 </svg>

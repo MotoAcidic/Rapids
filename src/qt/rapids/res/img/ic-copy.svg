@@ -4,15 +4,28 @@
 	 viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FF5533;}
+	.st1{fill:none;}
 </style>
 <g id="Artboard">
 	<g id="ic-copy" transform="translate(3.000000, 3.000000)">
 		<g id="Group_8993">
+<<<<<<< Updated upstream
 			<polygon id="Path_18959" class="st0" points="3,15 0.6,15 0.6,0 12.4,0 12.4,2.3 3,2.3 			"/>
 		</g>
 		<g id="Group_8994" transform="translate(4.000000, 4.000000)">
 			<path id="Path_18960" class="st0" d="M12.4,15H0.6V0h11.8C12.4,0,12.4,15,12.4,15z M3,12.7h7V2.3H3V12.7z"/>
 		</g>
 	</g>
+=======
+			<polygon id="Path_18959" class="st0" points="5.1,13.4 3,13.4 3,0.4 13.2,0.4 13.2,2.4 5.1,2.4 			"/>
+		</g>
+		<g id="Group_8994" transform="translate(4.000000, 4.000000)">
+			<path id="Path_18960" class="st0" d="M12.7,12.9H2.5v-13h10.2C12.7-0.1,12.7,12.9,12.7,12.9z M4.5,10.9h6.1v-9H4.5V10.9z"/>
+		</g>
+	</g>
+	<g id="ic-label" transform="translate(2.000000, 2.000000)">
+		<polygon id="Rectangle_4641" class="st1" points="0.5,-0.5 20.5,-0.5 20.5,19.5 0.5,19.5 		"/>
+	</g>
+>>>>>>> Stashed changes
 </g>
 </svg>

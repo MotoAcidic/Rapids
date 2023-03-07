@@ -4,6 +4,7 @@
 	 viewBox="0 0 28 24" style="enable-background:new 0 0 28 24;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:#FF5533;}
+<<<<<<< Updated upstream
 </style>
 <g id="Sub-Menu-Locked">
 	<g id="ic-check-locked-off" transform="translate(9.000000, 2.000000)">
@@ -11,4 +12,17 @@
 			h16V8H4z M14,18H2v-8h12V18z"/>
 	</g>
 </g>
+=======
+	.st1{fill:none;}
+</style>
+<g id="Sub-Menu-Locked">
+	<g id="ic-check-locked-off" transform="translate(9.000000, 2.000000)">
+		<path id="Path_18909" class="st0" d="M1,8V6c0-1.6,1-3.1,2.5-3.7S6.7,2,7.8,3.2l1.4-1.4C7.5,0,4.9-0.5,2.7,0.5S-1,3.6-1,6v2h-2v12
+			h16V8H1z M11,18H-1v-8h12V18z"/>
+	</g>
+</g>
+<g id="Group_8891">
+	<polygon id="Rectangle_4445" class="st1" points="2,-0.3 26,-0.3 26,23.7 2,23.7 	"/>
+</g>
+>>>>>>> Stashed changes
 </svg>
