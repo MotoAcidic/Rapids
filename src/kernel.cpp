@@ -26,16 +26,13 @@
  * @param[in]   nBits           target difficulty bits of the kernel block
  * @param[in]   nTimeTx         time of the kernel block
  */
-CStakeKernel::CStakeKernel(const CBlockIndex* const pindexPrev, CStakeInput* stakeInput, unsigned int nBits, int nTimeTx):
-    stakeUniqueness(stakeInput->GetUniqueness()),
-    nTime(nTimeTx),
-    nBits(nBits),
-    stakeValue(stakeInput->GetValue())
+CStakeKernel::CStakeKernel(const CBlockIndex* const pindexPrev, CStakeInput* stakeInput, unsigned int nBits, int nTimeTx) : stakeUniqueness(stakeInput->GetUniqueness()),
+                                                                                                                            nTime(nTimeTx),
+                                                                                                                            nBits(nBits),
+                                                                                                                          stakeValue(stakeInput->GetValue())
 {
     // Set kernel stake modifier
-    const Consensus::Params& consensus = Params().GetConsensus();
-
-    if (pindexPrev->nHeight + 1 < consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight) {
+    if (!Params().GetConsensus().NetworkUpgradeActive(pindexPrev->nHeight + 1, Consensus::UPGRADE_V3_4)) {
         uint64_t nStakeModifier = 0;
         if (!GetOldStakeModifier(stakeInput, nStakeModifier))
             LogPrintf("%s : ERROR: Failed to get kernel stake modifier\n", __func__);
@@ -45,7 +42,7 @@ CStakeKernel::CStakeKernel(const CBlockIndex* const pindexPrev, CStakeInput* sta
         // Modifier v2
         stakeModifier << pindexPrev->GetStakeModifierV2();
     }
-    CBlockIndex* pindexFrom = stakeInput->GetIndexFrom();
+    const CBlockIndex* pindexFrom = stakeInput->GetIndexFrom();
     nTimeBlockFrom = pindexFrom->nTime;
 }
 
