@@ -72,7 +72,7 @@ void GenesisGeneratorV2(CBlock genesis)
     //
     // /////////////////////////////////////////////////////////////////
 
-    uint32_t nGenesisTime = 1675582043; // Sun Feb 05 2023 01:35:34 GMT-0500 (Eastern Standard Time)
+    uint32_t nGenesisTime = 1677815877; // 	Thu Mar 02 2023 22:57:57 GMT-0500 (Eastern Standard Time)
 
     arith_uint256 test;
     uint256 hashGenesisBlock;
@@ -130,7 +130,7 @@ void GenesisGeneratorV2(CBlock genesis)
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256S("0x000002d842bf5ab86794dd0a85c2f3b03a590c3c30184383a22d944db855f1f5"))
+	(0, uint256S("0x00000a934c2cdbef0d7e0ce49f30e548030a6192f57f4476f5df661a193d06bc"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
@@ -169,18 +169,18 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1675582043, 1173176, 0x1e0ffff0, 1, 0 * COIN);
+        genesis = CreateGenesisBlock(1677815877, 459396, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000002d842bf5ab86794dd0a85c2f3b03a590c3c30184383a22d944db855f1f5"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000a934c2cdbef0d7e0ce49f30e548030a6192f57f4476f5df661a193d06bc"));
         assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
         //GenesisGeneratorV2(genesis);
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
-        consensus.powLimit   = ~UINT256_ZERO >> 2; 
-        consensus.posLimit   = ~UINT256_ZERO >> 24;
-        consensus.posLimitV2 = ~UINT256_ZERO >> 20;
+        consensus.powLimit = ~uint256(0) >> 20;
+        consensus.posLimit = ~uint256(0) >> 24;
+        consensus.posLimitV2 = ~uint256(0) >> 24;
         consensus.nBudgetCycleBlocks = 43200;       // approx. 1 every 30 days
         consensus.nBudgetFeeConfirmations = 6;      // Number of confirmations for the finalization fee
         consensus.nCoinbaseMaturity = 10;
@@ -202,17 +202,13 @@ public:
         consensus.nStakeReward = 0.2;                 // 20%
 
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
-        consensus.nTargetTimespan = 30 * 60;
-        consensus.nTargetSpacing = 2 * 60;
+        consensus.nTargetTimespan = 15;
+        consensus.nPosTargetSpacing = 15;
+        consensus.nTargetSpacing = 60;
         consensus.nTimeSlotLength = 15;
 
         consensus.nMaxProposalPayments = 6;
 
-        consensus.nTargetTimespan = 30 * 60;    // 30mins
-        consensus.nTargetTimespanV2 = 30 * 60;  // 30 mins
-        consensus.nTargetSpacing = 15;          // 15sec
-        consensus.nTimeSlotLength = 15;         // 15sec
-        consensus.nPosTargetSpacing = 15;       // 15sec
         consensus.nStakeMinAge = 10 * 60;       // 10min
         consensus.nStakeMinDepth = 60;          // 60 blocks
         
@@ -262,8 +258,8 @@ public:
         consensus.vUpgrades[Consensus::UPGRADE_ZC_V2].nActivationHeight         = std::numeric_limits<int>::max();
         consensus.vUpgrades[Consensus::UPGRADE_BIP65].nActivationHeight         = 1;
         consensus.vUpgrades[Consensus::UPGRADE_ZC_PUBLIC].nActivationHeight     = std::numeric_limits<int>::max();
-        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 201;
-        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 202;
+        consensus.vUpgrades[Consensus::UPGRADE_V3_4].nActivationHeight          = 200;
+        consensus.vUpgrades[Consensus::UPGRADE_V4_0].nActivationHeight          = 201;
         consensus.vUpgrades[Consensus::UPGRADE_V5_DUMMY].nActivationHeight =
                 Consensus::NetworkUpgrade::NO_ACTIVATION_HEIGHT;
 
@@ -285,20 +281,24 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-	    pchMessageStart[0] = 0x61;
-	    pchMessageStart[1] = 0xa2;
-	    pchMessageStart[2] = 0xf5;
-	    pchMessageStart[3] = 0xcb;
+        pchMessageStart[0] = 0x61;
+        pchMessageStart[1] = 0xa2;
+        pchMessageStart[2] = 0xf5;
+        pchMessageStart[3] = 0xcb;
         nDefaultPort = 1591;
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("146.190.13.2409 ", "146.190.13.240 ", true));
         vSeeds.push_back(CDNSSeedData("24.199.68.190 ", "24.199.68.190 ", true));
         vSeeds.push_back(CDNSSeedData("24.199.68.69", "24.199.68.69", true));
+        vSeeds.push_back(CDNSSeedData("95.179.161.47 ", "95.179.161.47 ", true));
+        vSeeds.push_back(CDNSSeedData("173.199.71.61 ", "173.199.71.61 ", true));
+        vSeeds.push_back(CDNSSeedData("45.76.228.159", "45.76.228.159", true));
+        vSeeds.push_back(CDNSSeedData("96.30.194.80", "96.30.194.80", true));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 61);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 6);
-        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 28);     // starting with 'C'
+        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 28); // starting with 'C'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 46);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
@@ -308,10 +308,10 @@ public:
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 
         // Sapling
-        bech32HRPs[SAPLING_PAYMENT_ADDRESS]      = "ps";
-        bech32HRPs[SAPLING_FULL_VIEWING_KEY]     = "pviews";
+        bech32HRPs[SAPLING_PAYMENT_ADDRESS] = "ps";
+        bech32HRPs[SAPLING_FULL_VIEWING_KEY] = "pviews";
         bech32HRPs[SAPLING_INCOMING_VIEWING_KEY] = "pivks";
-        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY]         = "p-secret-spending-key-main";
+        bech32HRPs[SAPLING_EXTENDED_SPEND_KEY] = "p-secret-spending-key-main";
 
         strMasterAddress = "RgKH1GPkTzkrqSWyycW7YqxF5yhFCrGc7W";
         //Master pubkey 76a9145470d8063798c610d935fb94105fefaf56dd4fd288ac
@@ -469,10 +469,10 @@ public:
          * a large 4-byte int at any alignment.
          */
 
-        pchMessageStart[0] = 0x11;
-        pchMessageStart[1] = 0x22;
-        pchMessageStart[2] = 0x33;
-        pchMessageStart[3] = 0x44;
+        pchMessageStart[0] = 0x42;
+        pchMessageStart[1] = 0x62;
+        pchMessageStart[2] = 0x81;
+        pchMessageStart[3] = 0x01;
         nDefaultPort = 11591;
 
         vFixedSeeds.clear();
@@ -484,10 +484,10 @@ public:
         vSeeds.push_back(CDNSSeedData("24.199.68.69", "24.199.68.69", true));
 
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139); // Testnet pivx addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);  // Testnet pivx script addresses start with '8' or '9'
-        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 73);     // starting with 'W'
-        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 139);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 19);
+        base58Prefixes[STAKING_ADDRESS] = std::vector<unsigned char>(1, 73);
+        base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);
         // Testnet pivx BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
         // Testnet pivx BIP32 prvkeys start with 'DRKP'
