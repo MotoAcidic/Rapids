@@ -205,7 +205,7 @@ public:
         consensus.nTargetTimespan = 15;
         consensus.nPosTargetSpacing = 15;
         consensus.nPosTargetSpacing = 6;
-        consensus.nLwmaRetargetHeight = std::numeric_limits<int>::max();
+        consensus.nLwmaRetargetHeight = 200;
         consensus.nTimeSlotLength = 15;
 
         consensus.nMaxProposalPayments = 6;
