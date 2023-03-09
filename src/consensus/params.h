@@ -112,7 +112,7 @@ struct Params {
     int64_t nStakeReward;
     int64_t nTargetSpacing;
     int64_t nPosTargetSpacing;
-    int nLwmaRetargetHeight;
+    int nLwmaProtocolHeight;
     int nTimeSlotLength;
     int nMaxProposalPayments;
 

@@ -386,7 +386,7 @@ public:
         consensus.nTargetTimespan = 30 * 6;
         consensus.nTargetSpacing = 6;
         consensus.nPosTargetSpacing = 6;
-        consensus.nLwmaRetargetHeight = std::numeric_limits<int>::max();
+        consensus.nLwmaProtocolHeight = std::numeric_limits<int>::max();
 
         consensus.nSingleThreadMaxTxesSize = 500;
         consensus.nMaxAmountLoadedRecords = 500;
