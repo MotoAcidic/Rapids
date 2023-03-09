@@ -205,7 +205,6 @@ public:
         consensus.nTargetTimespan = 15;
         consensus.nPosTargetSpacing = 15;
         consensus.nPosTargetSpacing = 6;
-        consensus.nLwmaRetargetHeight = 200;
         consensus.nTimeSlotLength = 15;
 
         consensus.nMaxProposalPayments = 6;
@@ -224,6 +223,7 @@ public:
 
         // height-based activations
         consensus.height_last_PoW = 199;
+        consensus.nLwmaProtocolHeight = 200;
         consensus.height_governance = 500000;
 
         consensus.height_last_ZC_AccumCheckpoint = std::numeric_limits<int>::max();
