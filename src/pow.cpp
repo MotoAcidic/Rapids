@@ -16,38 +16,25 @@
 
 #include <math.h>
 
-
-unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHeader* pblock)
+const CBlockIndex* GetLastBlockIndex(const CBlockIndex* pindex, bool fProofOfStake)
 {
-    if (Params().IsRegTestNet())
-        return pindexLast->nBits;
+    while (pindex && pindex->pprev && (pindex->IsProofOfStake() != fProofOfStake))
+        pindex = pindex->pprev;
+    return pindex;
+}
 
-    /* current difficulty formula, pivx - DarkGravity v3, written by Evan Duffield - evan@dashpay.io */
-    const CBlockIndex* BlockLastSolved = pindexLast;
-    const CBlockIndex* BlockReading = pindexLast;
-    int64_t nActualTimespan = 0;
-    int64_t LastBlockTime = 0;
-    int64_t PastBlocksMin = 24;
-    int64_t PastBlocksMax = 24;
-    int64_t CountBlocks = 0;
-    arith_uint256 PastDifficultyAverage;
-    arith_uint256 PastDifficultyAveragePrev;
-    const Consensus::Params& consensus = Params().GetConsensus();
-    const arith_uint256& powLimit = UintToArith256(consensus.powLimit);
+static arith_uint256 GetTargetLimit(int64_t nTime, bool fProofOfStake, const Consensus::Params& params)
+{
+    uint256 nLimit;
 
-    if (BlockLastSolved == NULL || BlockLastSolved->nHeight == 0 || BlockLastSolved->nHeight < PastBlocksMin) {
-        return powLimit.GetCompact();
+    if (fProofOfStake) {
+        nLimit = params.posLimit;
+    } else {
+        nLimit = params.powLimit;
     }
 
-    if (pindexLast->nHeight > Params().GetConsensus().height_last_PoW) {
-        const arith_uint256& bnTargetLimit = UintToArith256(consensus.posLimit);
-        const int64_t& nTargetTimespan = consensus.nTargetTimespan;
-        int64_t nTargetSpacing = consensus.nPosTargetSpacing;
-        int64_t nActualSpacing = 0;
-        if (pindexLast->nHeight != 0)
-            nActualSpacing = pindexLast->GetBlockTime() - pindexLast->pprev->GetBlockTime();
-        if (nActualSpacing < 0)
-            nActualSpacing = 1;
+    return UintToArith256(nLimit);
+}
 
 unsigned int Lwma3CalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
