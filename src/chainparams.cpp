@@ -204,7 +204,8 @@ public:
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nTargetTimespan = 15;
         consensus.nPosTargetSpacing = 15;
-        consensus.nTargetSpacing = 60;
+        consensus.nPosTargetSpacing = 6;
+        consensus.nLwmaRetargetHeight = std::numeric_limits<int>::max();
         consensus.nTimeSlotLength = 15;
 
         consensus.nMaxProposalPayments = 6;
@@ -383,10 +384,9 @@ public:
         consensus.nCoinbaseMaturity = 10;
 
         consensus.nTargetTimespan = 30 * 6;
-        consensus.nTargetSpacing = 15;
-        consensus.nPosTargetSpacing = 15;
-        consensus.nStakeMinAge = 5 * 60; //5min
-        consensus.nStakeMinDepth = 25; //25 blocks
+        consensus.nTargetSpacing = 6;
+        consensus.nPosTargetSpacing = 6;
+        consensus.nLwmaRetargetHeight = std::numeric_limits<int>::max();
 
         consensus.nSingleThreadMaxTxesSize = 500;
         consensus.nMaxAmountLoadedRecords = 500;
