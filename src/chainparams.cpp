@@ -176,7 +176,7 @@ public:
 
         //GenesisGeneratorV2(genesis);
 
-        consensus.fPowAllowMinDifficultyBlocks = false;
+        consensus.fPowAllowMinDifficultyBlocks = true;
 
         consensus.powLimit = ~uint256(0) >> 20;
         consensus.posLimit = ~uint256(0) >> 24;
