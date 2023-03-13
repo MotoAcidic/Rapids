@@ -205,13 +205,17 @@ public:
 
         consensus.nMaxProposalPayments = 6;
 
+        consensus.nTargetForkHeightV2 = 20000;  // Block 20k
         consensus.nTargetTimespan = 30 * 60;    // 30mins
-        consensus.nTargetTimespanV2 = 30 * 60;  // 30 mins
+        consensus.nTargetTimespanV2 = 3 * 60;   // 3 mins
         consensus.nTargetSpacing = 15;          // 15sec
+        consensus.nTargetSpacingV2 = 20;        // 20sec
+
         consensus.nTimeSlotLength = 15;         // 15sec
-        consensus.nPosTargetSpacing = 15;       // 15sec
         consensus.nStakeMinAge = 10 * 60;       // 10min
         consensus.nStakeMinDepth = 60;          // 60 blocks
+
+        consensus.nPosTargetSpacing = 15; // 15sec  Not currently being used need to cleanup later
         
         // spork keys
         consensus.strSporkPubKey = "02b1f75be7556ab096f2fd94378c153e6164435e76d29393e1e6dc422edb8c9135";

@@ -118,7 +118,16 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
         return pindexLast->nBits;
 
     int64_t nActualSpacing = pindexLast->GetBlockTime() - nFirstBlockTime;
-    int64_t nTargetSpacing = params.nTargetSpacing;
+    int64_t nTargetSpacing;
+    int64_t nInterval;
+
+    if (chainActive.Height() <= params.nTargetForkHeightV2) {
+         nTargetSpacing = params.nTargetSpacing;
+         nInterval = params.nTargetTimespan / nTargetSpacing;
+    } else {
+         nTargetSpacing = params.nTargetSpacingV2;
+         nInterval = params.nTargetTimespanV2 / nTargetSpacing;
+    }
 
     // Limit adjustment step
     if (nActualSpacing < 0) {
@@ -132,8 +141,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     // retarget with exponential moving toward target spacing
     const arith_uint256 bnTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), fProofOfStake, params);
     arith_uint256 bnNew;
-    bnNew.SetCompact(pindexLast->nBits);
-    int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
+    bnNew.SetCompact(pindexLast->nBits);    
     bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
     bnNew /= ((nInterval + 1) * nTargetSpacing);
 
