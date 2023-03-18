@@ -204,7 +204,7 @@ public:
         consensus.nProposalEstablishmentTime = 60 * 60 * 24;    // must be at least a day old to make it into a budget
         consensus.nMaxProposalPayments = 6;
 
-        consensus.nTargetForkHeightV2 = 20000;  // Block 20k
+        consensus.nTargetForkHeightV2 = std::numeric_limits<int>::max();
 
         //Pow phase
         consensus.nPowTargetTimespan = 30 * 60;    // 30mins
@@ -218,7 +218,7 @@ public:
         consensus.nPosTargetTimespanV2 = 3 * 60; // 3 mins
         consensus.nPosTargetSpacingV2 = 20;      // 20sec
 
-        consensus.lwmaAveragingWindow = 45;
+        consensus.lwmaAveragingWindow = 8;
 
         consensus.nTimeSlotLength = 15;         // 15sec
         consensus.nStakeMinAge = 10 * 60;       // 10min

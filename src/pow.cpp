@@ -71,10 +71,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
     const int64_t T = params.nPosTargetSpacing;
-    const int64_t N = params.lwmaAveragingWindow;
-    const int64_t k = N * (N + 1) * T / 2; // For T=120, 240, 600 use approx N=100, 75, 50
+    const int64_t N = params.lwmaAveragingWindow;    
+    const int64_t k = N * (N + 1) * T / 2; // 8 * (8 + 1) * 15 / 2 = 540 seconds
     const int64_t height = pindexLast->nHeight;
-    const arith_uint256 powLimit = UintToArith256(params.powLimit);
+    const arith_uint256 posLimit = UintToArith256(params.posLimit);
 
     if (height < N) {
         return posLimit.GetCompact();
@@ -84,22 +84,39 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
     int64_t thisTimestamp, previousTimestamp;
     int64_t t = 0, j = 0;
 
+    // Uncomment next 2 lines to use LWMA-3 jump rule.
+    arith_uint256 previousTarget = 0;
+    int64_t sumLast3Solvetimes = 0;
+
     const CBlockIndex* blockPreviousTimestamp = pindexLast->GetAncestor(height - N);
     previousTimestamp = blockPreviousTimestamp->GetBlockTime();
 
     // Loop through N most recent blocks.
     for (int64_t i = height - N + 1; i <= height; i++) {
         const CBlockIndex* block = pindexLast->GetAncestor(i);
-        thisTimestamp = (block->GetBlockTime() > previousTimestamp) ? block->GetBlockTime() : previousTimestamp + 1;
+        thisTimestamp = (block->GetBlockTime() > previousTimestamp) ?
+                            block->GetBlockTime() :
+                            previousTimestamp + 1;
+
         int64_t solvetime = std::min(6 * T, thisTimestamp - previousTimestamp);
         previousTimestamp = thisTimestamp;
+
         j++;
         t += solvetime * j; // Weighted solvetime sum.
         arith_uint256 target;
         target.SetCompact(block->nBits);
         sumTarget += target / (k * N);
+
+        // Uncomment next 2 lines to use LWMA-3.
+        if (i > height - 3) { sumLast3Solvetimes  += solvetime; }
+        if (i == height) { previousTarget = target.SetCompact(block->nBits); }
     }
     nextTarget = t * sumTarget;
+
+    // Uncomment the following to use LWMA-3.
+    // This is a "memory-less" jump in difficulty approximately 2x normal
+     if (sumLast3Solvetimes < (8 * T) / 10) { nextTarget = (previousTarget*100)/(100+(N*26)/200); }
+
     if (nextTarget > posLimit) {
         nextTarget = posLimit;
     }
@@ -107,46 +124,29 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
     return nextTarget.GetCompact();
 }
 
-
-
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
     bool fProofOfStake = pindexLast->IsProofOfStake();
-
     if (!fProofOfStake && params.fPowAllowMinDifficultyBlocks)
         return pindexLast->nBits;
-
     int64_t nActualSpacing = pindexLast->GetBlockTime() - nFirstBlockTime;
-    int64_t nTargetSpacing;
-    int64_t nInterval;
-
-    if (chainActive.Height() <= params.nTargetForkHeightV2) {
-         nTargetSpacing = params.nTargetSpacing;
-         nInterval = params.nTargetTimespan / nTargetSpacing;
-    } else {
-         nTargetSpacing = params.nTargetSpacingV2;
-         nInterval = params.nTargetTimespanV2 / nTargetSpacing;
-    }
-
+    int64_t nTargetSpacing = params.nTargetSpacing;
     // Limit adjustment step
     if (nActualSpacing < 0) {
         nActualSpacing = nTargetSpacing;
     }
-
     if (nActualSpacing > nTargetSpacing * 10) {
         nActualSpacing = nTargetSpacing * 10;
     }
-
     // retarget with exponential moving toward target spacing
     const arith_uint256 bnTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), fProofOfStake, params);
     arith_uint256 bnNew;
-    bnNew.SetCompact(pindexLast->nBits);    
+    bnNew.SetCompact(pindexLast->nBits);
+    int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
     bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
     bnNew /= ((nInterval + 1) * nTargetSpacing);
-
     if (bnNew <= 0 || bnNew > bnTargetLimit)
         bnNew = bnTargetLimit;
-
     return bnNew.GetCompact();
 }
 
