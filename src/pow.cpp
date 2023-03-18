@@ -70,8 +70,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
-    const int64_t T;
-    const int64_t N;
+    const int64_t T = 0;
+    const int64_t N = 0;
 
     if (chainActive.Height() <= params.nTargetForkHeightV2) {        // Prior block 20k
         T = params.nPosTargetSpacing;                                // 15 second block time
@@ -138,11 +138,29 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
+    int64_t nTargetSpacing = 0;
+    int64_t nInterval = 0;
+
+    // Moving forward at launch we wont be dividing lwmaAveragingWindow by Target spacing
+    // V3 will show what current mainnet will act like, V1 and V2 show what old lwma code acted.
+
+    if (chainActive.Height() <= params.nTargetForkHeightV2) {
+        nTargetSpacing = params.nPosTargetSpacing;
+        nInterval = params.lwmaAveragingWindow / params.nPosTargetSpacing;
+    } else if (chainActive.Height() <= params.nTargetForkHeightV3) {
+        nTargetSpacing = params.nPosTargetSpacingV2;
+        nInterval = params.lwmaAveragingWindowV2 / params.nPosTargetSpacingV2;
+    } else {
+        nTargetSpacing = params.nPosTargetSpacingV3;
+        nInterval = params.lwmaAveragingWindowV3;
+    }
+
     bool fProofOfStake = pindexLast->IsProofOfStake();
     if (!fProofOfStake && params.fPowAllowMinDifficultyBlocks)
         return pindexLast->nBits;
     int64_t nActualSpacing = pindexLast->GetBlockTime() - nFirstBlockTime;
-    int64_t nTargetSpacing = params.nPosTargetSpacing;
+    // int64_t nTargetSpacing = params.nPosTargetSpacing;
+    
     // Limit adjustment step
     if (nActualSpacing < 0) {
         nActualSpacing = nTargetSpacing;
@@ -154,7 +172,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     const arith_uint256 bnTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), fProofOfStake, params);
     arith_uint256 bnNew;
     bnNew.SetCompact(pindexLast->nBits);
-    int64_t nInterval = params.nPosTargetTimespan / nTargetSpacing;
+    //int64_t nInterval = params.lwmaAveragingWindow / nTargetSpacing;
     bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
     bnNew /= ((nInterval + 1) * nTargetSpacing);
     if (bnNew <= 0 || bnNew > bnTargetLimit)
