@@ -118,14 +118,21 @@ struct Params {
     int64_t nPowTargetSpacingV2;
     int64_t nPowTargetTimespan;
 
-    //Pos settings
+    //Pos limit settings
     uint256 posLimit;
     uint256 posLimitV2;
-    int64_t nPosTargetSpacing;
-    int64_t nPosTargetSpacingV2;
-    int64_t nPosTargetTimespan;
-    int64_t lwmaAveragingWindow;  
 
+    //Pos v1
+    int64_t nPosTargetSpacing;
+    int64_t lwmaAveragingWindow; 
+
+    //Pos v2
+    int64_t nPosTargetSpacingV2;
+    int64_t lwmaAveragingWindowV2;
+
+    //Pos v3
+    int64_t nPosTargetSpacingV3;
+    int64_t lwmaAveragingWindowV3; 
     
     int nTimeSlotLength;
     int nMaxProposalPayments;

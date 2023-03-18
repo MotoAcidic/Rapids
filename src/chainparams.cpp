@@ -399,7 +399,6 @@ public:
         consensus.nPosTargetSpacingV2 = 30;
         consensus.nStakeMinAge = 5 * 60; //5min
         consensus.nStakeMinDepth = 25; //25 blocks
-        //consensus.nTargetTimespanV2 = 30 * 60; //30mins
 
         consensus.nSingleThreadMaxTxesSize = 500;
         consensus.nMaxAmountLoadedRecords = 500;
@@ -589,8 +588,6 @@ public:
         consensus.nStakeMinAge = 0;
         consensus.nStakeMinDepth = 2;
         consensus.nPowTargetTimespan = 30 * 60;
-        //consensus.nPowTargetTimespanV2 = 30 * 60;
-
 
         consensus.nSingleThreadMaxTxesSize = 500;
         consensus.nMaxAmountLoadedRecords = 500;
