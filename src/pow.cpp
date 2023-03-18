@@ -70,8 +70,8 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
-    const int64_t T = 0;
-    const int64_t N = 0;
+    int64_t T;
+    int64_t N;
 
     if (chainActive.Height() <= params.nTargetForkHeightV2) {        // Prior block 20k
         T = params.nPosTargetSpacing;                                // 15 second block time
@@ -138,8 +138,8 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
-    int64_t nTargetSpacing = 0;
-    int64_t nInterval = 0;
+    int64_t nTargetSpacing;
+    int64_t nInterval;
 
     // Moving forward at launch we wont be dividing lwmaAveragingWindow by Target spacing
     // V3 will show what current mainnet will act like, V1 and V2 show what old lwma code acted.

@@ -103,6 +103,7 @@ struct Params {
     //Height based
     int64_t nHalvingInterval;
     int64_t nTargetForkHeightV2;
+    int64_t nTargetForkHeightV3;
     int nLwmaProtocolHeight;    
 
     //Block rewards
