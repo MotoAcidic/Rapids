@@ -70,9 +70,21 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
-    const int64_t T = params.nPosTargetSpacing;
-    const int64_t N = params.lwmaAveragingWindow;    
-    const int64_t k = N * (N + 1) * T / 2; // 8 * (8 + 1) * 15 / 2 = 540 seconds
+    const int64_t T;
+    const int64_t N;
+
+    if (chainActive.Height() <= params.nTargetForkHeightV2) {        // Prior block 20k
+        T = params.nPosTargetSpacing;                                // 15 second block time
+        N = params.lwmaAveragingWindow;                              // 30 minute retarget window  1800 * (1800 + 1) * 15 / 2 = 24,313,500 seconds base retarget time = 40 week retarget time
+    } else if (chainActive.Height() <= params.nTargetForkHeightV3) { // After block 20k
+        T = params.nPosTargetSpacingV2;                              // 20 second block time
+        N = params.lwmaAveragingWindowV2;                            // 3 minute retarget window   180 * (180 + 1) * 15 / 2 = 325,800 seconds base retarget time = to long to figure out
+    } else {                                                         // After block 45k
+        T = params.nPosTargetSpacingV3;                              // 15 second block time
+        N = params.lwmaAveragingWindowV3;                            // 8 second retarget window   8 * (8 + 1) * 15 / 2 = 540 seconds base retarget time
+    }
+
+    const int64_t k = N * (N + 1) * T / 2;
     const int64_t height = pindexLast->nHeight;
     const arith_uint256 posLimit = UintToArith256(params.posLimit);
 
@@ -105,7 +117,7 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
         t += solvetime * j; // Weighted solvetime sum.
         arith_uint256 target;
         target.SetCompact(block->nBits);
-        sumTarget += target / (k * N);
+        sumTarget += target / (k * N); 
 
         // Uncomment next 2 lines to use LWMA-3.
         if (i > height - 3) { sumLast3Solvetimes  += solvetime; }
