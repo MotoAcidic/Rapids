@@ -45,7 +45,7 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
     unsigned int nTargetLimit = UintToArith256(fProofOfStake ? params.posLimit : params.powLimit).GetCompact();
 
     if (pindexLast->nHeight + 1 > params.nLwmaProtocolHeight) {
-        return LwmaCalculateNextWorkRequired(pindexLast, fProofOfStake, params);
+        return CalculateNextWorkRequired(pindexLast, fProofOfStake, params);
     } else {
         return nTargetLimit;
     }
@@ -130,7 +130,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     if (!fProofOfStake && params.fPowAllowMinDifficultyBlocks)
         return pindexLast->nBits;
     int64_t nActualSpacing = pindexLast->GetBlockTime() - nFirstBlockTime;
-    int64_t nTargetSpacing = params.nTargetSpacing;
+    int64_t nTargetSpacing = params.nPosTargetSpacing;
     // Limit adjustment step
     if (nActualSpacing < 0) {
         nActualSpacing = nTargetSpacing;
@@ -142,7 +142,7 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     const arith_uint256 bnTargetLimit = GetTargetLimit(pindexLast->GetBlockTime(), fProofOfStake, params);
     arith_uint256 bnNew;
     bnNew.SetCompact(pindexLast->nBits);
-    int64_t nInterval = params.nTargetTimespan / nTargetSpacing;
+    int64_t nInterval = params.nPosTargetTimespan / nTargetSpacing;
     bnNew *= ((nInterval - 1) * nTargetSpacing + nActualSpacing + nActualSpacing);
     bnNew /= ((nInterval + 1) * nTargetSpacing);
     if (bnNew <= 0 || bnNew > bnTargetLimit)
