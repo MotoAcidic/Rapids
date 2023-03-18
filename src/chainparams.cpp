@@ -209,14 +209,14 @@ public:
         //Pow phase
         consensus.nPowTargetTimespan = 30 * 60;    // 30mins
         consensus.nPowTargetSpacing = 15;        // 15sec
-        consensus.nPowTargetTimespanV2 = 3 * 60;   // 3 mins
-        consensus.nPowTargetSpacingV2 = 20;        // 20sec
+        //consensus.nPowTargetTimespanV2 = 3 * 60;   // 3 mins
+        //consensus.nPowTargetSpacingV2 = 20;        // 20sec
 
         //Pos phase
         consensus.nPosTargetTimespan = 30 * 60; // 30mins
         consensus.nPosTargetSpacing = 15;       // 15sec
-        consensus.nPosTargetTimespanV2 = 3 * 60; // 3 mins
-        consensus.nPosTargetSpacingV2 = 20;      // 20sec
+        //consensus.nPosTargetTimespanV2 = 3 * 60; // 3 mins
+        //consensus.nPosTargetSpacingV2 = 20;      // 20sec
 
         consensus.lwmaAveragingWindow = 8;
 
@@ -391,8 +391,8 @@ public:
 
         consensus.nCoinbaseMaturity = 10;
 
-        consensus.nTargetTimespan = 30 * 6;
-        consensus.nTargetSpacing = 15;
+        consensus.nPowTargetTimespan = 30 * 6;
+        consensus.nPowTargetSpacing = 15;
         consensus.nPosTargetSpacing = 15;
         consensus.nPosTargetSpacingV2 = 30;
         consensus.nStakeMinAge = 5 * 60; //5min
@@ -576,7 +576,7 @@ public:
         consensus.nStakeReward = 0.2;                  // 20%
 
         consensus.nProposalEstablishmentTime = 60 * 5;  // at least 5 min old to make it into a budget
-        consensus.nTargetSpacing = 1 * 60;
+        consensus.nPowTargetSpacing = 1 * 60;
         consensus.nTimeSlotLength = 15;
         consensus.nFutureTimeDriftPoW = 7200;
         consensus.nFutureTimeDriftPoS = 180;
@@ -586,8 +586,8 @@ public:
 
         consensus.nStakeMinAge = 0;
         consensus.nStakeMinDepth = 2;
-        consensus.nTargetTimespan = 30 * 60;
-        consensus.nTargetTimespanV2 = 30 * 60;
+        consensus.nPowTargetTimespan = 30 * 60;
+        consensus.nPowTargetTimespanV2 = 30 * 60;
 
 
         consensus.nSingleThreadMaxTxesSize = 500;
