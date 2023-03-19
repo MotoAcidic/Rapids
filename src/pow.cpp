@@ -70,8 +70,10 @@ unsigned int GetNextWorkRequired(const CBlockIndex* pindexLast, const CBlockHead
 
 unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool fProofOfStake, const Consensus::Params& params)
 {
+    /*
     int64_t T;
     int64_t N;
+
 
     if (chainActive.Height() <= params.nTargetForkHeightV2) {        // Prior block 20k
         T = params.nPosTargetSpacing;                                // 15 second block time
@@ -83,6 +85,11 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
         T = params.nPosTargetSpacingV3;                              // 15 second block time
         N = params.lwmaAveragingWindowV3;                            // 8 second retarget window   8 * (8 + 1) * 15 / 2 = 540 seconds base retarget time
     }
+    */
+
+    //Change from V3 at launch to have V1 match V3 params
+    int64_t T = params.nPosTargetSpacingV3;
+    int64_t N = params.lwmaAveragingWindowV3;
 
     const int64_t k = N * (N + 1) * T / 2;
     const int64_t height = pindexLast->nHeight;
@@ -138,11 +145,9 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
 
 unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nFirstBlockTime, const Consensus::Params& params)
 {
+    /*
     int64_t nTargetSpacing;
     int64_t nInterval;
-
-    // Moving forward at launch we wont be dividing lwmaAveragingWindow by Target spacing
-    // V3 will show what current mainnet will act like, V1 and V2 show what old lwma code acted.
 
     if (chainActive.Height() <= params.nTargetForkHeightV2) {
         nTargetSpacing = params.nPosTargetSpacing;
@@ -154,6 +159,11 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
         nTargetSpacing = params.nPosTargetSpacingV3;
         nInterval = params.lwmaAveragingWindowV3;
     }
+    */
+
+    //Change from V3 at launch to have V1 match V3 params
+    int64_t nTargetSpacing = params.nPosTargetSpacingV3;
+    int64_t nInterval = params.lwmaAveragingWindowV3;
 
     bool fProofOfStake = pindexLast->IsProofOfStake();
     if (!fProofOfStake && params.fPowAllowMinDifficultyBlocks)
