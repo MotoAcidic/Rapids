@@ -206,7 +206,7 @@ public:
 
         //REMOVE BEFORE GOING LIVE THIS IS FORKING HEIGHTS FOR TESTING
         consensus.nTargetForkHeightV2 = 20000; // Block 20k
-        consensus.nTargetForkHeightV3 = 45000; // Block 45k
+        consensus.nTargetForkHeightV3 = 50000; // Block 50k
 
         //Pow phase
         consensus.nPowTargetTimespan = 30 * 60;    // 30mins

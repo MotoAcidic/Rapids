@@ -602,7 +602,7 @@ void RpdMiner(CWallet* pwallet, bool fProofOfStake)
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
     util::ThreadRename("rpd-miner");
     const Consensus::Params& consensus = Params().GetConsensus();
-    const int64_t nSpacingMillis = consensus.nPosTargetSpacing * 1000;
+    const int64_t nSpacingMillis = consensus.nPowTargetSpacing * 1000;
 
     // Each thread has its own key and counter
     Optional<CReserveKey> opReservekey{nullopt};
