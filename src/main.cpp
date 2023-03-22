@@ -5303,6 +5303,9 @@ void static ProcessGetData(CNode* pfrom, CConnman& connman, std::atomic<bool>& i
 
                 if (inv.hash == blockHashRelayed) {
                     LogPrintf("one host asked for our block %s\n", blockHashRelayed.ToString().c_str());
+                    LogPrintf("pausing until next block is found so we dont win every block %s\n", blockHashRelayed.ToString().c_str());
+                    // Pause for 16 seconds to give rough estimate of the time an average block is
+                    MilliSleep(16000);
                     resumeAfterRelayed();
                     blockHashRelayed = uint256();
                 }
