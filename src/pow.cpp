@@ -88,8 +88,8 @@ unsigned int LwmaCalculateNextWorkRequired(const CBlockIndex* pindexLast, bool f
     */
 
     //Change from V3 at launch to have V1 match V3 params
-    int64_t T = params.nPosTargetSpacingV3;
-    int64_t N = params.lwmaAveragingWindowV3;
+    int64_t T = params.nPosTargetSpacingV1;
+    int64_t N = params.lwmaAveragingWindowV1;
 
     const int64_t k = N * (N + 1) * T / 2;
     const int64_t height = pindexLast->nHeight;
@@ -161,9 +161,8 @@ unsigned int CalculateNextWorkRequired(const CBlockIndex* pindexLast, int64_t nF
     }
     */
 
-    //Change from V3 at launch to have V1 match V3 params
-    int64_t nTargetSpacing = params.nPosTargetSpacingV3;
-    int64_t nInterval = params.lwmaAveragingWindowV3;
+    int64_t nTargetSpacing = params.nPosTargetSpacingV1;
+    int64_t nInterval = params.lwmaAveragingWindowV1;
 
     bool fProofOfStake = pindexLast->IsProofOfStake();
     if (!fProofOfStake && params.fPowAllowMinDifficultyBlocks)

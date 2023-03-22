@@ -216,11 +216,11 @@ public:
 
         //Pos phase
         consensus.nPosTargetSpacing = 15;        // 15 sec block time
-        consensus.lwmaAveragingWindow = 30 * 60; // 30 min retarget
-        consensus.nPosTargetSpacingV2 = 20;      // 20 sec block time
-        consensus.lwmaAveragingWindowV2 = 3 * 60;// 3 mins retarget
-        consensus.nPosTargetSpacingV3 = 15;      // 15 sec block time
-        consensus.lwmaAveragingWindowV3 = 8;     // 8 second retarget 
+        consensus.lwmaAveragingWindow = 8;       // 8 second retarget 
+        consensus.nPosTargetSpacingV2 = std::numeric_limits<int>::max();
+        consensus.lwmaAveragingWindowV2 = std::numeric_limits<int>::max();
+        consensus.nPosTargetSpacingV3 = std::numeric_limits<int>::max();
+        consensus.lwmaAveragingWindowV3 = std::numeric_limits<int>::max();     
 
         consensus.nTimeSlotLength = 15;         // 15sec
         consensus.nStakeMinAge = 10 * 60;       // 10min
