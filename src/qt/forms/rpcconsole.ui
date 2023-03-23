@@ -31,7 +31,6 @@
         <widget class="QLabel" name="generalHeader">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -176,7 +175,6 @@
         <widget class="QLabel" name="networkHeader">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -258,7 +256,6 @@
         <widget class="QLabel" name="blockchainHeader">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -344,7 +341,6 @@
         <widget class="QLabel" name="debugLogFileHeader">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -376,125 +372,122 @@
        <property name="spacing">
         <number>3</number>
        </property>
-		  <item>
-			  <layout class="QHBoxLayout" name="horizontalLayout">
-				  <property name="spacing">
-					  <number>4</number>
-				  </property>
-				  <item>
-					  <spacer name="horizontalSpacer">
-						  <property name="orientation">
-							  <enum>Qt::Horizontal</enum>
-						  </property>
-						  <property name="sizeHint" stdset="0">
-							  <size>
-								  <width>40</width>
-								  <height>20</height>
-							  </size>
-						  </property>
-					  </spacer>
-				  </item>
-				  <item>
-					  <widget class="QPushButton" name="fontSmallerButton">
-						  <property name="maximumSize">
-							  <size>
-								  <width>24</width>
-								  <height>24</height>
-							  </size>
-						  </property>
-						  <property name="toolTip">
-							  <string>Decrease font size</string>
-						  </property>
-						  <property name="text">
-							  <string/>
-						  </property>
-						  <property name="icon">
-							  <iconset resource="../zenzo.qrc">
-								  <normaloff>:/icons/fontsmaller</normaloff>:/icons/fontsmaller
-							  </iconset>
-						  </property>
-						  <property name="iconSize">
-							  <size>
-								  <width>24</width>
-								  <height>16</height>
-							  </size>
-						  </property>
-						  <property name="autoDefault">
-							  <bool>false</bool>
-						  </property>
-						  <property name="flat">
-							  <bool>true</bool>
-						  </property>
-					  </widget>
-				  </item>
-				  <item>
-					  <widget class="QPushButton" name="fontBiggerButton">
-						  <property name="maximumSize">
-							  <size>
-								  <width>24</width>
-								  <height>24</height>
-							  </size>
-						  </property>
-						  <property name="toolTip">
-							  <string>Increase font size</string>
-						  </property>
-						  <property name="text">
-							  <string/>
-						  </property>
-						  <property name="icon">
-							  <iconset resource="../zenzo.qrc">
-								  <normaloff>:/icons/fontbigger</normaloff>:/icons/fontbigger
-							  </iconset>
-						  </property>
-						  <property name="iconSize">
-							  <size>
-								  <width>24</width>
-								  <height>16</height>
-							  </size>
-						  </property>
-						  <property name="autoDefault">
-							  <bool>false</bool>
-						  </property>
-						  <property name="flat">
-							  <bool>true</bool>
-						  </property>
-					  </widget>
-				  </item>
-				  <item>
-					  <widget class="QPushButton" name="clearButton">
-						  <property name="maximumSize">
-							  <size>
-								  <width>24</width>
-								  <height>24</height>
-							  </size>
-						  </property>
-						  <property name="toolTip">
-							  <string>Clear console</string>
-						  </property>
-						  <property name="layoutDirection">
-							  <enum>Qt::LeftToRight</enum>
-						  </property>
-						  <property name="text">
-							  <string/>
-						  </property>
-						  <property name="icon">
-							  <iconset resource="../zenzo.qrc">
-								  <normaloff>:/icons/remove</normaloff>:/icons/remove
-							  </iconset>
-						  </property>
-						  <property name="shortcut">
-							  <string notr="true">Ctrl+L</string>
-						  </property>
-						  <property name="autoDefault">
-							  <bool>false</bool>
-						  </property>
-						  <property name="flat">
-							  <bool>true</bool>
-						  </property>
-					  </widget>
-				  </item>
-			  </layout>
-		  </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <property name="spacing">
+          <number>4</number>
+         </property>
+         <item>
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QPushButton" name="fontSmallerButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Decrease font size</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>:/icons/fontsmaller</normaloff>:/icons/fontsmaller</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>16</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="fontBiggerButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Increase font size</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>:/icons/fontbigger</normaloff>:/icons/fontbigger</iconset>
+           </property>
+           <property name="iconSize">
+            <size>
+             <width>24</width>
+             <height>16</height>
+            </size>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="clearButton">
+           <property name="maximumSize">
+            <size>
+             <width>24</width>
+             <height>24</height>
+            </size>
+           </property>
+           <property name="toolTip">
+            <string>Clear console</string>
+           </property>
+           <property name="layoutDirection">
+            <enum>Qt::LeftToRight</enum>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="icon">
+            <iconset>
+             <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
+           </property>
+           <property name="shortcut">
+            <string notr="true">Ctrl+L</string>
+           </property>
+           <property name="autoDefault">
+            <bool>false</bool>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
        <item>
         <widget class="QTextEdit" name="messagesWidget">
          <property name="minimumSize">
@@ -544,7 +537,7 @@
             <string/>
            </property>
            <property name="icon">
-            <iconset resource="../rapids.qrc">
+            <iconset>
              <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
            </property>
            <property name="shortcut">
@@ -559,38 +552,38 @@
        </item>
       </layout>
      </widget>
-		<widget class="QWidget" name="tab_logs">
-			<attribute name="title">
-				<string>&amp;Logs</string>
-			</attribute>
-			<layout class="QVBoxLayout" name="verticalLayout_3">
-				<property name="spacing">
-					<number>3</number>
-				</property>
-				<property name="bottomMargin">
-					<number>5</number>
-				</property>
-				<item>
-					<widget class="QTextEdit" name="logsWidget">
-						<property name="minimumSize">
-							<size>
-								<width>0</width>
-								<height>100</height>
-							</size>
-						</property>
-						<property name="readOnly">
-							<bool>true</bool>
-						</property>
-						<property name="tabKeyNavigation" stdset="0">
-							<bool>false</bool>
-						</property>
-						<property name="columnCount" stdset="0">
-							<number>2</number>
-						</property>
-					</widget>
-				</item>
-			</layout>
-		</widget>
+     <widget class="QWidget" name="tab_logs">
+      <attribute name="title">
+       <string>&amp;Logs</string>
+      </attribute>
+      <layout class="QVBoxLayout" name="verticalLayout_3">
+       <property name="spacing">
+        <number>3</number>
+       </property>
+       <property name="bottomMargin">
+        <number>5</number>
+       </property>
+       <item>
+        <widget class="QTextEdit" name="logsWidget">
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>100</height>
+          </size>
+         </property>
+         <property name="readOnly">
+          <bool>true</bool>
+         </property>
+         <property name="tabKeyNavigation" stdset="0">
+          <bool>false</bool>
+         </property>
+         <property name="columnCount" stdset="0">
+          <number>2</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
      <widget class="QWidget" name="tab_nettraffic">
       <attribute name="title">
        <string>&amp;Network Traffic</string>
@@ -644,6 +637,26 @@
            </item>
            <item>
             <widget class="QPushButton" name="btnClearTrafficGraph">
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+             </property>
              <property name="text">
               <string>&amp;Clear</string>
              </property>
@@ -947,7 +960,6 @@
          <property name="font">
           <font>
            <pointsize>10</pointsize>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -1401,7 +1413,6 @@
         <widget class="QLabel" name="label_repair_header">
          <property name="font">
           <font>
-           <weight>75</weight>
            <bold>true</bold>
           </font>
          </property>
@@ -1414,7 +1425,6 @@
         <widget class="QLabel" name="label_repair_helptext">
          <property name="font">
           <font>
-           <weight>50</weight>
            <bold>false</bold>
           </font>
          </property>

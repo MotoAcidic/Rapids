@@ -75,6 +75,26 @@
      </item>
      <item>
       <widget class="QPushButton" name="searchButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -152,7 +172,6 @@
              <widget class="QLabel" name="spInfo">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -197,7 +216,6 @@
            <widget class="QLabel" name="propertyIDLabel">
             <property name="font">
              <font>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -223,7 +241,6 @@
            <widget class="QLabel" name="nameLabel">
             <property name="font">
              <font>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -255,7 +272,6 @@
             </property>
             <property name="font">
              <font>
-              <weight>75</weight>
               <bold>true</bold>
              </font>
             </property>
@@ -287,7 +303,6 @@
            <widget class="QLabel" name="categoryLabel">
             <property name="font">
              <font>
-              <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
@@ -313,7 +328,6 @@
            <widget class="QLabel" name="urlLabel">
             <property name="font">
              <font>
-              <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
@@ -339,7 +353,6 @@
            <widget class="QLabel" name="dataLabel">
             <property name="font">
              <font>
-              <weight>50</weight>
               <bold>false</bold>
              </font>
             </property>
@@ -415,7 +428,6 @@
                <widget class="QLabel" name="issuanceTypeLabel">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -431,7 +443,6 @@
                <widget class="QLabel" name="ecosystemLabel">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -447,7 +458,6 @@
                <widget class="QLabel" name="totalTokensLabel">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -466,7 +476,6 @@
                <widget class="QLabel" name="divisibleLabel">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -517,7 +526,6 @@
                <widget class="QLabel" name="walletBalanceLabel">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -574,7 +582,6 @@
              <widget class="QLabel" name="crowdInfo">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -620,7 +627,6 @@
              <widget class="QLabel" name="desiredLabel">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -643,7 +649,6 @@
              <widget class="QLabel" name="tokensPerUnitLabel">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -666,7 +671,6 @@
              <widget class="QLabel" name="deadlineLabel">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -689,7 +693,6 @@
              <widget class="QLabel" name="bonusLabel">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -712,7 +715,6 @@
              <widget class="QLabel" name="issuerPercLabel">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -735,7 +737,6 @@
              <widget class="QLabel" name="activeLabel">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
