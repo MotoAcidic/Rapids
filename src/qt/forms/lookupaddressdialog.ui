@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>664</width>
-    <height>474</height>
+    <height>584</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -62,6 +62,26 @@
      </item>
      <item>
       <widget class="QPushButton" name="searchButton">
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+       </property>
        <property name="text">
         <string>Search</string>
        </property>
@@ -106,7 +126,6 @@
                <widget class="QLabel" name="addressInfo">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -195,7 +214,6 @@
                <widget class="QLabel" name="addressTypeLabel">
                 <property name="font">
                  <font>
-                  <weight>50</weight>
                   <bold>false</bold>
                  </font>
                 </property>
@@ -238,7 +256,6 @@
                <widget class="QLabel" name="balanceLabel">
                 <property name="font">
                  <font>
-                  <weight>75</weight>
                   <bold>true</bold>
                  </font>
                 </property>
@@ -320,7 +337,6 @@
              <widget class="QLabel" name="propertyLabel1">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -343,7 +359,6 @@
              <widget class="QLabel" name="propertyLabel2">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -366,7 +381,6 @@
              <widget class="QLabel" name="propertyLabel3">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -392,7 +406,6 @@
              <widget class="QLabel" name="propertyLabel4">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -415,7 +428,6 @@
              <widget class="QLabel" name="propertyLabel5">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -438,7 +450,6 @@
              <widget class="QLabel" name="propertyLabel6">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -461,7 +472,6 @@
              <widget class="QLabel" name="propertyLabel7">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -484,7 +494,6 @@
              <widget class="QLabel" name="propertyLabel8">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -507,7 +516,6 @@
              <widget class="QLabel" name="propertyLabel9">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>
@@ -530,7 +538,6 @@
              <widget class="QLabel" name="propertyLabel10">
               <property name="font">
                <font>
-                <weight>75</weight>
                 <bold>true</bold>
                </font>
               </property>

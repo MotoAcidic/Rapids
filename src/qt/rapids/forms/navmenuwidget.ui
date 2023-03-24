@@ -116,7 +116,7 @@ background-color:transparent;
            <x>0</x>
            <y>0</y>
            <width>102</width>
-           <height>640</height>
+           <height>720</height>
           </rect>
          </property>
          <property name="sizePolicy">
@@ -165,6 +165,26 @@ background-color:transparent;
               <width>100</width>
               <height>80</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
             </property>
             <property name="text">
              <string>HOME

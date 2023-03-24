@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>602</width>
-    <height>607</height>
+    <height>624</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -664,6 +664,26 @@
            <property name="focusPolicy">
             <enum>Qt::NoFocus</enum>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+           </property>
            <property name="text">
             <string>CANCEL</string>
            </property>
@@ -679,6 +699,26 @@
            </property>
            <property name="focusPolicy">
             <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
            </property>
            <property name="text">
             <string>GENERATE</string>

@@ -453,6 +453,26 @@
            <property name="focusPolicy">
             <enum>Qt::NoFocus</enum>
            </property>
+           <property name="styleSheet">
+            <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+           </property>
            <property name="text">
             <string>How to get RPD</string>
            </property>
@@ -560,7 +580,7 @@
          </spacer>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0,0">
+         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="0">
           <property name="spacing">
            <number>0</number>
           </property>
@@ -947,6 +967,26 @@ margin:0px;</string>
                    <property name="focusPolicy">
                     <enum>Qt::NoFocus</enum>
                    </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+                   </property>
                    <property name="text">
                     <string>Days</string>
                    </property>
@@ -974,6 +1014,26 @@ margin:0px;</string>
                    </property>
                    <property name="focusPolicy">
                     <enum>Qt::NoFocus</enum>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
                    </property>
                    <property name="text">
                     <string>Months</string>
@@ -1008,6 +1068,26 @@ margin:0px;</string>
                    </property>
                    <property name="focusPolicy">
                     <enum>Qt::NoFocus</enum>
+                   </property>
+                   <property name="styleSheet">
+                    <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
                    </property>
                    <property name="text">
                     <string>Years</string>

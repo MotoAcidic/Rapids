@@ -93,11 +93,31 @@
        <property name="toolTip">
         <string>Create a new address</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+       </property>
        <property name="text">
         <string>&amp;New</string>
        </property>
        <property name="icon">
-        <iconset resource="../rapids.qrc">
+        <iconset>
          <normaloff>:/icons/add</normaloff>:/icons/add</iconset>
        </property>
        <property name="autoDefault">
@@ -110,11 +130,31 @@
        <property name="toolTip">
         <string>Copy the currently selected address to the system clipboard</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+       </property>
        <property name="text">
         <string>&amp;Copy</string>
        </property>
        <property name="icon">
-        <iconset resource="../rapids.qrc">
+        <iconset>
          <normaloff>:/icons/editcopy</normaloff>:/icons/editcopy</iconset>
        </property>
        <property name="autoDefault">
@@ -127,11 +167,31 @@
        <property name="toolTip">
         <string>Delete the currently selected address from the list</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+       </property>
        <property name="text">
         <string>&amp;Delete</string>
        </property>
        <property name="icon">
-        <iconset resource="../rapids.qrc">
+        <iconset>
          <normaloff>:/icons/remove</normaloff>:/icons/remove</iconset>
        </property>
        <property name="autoDefault">
@@ -157,11 +217,31 @@
        <property name="toolTip">
         <string>Export the data in the current tab to a file</string>
        </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
+       </property>
        <property name="text">
         <string>&amp;Export</string>
        </property>
        <property name="icon">
-        <iconset resource="../rapids.qrc">
+        <iconset>
          <normaloff>:/icons/export</normaloff>:/icons/export</iconset>
        </property>
        <property name="autoDefault">
@@ -176,6 +256,26 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton {
+color: #0F0F0F;
+border: 2px solid #555;
+border-radius: 10px;
+border-style: outset;
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+padding: 5px;
+}
+
+QPushButton:hover {
+background: qradialgradient(
+cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
+);
+}</string>
        </property>
        <property name="text">
         <string>C&amp;lose</string>

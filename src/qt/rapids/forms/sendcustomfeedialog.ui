@@ -337,13 +337,13 @@
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-color: #fff;
+color: #0F0F0F;
 border: 2px solid #555;
 border-radius: 10px;
 border-style: outset;
 background: qradialgradient(
 cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
 );
 padding: 5px;
 }
@@ -351,7 +351,7 @@ padding: 5px;
 QPushButton:hover {
 background: qradialgradient(
 cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
 );
 }</string>
           </property>
@@ -373,13 +373,13 @@ radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
           </property>
           <property name="styleSheet">
            <string notr="true">QPushButton {
-color: #fff;
+color: #0F0F0F;
 border: 2px solid #555;
 border-radius: 10px;
 border-style: outset;
 background: qradialgradient(
 cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF5533, stop: 1 #FF5533
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
 );
 padding: 5px;
 }
@@ -387,7 +387,7 @@ padding: 5px;
 QPushButton:hover {
 background: qradialgradient(
 cx: 0.3, cy: -0.4, fx: 0.3, fy: -0.4,
-radius: 1.35, stop: 0 #FF9333, stop: 1 #FF9333
+radius: 1.35, stop: 0 #d1d5db, stop: 1 #d1d5db
 );
 }</string>
           </property>
