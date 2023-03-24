@@ -16,7 +16,7 @@ TooltipMenu::TooltipMenu(RapidsGUI *_window, QWidget *parent) :
 {
     ui->setupUi(this);
     ui->btnLast->setVisible(false);
-    setCssProperty(ui->container, "container-list-menu");
+    //setCssProperty(ui->container, "container-list-menu");
     setCssProperty({ui->btnCopy, ui->btnDelete, ui->btnEdit, ui->btnLast}, "btn-list-menu");
     connect(ui->btnCopy, &QPushButton::clicked, this, &TooltipMenu::copyClicked);
     connect(ui->btnDelete, &QPushButton::clicked, this, &TooltipMenu::deleteClicked);
