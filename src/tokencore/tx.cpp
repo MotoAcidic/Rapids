@@ -49,7 +49,7 @@ static const std::regex IPFS_CHARACTERS("Qm[1-9A-HJ-NP-Za-km-z]{44,}|b[A-Za-z2-7
 static const std::regex TOKEN_SUB_CHARACTERS("^[r]?[A-Z0-9._]{3,20}#[A-Z0-9._]{3,20}$");
 static const std::regex PROTECTED_TICKERS("^RPD$|^RAPIDS$|^RAPIDSNETWORK$");
 static const std::regex TOKEN_TICKER_CHARACTERS("^[r]?[A-Z0-9._]{3,20}$");
-static const std::regex USERNAME_CHARACTERS("^[a-z0-9._]{3,20}.rpd$");
+static const std::regex USERNAME_CHARACTERS("^[a-zA-Z0-9]{3,}.rpd$");
 static const std::regex PROTECTED_USERNAMES("^rapids.rpd$|^rpd.rpd$");
 
 std::vector<std::string> SplitSubTicker(const std::string &s) {
