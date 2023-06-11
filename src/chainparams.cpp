@@ -72,7 +72,7 @@ void GenesisGeneratorV2(CBlock genesis)
     //
     // /////////////////////////////////////////////////////////////////
 
-    uint32_t nGenesisTime = 1679198507;
+    uint32_t nGenesisTime = 1686507818;
 
     arith_uint256 test;
     uint256 hashGenesisBlock;
@@ -130,12 +130,12 @@ void GenesisGeneratorV2(CBlock genesis)
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256S("0x00000b444395e32c86230466900dba6483f9175cd385c1aa4456651a848900ed"))
+	(0, uint256S("0x001"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1679198507, // * UNIX timestamp of last checkpoint block
+    1686507818, // * UNIX timestamp of last checkpoint block
     2003954,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2000        // * estimated number of transactions per day after checkpoint
@@ -169,12 +169,12 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1679198507, 8020, 0x1e0ffff0, 1, 0 * COIN);
-        consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x00000b444395e32c86230466900dba6483f9175cd385c1aa4456651a848900ed"));
-        assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        //genesis = CreateGenesisBlock(1679198507, 8020, 0x1e0ffff0, 1, 0 * COIN);
+        //consensus.hashGenesisBlock = genesis.GetHash();
+        //assert(consensus.hashGenesisBlock == uint256S("0x00000b444395e32c86230466900dba6483f9175cd385c1aa4456651a848900ed"));
+        //assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
 
-        //GenesisGeneratorV2(genesis);
+        GenesisGeneratorV2(genesis);
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
@@ -209,20 +209,20 @@ public:
         consensus.nTargetForkHeightV3 = 50000; // Block 50k
 
         //Pow phase
-        consensus.nPowTargetTimespan = 30 * 60;    // 30mins
-        consensus.nPowTargetSpacing = 15;        // 15sec
+        consensus.nPowTargetTimespan = 30 * 60;      // 30mins
+        consensus.nPowTargetSpacing = 30;            // 30sec
         //consensus.nPowTargetTimespanV2 = 3 * 60;   // 3 mins
         //consensus.nPowTargetSpacingV2 = 20;        // 20sec
 
         //Pos phase
-        consensus.nPosTargetSpacing = 15;        // 15 sec block time
+        consensus.nPosTargetSpacing = 30;        // 30 sec block time
         consensus.lwmaAveragingWindow = 8;       // 8 second retarget 
         consensus.nPosTargetSpacingV2 = std::numeric_limits<int>::max();
         consensus.lwmaAveragingWindowV2 = std::numeric_limits<int>::max();
         consensus.nPosTargetSpacingV3 = std::numeric_limits<int>::max();
         consensus.lwmaAveragingWindowV3 = std::numeric_limits<int>::max();     
 
-        consensus.nTimeSlotLength = 15;         // 15sec
+        consensus.nTimeSlotLength = 30;         // 30sec
         consensus.nStakeMinAge = 10 * 60;       // 10min
         consensus.nStakeMinDepth = 60;          // 60 blocks        
         
