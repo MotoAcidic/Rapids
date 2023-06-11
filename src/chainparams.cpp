@@ -120,7 +120,7 @@ void GenesisGeneratorV2(CBlock genesis)
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-	(0, uint256S("0x001"))
+	(0, uint256S("0x00000ef1a712ecc3830fe770de2d175bee31cd9b143bee25c7a3a08a01d4f4ff"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
@@ -159,12 +159,12 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        //genesis = CreateGenesisBlock(1686507818, 2804731, 0x1e0ffff0, 1, 0 * COIN);
-        //consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x000008203308a72145c26f532ee7bc3205ab433cab8587974331b0db92477dc4"));
-        //assert(genesis.hashMerkleRoot == uint256S("0xe980eec274480a0309fa533f5c35269f402c1ba5a4af59acc5585ae0d0c44802"));
+        genesis = CreateGenesisBlock(1686509347, 1329475, 0x1e0ffff0, 1, 0 * COIN);
+        consensus.hashGenesisBlock = genesis.GetHash();
+        assert(consensus.hashGenesisBlock == uint256S("0x00000ef1a712ecc3830fe770de2d175bee31cd9b143bee25c7a3a08a01d4f4ff"));
+        assert(genesis.hashMerkleRoot == uint256S("0x0b924226cfa1cb5ed86fe667f5a3014626ae721049cf91f59ce044dbfe46a48e"));
 
-        GenesisGeneratorV2(genesis);
+        //GenesisGeneratorV2(genesis);
 
         consensus.fPowAllowMinDifficultyBlocks = true;
 
